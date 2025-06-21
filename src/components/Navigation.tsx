@@ -1,6 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ConnectWalletButton } from './ConnectWalletButton';
+import { 
+  HiHome, 
+  HiCube, 
+  HiLightningBolt, 
+  HiGift 
+} from 'react-icons/hi';
+import { 
+  FiHome, 
+  FiBox, 
+  FiZap, 
+  FiGift, 
+  FiTrendingUp 
+} from 'react-icons/fi';
+import { IoRocketSharp } from 'react-icons/io5';
 
 const Navigation: React.FC = () => {
 
@@ -95,7 +109,7 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container">
-            <span className="nav-icon">🏠</span>
+            <HiHome className="nav-icon" />
           </div>
           <span className="nav-label">Home</span>
         </motion.a>
@@ -107,7 +121,7 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container">
-            <span className="nav-icon">💎</span>
+            <HiCube className="nav-icon" />
           </div>
           <span className="nav-label">Projects</span>
         </motion.a>
@@ -119,7 +133,7 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container">
-            <span className="nav-icon">⚡</span>
+            <HiLightningBolt className="nav-icon" />
           </div>
           <span className="nav-label">Staking</span>
         </motion.a>
@@ -131,7 +145,7 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container">
-            <span className="nav-icon">🎁</span>
+            <HiGift className="nav-icon" />
           </div>
           <span className="nav-label">Airdrop</span>
         </motion.a>
@@ -143,7 +157,7 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container special-icon">
-            <span className="nav-icon">🚀</span>
+            <IoRocketSharp className="nav-icon" />
           </div>
           <span className="nav-label">Apply</span>
         </motion.a>

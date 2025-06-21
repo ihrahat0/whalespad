@@ -52,7 +52,7 @@ const LaunchpadStats: React.FC = () => {
   const platformStats = [
     {
       label: 'Total Volume',
-      value: '$185.2M',
+      value: '$5.2M',
       change: '+24.8%',
       trend: 'up',
       icon: '💰',
@@ -68,7 +68,7 @@ const LaunchpadStats: React.FC = () => {
     },
     {
       label: 'Total Investors',
-      value: '47.2K',
+      value: '345K',
       change: '+12.5%',
       trend: 'up',
       icon: '👥',

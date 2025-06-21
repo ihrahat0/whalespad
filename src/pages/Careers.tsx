@@ -206,7 +206,7 @@ const Careers: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="careers-hero-content"
           >
-            <h1 className="careers-title">Join the Whale Pod</h1>
+            <h1 className="careers-title">Career a Whales Pad vull</h1>
             <p className="careers-subtitle">
               Build the future of decentralized finance with a world-class team of innovators, 
               engineers, and visionaries from around the globe.
@@ -416,9 +416,9 @@ const Careers: React.FC = () => {
               <button className="cta-button secondary">Join Talent Pool</button>
             </div>
             <div className="contact-info">
-              <p>📧 careers@whalespad.com</p>
-              <p>💼 LinkedIn: /company/whalespad</p>
-              <p>🐦 Twitter: @WhalesPadJobs</p>
+              <p>contact@whalespad.com</p>
+              {/* <p>💼 LinkedIn: /company/whalespad</p> */}
+              <p>X: <a href="https://twitter.com/WhalesPadinfo" target="_blank" rel="noopener noreferrer">@WhalesPadinfo</a></p>
             </div>
           </motion.div>
         </div>

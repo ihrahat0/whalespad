@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MdWaves } from 'react-icons/md';
 
 const Footer: React.FC = () => {
   const socialLinks = [
@@ -76,16 +77,6 @@ const Footer: React.FC = () => {
         { name: 'Disclaimer', href: '#disclaimer' },
         { name: 'Cookie Policy', href: '#cookies' }
       ]
-    },
-    {
-      title: 'Products',
-      links: [
-        { name: 'IDO Launchpad', href: '/ido-sales' },
-        { name: 'Staking Platform', href: '/staking' },
-        { name: 'Multi-Chain Support', href: '#multichain' },
-        { name: 'NFT Generator', href: '#nft' },
-        { name: 'API Access', href: '#api' }
-      ]
     }
   ];
 
@@ -103,11 +94,11 @@ const Footer: React.FC = () => {
             {/* Brand Section */}
             <div className="footer-brand-section">
               <div className="footer-logo">
-                <span className="footer-logo-icon">🐋</span>
+                <MdWaves className="footer-logo-icon" />
                 <span className="footer-logo-text">WhalesPad</span>
               </div>
               <p className="footer-description">
-                WhalesPad, a cutting-edge launchpad and DeFi platform powered by WhalesPad.
+              WhalesPad is a next-generation decentralized Launchpad and incubator platform, empowering Web3 startups across sectors like DeFi, AI, GameFi, NFTs, and Metaverse. By staking $WPT, users gain exclusive early access to high-potential project tokens, enabling them to be at the forefront of Web3 innovation and investment opportunities
               </p>
               <div className="footer-socials">
                 {socialLinks.map((social, index) => (

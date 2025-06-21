@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient';
-import BlogNavbar from '../components/BlogNavbar';
+// import BlogNavbar from '../components/BlogNavbar';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
 
@@ -219,7 +220,7 @@ Tokens will be distributed to your wallet within 24 hours.`);
   if (loading) {
     return (
       <div className="staking-airdrop-page">
-        <BlogNavbar />
+        <Navigation />
         <div className="staking-main-content">
           <div className="container">
             <div className="loading-container">
@@ -235,7 +236,7 @@ Tokens will be distributed to your wallet within 24 hours.`);
 
   return (
     <div className="staking-airdrop-page">
-      <BlogNavbar />
+      <Navigation />
       
       {/* Hero Section */}
       <div className="staking-hero-section">

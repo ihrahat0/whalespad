@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient'; // Import Supabase client
 import { FiEye, FiHeart, FiCalendar, FiUser } from 'react-icons/fi';
-import BlogNavbar from '../components/BlogNavbar';
+// import BlogNavbar from '../components/BlogNavbar';
 import Navigation from '../components/Navigation';
 
 type Blog = {
@@ -88,7 +88,7 @@ const BlogList: React.FC = () => {
   if (loading) {
     return (
       <>
-        <BlogNavbar />
+        {/* <BlogNavbar /> */}
         <div className="flex justify-center items-center min-h-[400px] pt-16">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
@@ -99,7 +99,7 @@ const BlogList: React.FC = () => {
   if (error) {
     return (
       <>
-        <BlogNavbar />
+        
         <div className="bg-red-500/10 border border-red-500/30 text-red-500 rounded-lg p-4 text-center my-8 mt-24 max-w-4xl mx-auto">
           <p className="font-medium">Error: {error}</p>
         </div>
@@ -110,7 +110,7 @@ const BlogList: React.FC = () => {
   return (
     <div className="blog-page-wrapper">
       <Navigation />
-      <BlogNavbar />
+      
       
       {/* Background Effects */}
       <div className="blog-bg-effects">

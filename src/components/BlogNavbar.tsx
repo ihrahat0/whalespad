@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ConnectWalletButton } from './ConnectWalletButton';
+import { 
+  HiHome, 
+  HiCube, 
+  HiLightningBolt, 
+  HiDocumentText,
+  HiCog,
+  HiX
+} from 'react-icons/hi';
+import { IoRocketSharp } from 'react-icons/io5';
+import { MdWaves } from 'react-icons/md';
 
 interface BlogNavbarProps {
   isAdmin?: boolean;
@@ -58,7 +68,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
           <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
             <div className="logo-orbit">
               <div className="logo-center">
-                <span className="logo-icon-enhanced">🐋</span>
+                <MdWaves className="logo-icon-enhanced" />
               </div>
               <div className="orbit-ring"></div>
               <div className="orbit-ring orbit-ring-2"></div>
@@ -165,11 +175,11 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
             >
               <div className="mobile-menu-header">
                 <div className="mobile-logo">
-                  <span className="logo-icon">🐋</span>
+                  <MdWaves className="logo-icon" />
                   <span className="logo-text">WhalesPad</span>
                 </div>
                 <button className="mobile-menu-close" onClick={closeMobileMenu}>
-                  ✕
+                  <HiX />
                 </button>
               </div>
               
@@ -180,7 +190,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
-                  <span className="nav-icon">🏠</span>
+                  <HiHome className="nav-icon" />
                   HOME
                 </motion.a>
                 
@@ -190,7 +200,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
-                  <span className="nav-icon">📝</span>
+                  <HiDocumentText className="nav-icon" />
                   BLOG
                 </motion.a>
                 
@@ -200,7 +210,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
-                  <span className="nav-icon">💎</span>
+                  <HiCube className="nav-icon" />
                   PROJECTS
                 </motion.a>
                 
@@ -210,7 +220,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
-                  <span className="nav-icon">⚡</span>
+                  <HiLightningBolt className="nav-icon" />
                   STAKING
                 </motion.a>
                 
@@ -221,7 +231,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                     onClick={closeMobileMenu}
                     whileHover={{ x: 10 }}
                   >
-                    <span className="nav-icon">⚙️</span>
+                    <HiCog className="nav-icon" />
                     DASHBOARD
                   </motion.a>
                 )}
@@ -232,7 +242,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
-                  <span className="nav-icon">🚀</span>
+                  <IoRocketSharp className="nav-icon" />
                   CREATE PRESALE
                 </motion.a>
               </div>

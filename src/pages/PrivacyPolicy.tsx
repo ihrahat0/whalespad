@@ -95,7 +95,7 @@ const PrivacyPolicy: React.FC = () => {
             <div className="legal-section">
               <h2>6. Contact Us</h2>
               <div className="contact-info">
-                <p>📧 Email: privacy@whalespad.com</p>
+                <p>📧 Email: contact@whalespad.com</p>
                 <p>💬 Telegram: @WhalesPadSupport</p>
               </div>
             </div>

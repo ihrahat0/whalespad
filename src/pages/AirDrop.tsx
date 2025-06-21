@@ -134,7 +134,7 @@ const AirDrop: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
       <Navigation />
-      <BlogNavbar />
+      {/* <BlogNavbar /> */}
       
       {/* Hero Section */}
       <div className="pt-24 pb-16 px-4">
