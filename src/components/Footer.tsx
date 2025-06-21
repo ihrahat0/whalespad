@@ -53,29 +53,38 @@ const Footer: React.FC = () => {
       links: [
         { name: 'Projects', href: '/ido-sales' },
         { name: 'Staking', href: '/staking' },
-        { name: 'Stats', href: '#stats' },
-        { name: 'Giveaways', href: '#giveaways' },
-        { name: 'DAO', href: '#dao' }
+        { name: 'Airdrop', href: '/airdrop' },
+        { name: 'Submit Project', href: '/submit-project' },
+        { name: 'Blog', href: '/blog' }
       ]
     },
     {
-      title: 'Learn',
+      title: 'Company',
       links: [
-        { name: 'Introduction & Overview', href: '#overview' },
-        { name: 'Tier System & Staking', href: '/staking' },
-        { name: 'Frequently Asked Questions', href: '#faq' },
-        { name: 'WhalesPad Incubation Program', href: '#incubation' },
-        { name: 'Documentation Page', href: '#docs' },
-        { name: 'IDO Launchpad Basics for Beginners', href: '#basics' }
+        { name: 'Game Plan', href: '/gameplan' },
+        { name: 'Security', href: '/security' },
+        { name: 'Careers', href: '/careers' },
+        { name: 'About Us', href: '#about' },
+        { name: 'Contact', href: '#contact' }
+      ]
+    },
+    {
+      title: 'Legal',
+      links: [
+        { name: 'Terms of Service', href: '/terms' },
+        { name: 'Privacy Policy', href: '/privacy' },
+        { name: 'Disclaimer', href: '#disclaimer' },
+        { name: 'Cookie Policy', href: '#cookies' }
       ]
     },
     {
       title: 'Products',
       links: [
-        { name: 'WhalesPad (Main Website)', href: '/' },
-        { name: 'WhalesPad NFT Generator', href: '#nft' },
-        { name: 'CryptoGuard', href: '#cryptoguard' },
-        { name: 'Crypto AI Hub', href: '#ai-hub' }
+        { name: 'IDO Launchpad', href: '/ido-sales' },
+        { name: 'Staking Platform', href: '/staking' },
+        { name: 'Multi-Chain Support', href: '#multichain' },
+        { name: 'NFT Generator', href: '#nft' },
+        { name: 'API Access', href: '#api' }
       ]
     }
   ];

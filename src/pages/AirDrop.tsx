@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BlogNavbar from '../components/BlogNavbar';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
+import Navigation from '../components/Navigation';
 
 interface AirdropCampaign {
   id: string;
@@ -132,6 +133,7 @@ const AirDrop: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white">
+      <Navigation />
       <BlogNavbar />
       
       {/* Hero Section */}

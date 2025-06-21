@@ -22,6 +22,12 @@ import StakingAirdrop from './pages/StakingAirdrop';
 import AirDrop from './pages/AirDrop';
 import TrendingIDOs from './components/TrendingIDOs';
 import IDOSales from './pages/IDOSales';
+import Navigation from './components/Navigation';
+import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import GamePlan from './pages/GamePlan';
+import Security from './pages/Security';
+import Careers from './pages/Careers';
 
 function App() {
   return (
@@ -40,6 +46,7 @@ function App() {
           <Routes>
             <Route path="/" element={
               <>
+                <Navigation />
                 <Hero />
                 <Features />
                 <LaunchpadStats />
@@ -62,6 +69,11 @@ function App() {
             <Route path="/ido-sales" element={<IDOSales />} />
             <Route path="/staking" element={<StakingAirdrop />} />
             <Route path="/airdrop" element={<AirDrop />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/gameplan" element={<GamePlan />} />
+            <Route path="/security" element={<Security />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         </Router>
       </div>

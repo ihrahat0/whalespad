@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient'; // Import Supabase client
 import { FiEye, FiHeart, FiCalendar, FiUser } from 'react-icons/fi';
 import BlogNavbar from '../components/BlogNavbar';
+import Navigation from '../components/Navigation';
 
 type Blog = {
   id: string; // Changed to string for Supabase UUID
@@ -108,6 +109,7 @@ const BlogList: React.FC = () => {
 
   return (
     <div className="blog-page-wrapper">
+      <Navigation />
       <BlogNavbar />
       
       {/* Background Effects */}

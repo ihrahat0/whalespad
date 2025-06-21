@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
 import BlogNavbar from '../components/BlogNavbar';
+import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 // Extend Window interface for ethereum
@@ -373,6 +374,7 @@ The presale contract will automatically send tokens to your wallet.`);
   if (loading) {
     return (
       <div className="project-details-page-new">
+        <Navigation />
         <BlogNavbar />
         <div className="project-main-content">
           <div className="container">
@@ -391,6 +393,7 @@ The presale contract will automatically send tokens to your wallet.`);
   if (error || !project) {
     return (
       <div className="project-details-page-new">
+        <Navigation />
         <BlogNavbar />
         <div className="project-main-content">
           <div className="container">
@@ -425,6 +428,7 @@ The presale contract will automatically send tokens to your wallet.`);
   return (
     <div className="project-details-page-new">
       {/* Use Main Navigation from Landing Page */}
+      <Navigation />
       <BlogNavbar />
 
       {/* Banner Section */}
