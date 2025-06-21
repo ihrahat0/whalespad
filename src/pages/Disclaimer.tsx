@@ -190,9 +190,9 @@ const Disclaimer: React.FC = () => {
                 For questions about this disclaimer, please contact us at:
               </p>
               <div className="contact-info">
-                <p>📧 Email: legal@whalespad.com</p>
-                <p>💬 Telegram: @WhalesPadSupport</p>
-                <p>🌐 Website: https://whalespad.com</p>
+                <p>Email: contact@whalespad.com</p>
+                <p>X: <a href="https://twitter.com/WhalesPadinfo" target="_blank" rel="noopener noreferrer">@WhalesPadinfo</a></p>
+                <p>Website: https://whalespad.com</p>
               </div>
             </div>
 

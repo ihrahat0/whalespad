@@ -51,9 +51,9 @@ const LaunchpadStats: React.FC = () => {
 
   const platformStats = [
     {
-      label: 'Total Volume',
-      value: '$5.2M',
-      change: '+24.8%',
+      label: 'ATH AVG ROI',
+      value: '24.8%',
+      change: '+1600%',
       trend: 'up',
       icon: '💰',
       color: 'var(--primary-cyan)'

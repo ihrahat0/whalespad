@@ -90,7 +90,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
             >
               HOME
             </motion.a>
-            
+           
             <motion.a 
               href="/blog" 
               className="cyberpunk-nav-item blog-nav-item active"

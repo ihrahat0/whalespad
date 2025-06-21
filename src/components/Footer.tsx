@@ -74,8 +74,8 @@ const Footer: React.FC = () => {
       links: [
         { name: 'Terms of Service', href: '/terms' },
         { name: 'Privacy Policy', href: '/privacy' },
-        { name: 'Disclaimer', href: '#disclaimer' },
-        { name: 'Cookie Policy', href: '#cookies' }
+        { name: 'Disclaimer', href: '/disclaimer' },
+        { name: 'Cookie Policy', href: '/cookie-policy' }
       ]
     }
   ];
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
                 <span className="footer-logo-text">WhalesPad</span>
               </div>
               <p className="footer-description">
-              WhalesPad is a next-generation decentralized Launchpad and incubator platform, empowering Web3 startups across sectors like DeFi, AI, GameFi, NFTs, and Metaverse. By staking $WPT, users gain exclusive early access to high-potential project tokens, enabling them to be at the forefront of Web3 innovation and investment opportunities
+              WhalesPad is a decentralized launchpad and incubator for Web3 startups in DeFi, AI, GameFi, NFTs, and the Metaverse. By staking $WPT, users get early access to promising project tokens and unique Web3 investment opportunities.
               </p>
               <div className="footer-socials">
                 {socialLinks.map((social, index) => (

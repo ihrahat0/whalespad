@@ -306,7 +306,7 @@ const AirDrop: React.FC = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="wallet-notice-card mt-16"
             >
-              <div className="notice-icon">🔗</div>
+              <div className="notice-icon"></div>
               <div className="notice-content">
                 <h3 className="notice-title">Connect Your Wallet</h3>
                 <p className="notice-description">

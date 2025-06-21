@@ -11891,6 +11891,345 @@ select {
   }
 }
 
+/* Floating Connect Wallet Button */
+.floating-wallet-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .floating-wallet-container {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+.floating-connect-wallet {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--accent-blue));
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 212, 255, 0.4),
+    0 4px 16px rgba(0, 212, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  transition: all 0.3s ease;
+  min-width: 160px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #000;
+  letter-spacing: 0.5px;
+}
+
+.floating-connect-wallet:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 212, 255, 0.5),
+    0 6px 20px rgba(0, 212, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.floating-connect-wallet:active {
+  transform: translateY(1px);
+}
+
+.floating-wallet-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.floating-wallet-icon {
+  font-size: 1.1rem;
+}
+
+.floating-wallet-text {
+  font-size: 0.9rem;
+}
+
+.floating-wallet-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  border-radius: 50px;
+  animation: floating-wallet-pulse 2s ease-in-out infinite;
+}
+
+@keyframes floating-wallet-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+/* Connected State Styles */
+.floating-connect-wallet.connected {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.floating-connect-wallet.connected:hover {
+  box-shadow: 
+    0 12px 40px rgba(16, 185, 129, 0.5),
+    0 6px 20px rgba(16, 185, 129, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.floating-wallet-connected-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  animation: connected-pulse 2s infinite;
+}
+
+@keyframes connected-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2); }
+}
+
+.floating-wallet-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: floating-wallet-spin 0.8s linear infinite;
+}
+
+@keyframes floating-wallet-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hide mobile nav wallet button when floating is present */
+@media (max-width: 768px) {
+  .mobile-nav-controls .cyberpunk-wallet-btn {
+    display: none;
+  }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 9998;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(15, 20, 35, 0.98) 0%,
+    rgba(20, 25, 40, 0.95) 50%,
+    rgba(15, 20, 35, 0.98) 100%
+  );
+  backdrop-filter: blur(25px);
+  border-left: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 
+    -20px 0 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 212, 255, 0.1);
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobile-logo .logo-icon {
+  font-size: 1.5rem;
+  color: var(--primary-cyan);
+}
+
+.mobile-logo .logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mobile-menu-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.mobile-menu-items {
+  padding: 2rem 0;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-nav-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--primary-cyan);
+  border-left: 3px solid var(--primary-cyan);
+  text-decoration: none;
+}
+
+.mobile-nav-item.active {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--primary-cyan);
+  border-left: 3px solid var(--primary-cyan);
+}
+
+.mobile-nav-item.highlight {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.1));
+  color: var(--primary-cyan);
+  font-weight: 600;
+}
+
+.mobile-nav-item .nav-icon {
+  font-size: 1.25rem;
+  color: inherit;
+}
+
+.mobile-menu-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mobile-wallet-section {
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 10000;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 24px;
+  height: 18px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-cyan);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Body scroll lock when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-header {
+    padding: 1rem;
+  }
+  
+  .mobile-menu-footer {
+    padding: 1.5rem;
+  }
+  
+  .mobile-nav-item {
+    padding: 1rem 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .cyberpunk-navbar-compact {
     height: 70px;
@@ -14217,21 +14556,69 @@ select {
   }
 }
 
-/* Investment details mobile improvements */
+/* Investment details mobile improvements - High specificity */
 @media (max-width: 768px) {
   .investment-details-modern {
     padding: 1.25rem;
     margin-bottom: 1rem;
   }
 
-  .price-info-grid-modern {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+  .investment-details-modern .price-info-grid-modern {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.3rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+  
+  .investment-details-modern .price-item-modern {
+    padding: 0.45rem 0.25rem !important;
+    border-radius: 6px !important;
+    min-height: auto !important;
+  }
+  
+  .investment-details-modern .price-label-modern {
+    font-size: 0.6rem !important;
+    margin-bottom: 0.15rem !important;
+    letter-spacing: 0.3px !important;
+    line-height: 1.1 !important;
+  }
+  
+  .investment-details-modern .price-value-modern {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
   }
 
   .detail-cards-modern {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+/* Extra small mobile screens optimization - Ultra compact */
+@media (max-width: 480px) {
+  .investment-details-modern .price-info-grid-modern {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .investment-details-modern .price-item-modern {
+    padding: 0.3rem 0.15rem !important;
+    border-radius: 4px !important;
+    min-height: auto !important;
+  }
+  
+  .investment-details-modern .price-label-modern {
+    font-size: 0.5rem !important;
+    margin-bottom: 0.1rem !important;
+    letter-spacing: 0.2px !important;
+    line-height: 1 !important;
+  }
+  
+  .investment-details-modern .price-value-modern {
+    font-size: 0.65rem !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
   }
 }
 
@@ -14327,7 +14714,7 @@ select {
 @media (max-width: 812px) and (orientation: landscape) {
   .hero-content,
   .hero-content-enhanced {
-    padding-top: 80px;
+    padding-top: 0px;
     padding-bottom: 30px;
   }
 
@@ -14419,29 +14806,30 @@ select {
 
 /* ===== COMPREHENSIVE MOBILE NAVIGATION FIXES ===== */
 
-/* Mobile navigation improvements */
+/* Mobile navigation improvements - Hide top menu completely on mobile */
 .desktop-nav {
   display: flex;
 }
 
-.mobile-nav-menu {
-  display: none;
-}
-
 @media (max-width: 768px) {
+  /* Hide desktop navigation completely on mobile */
   .desktop-nav {
     display: none !important;
   }
-
-  .mobile-nav-menu {
-    display: flex !important;
-    align-items: center;
+  
+  /* Hide any top navigation items on mobile */
+  .cyberpunk-nav-frame {
+    display: none !important;
+  }
+  
+  .nav-items-container {
+    display: none !important;
   }
 
-  /* Enhanced Mobile Navigation */
+  /* Enhanced Mobile Navigation - Minimal top bar */
   .cyberpunk-navbar {
-    padding: 15px 0 !important;
-    min-height: 80px !important;
+    padding: 10px 0 !important;
+    min-height: 60px !important;
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -14458,6 +14846,11 @@ select {
     justify-content: space-between !important;
     align-items: center !important;
     height: 100% !important;
+  }
+  
+  /* Force hide top navigation menu items on mobile */
+  .cyberpunk-nav-container .cyberpunk-nav-item {
+    display: none !important;
   }
 
   .navbar-logo-enhanced {
@@ -14492,7 +14885,7 @@ select {
   /* Mobile Hero Improvements */
   .futuristic-hero {
     min-height: 100vh !important;
-    padding-top: 90px !important;
+    padding-top: 70px !important; /* Reduced for smaller navbar */
     overflow-x: hidden !important;
   }
 
@@ -14619,8 +15012,8 @@ select {
 
 @media (max-width: 480px) {
   .cyberpunk-navbar {
-    padding: 12px 0 !important;
-    min-height: 75px !important;
+    padding: 8px 0 !important;
+    min-height: 55px !important;
   }
 
   .cyberpunk-nav-container {
@@ -14632,11 +15025,11 @@ select {
   }
 
   .navbar-logo-simple {
-    scale: 1 !important;
+    scale: 0.9 !important;
   }
 
   .futuristic-hero {
-    padding-top: 85px !important;
+    padding-top: 65px !important;
   }
 
   .hero-container-enhanced {
@@ -17936,30 +18329,30 @@ select {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1001 !important; /* Higher than top navbar */
   background: linear-gradient(135deg, 
-    rgba(10, 10, 15, 0.95) 0%, 
-    rgba(15, 15, 25, 0.98) 50%, 
-    rgba(10, 10, 15, 0.95) 100%
+    rgba(10, 10, 15, 0.98) 0%, 
+    rgba(15, 15, 25, 0.99) 50%, 
+    rgba(10, 10, 15, 0.98) 100%
   );
-  backdrop-filter: blur(20px);
-  border-top: 2px solid rgba(0, 212, 255, 0.3);
+  backdrop-filter: blur(30px);
+  border-top: 2px solid rgba(0, 212, 255, 0.4);
   padding: 0.75rem 1rem 1rem 1rem;
   display: none; /* Hidden by default */
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
 }
 
 /* Show only on mobile screens */
 @media (max-width: 768px) {
   .mobile-bottom-nav {
-    display: flex;
+    display: flex !important;
   }
   
   /* Add bottom padding to prevent content from hiding behind nav */
   body {
-    padding-bottom: 80px;
+    padding-bottom: 85px !important;
   }
 }
 
@@ -18063,10 +18456,39 @@ select {
   animation: nav-glow 3s ease-in-out infinite;
 }
 
+/* Mobile Navigation Controls - Top Right */
+.mobile-nav-controls {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-controls {
+    display: flex !important;
+  }
+  
+  .mobile-nav-controls .cyberpunk-wallet-btn {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.7rem !important;
+    min-width: auto !important;
+    white-space: nowrap !important;
+    border-radius: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-controls .cyberpunk-wallet-btn {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.65rem !important;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .mobile-bottom-nav {
     padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+    justify-content: space-around;
   }
   
   .nav-icon-container {
@@ -18097,6 +18519,17 @@ select {
   .container {
     margin-bottom: 1rem;
   }
+  
+  /* Adjust mobile bottom nav for 5 items */
+  .mobile-bottom-nav {
+    padding: 0.5rem 0.25rem 0.75rem 0.25rem;
+  }
+  
+  .bottom-nav-item {
+    min-width: 16%;
+    flex: 1;
+    max-width: 20%;
+  }
 }
 
 /* ===== END FULLSCREEN MOBILE MENU ===== */
@@ -18110,7 +18543,7 @@ select {
   color: #ffffff;
   position: relative;
   overflow-x: hidden;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 /* Hero Sections */

@@ -100,7 +100,7 @@ const TokenSale: React.FC = () => {
           className={`tokenomics-tab ${activeTab === 'blockchain' ? 'active' : ''}`}
           onClick={() => setActiveTab('blockchain')}
         >
-          <span className="tab-icon">🔗</span>
+          <span className="tab-icon"></span>
           <span>Blockchain</span>
         </button>
       </div>
@@ -258,7 +258,7 @@ const TokenSale: React.FC = () => {
           <div className="tokenomics-main-card">
             <div className="card-header">
               <h3 className="card-title">
-                <span className="title-icon">🔗</span>
+                <span className="title-icon"></span>
                 Multi-Chain Deployment
               </h3>
               <p className="card-subtitle">WhalesPad token is deployed on multiple blockchains for maximum accessibility</p>

@@ -511,7 +511,6 @@ const Hero: React.FC = () => {
                 {/* Advanced Stats Grid */}
                 <div className="stats-grid-advanced">
                   <div className="stat-card-mini">
-                    <div className="stat-icon">💰</div>
                     <div className="stat-info">
                       <div className="stat-label">Raised</div>
                       <div className="stat-value primary">{currentProject.raised}</div>
@@ -520,7 +519,6 @@ const Hero: React.FC = () => {
                   </div>
                   
                   <div className="stat-card-mini">
-                    <div className="stat-icon">⏰</div>
                     <div className="stat-info">
                       <div className="stat-label">Time Left</div>
                       <div className="stat-value">{currentProject.timeLeft}</div>
@@ -529,7 +527,6 @@ const Hero: React.FC = () => {
                   </div>
                   
                   <div className="stat-card-mini">
-                    <div className="stat-icon">👥</div>
                     <div className="stat-info">
                       <div className="stat-label">Participants</div>
                       <div className="stat-value">{currentProject.participants.toLocaleString()}</div>
@@ -538,7 +535,6 @@ const Hero: React.FC = () => {
                   </div>
                   
                   <div className="stat-card-mini">
-                    <div className="stat-icon">🏷️</div>
                     <div className="stat-info">
                       <div className="stat-label">Token Price</div>
                       <div className="stat-value">{currentProject.price}</div>

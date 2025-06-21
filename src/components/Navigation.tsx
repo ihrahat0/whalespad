@@ -153,13 +153,13 @@ const Navigation: React.FC = () => {
         <motion.a 
           href="/submit-project" 
           className="bottom-nav-item special"
-          whileHover={{ scale: 1.1, y: -8 }}
+          whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container special-icon">
             <IoRocketSharp className="nav-icon" />
           </div>
-          <span className="nav-label">Apply</span>
+          <span className="nav-label">Apply IDO</span>
         </motion.a>
       </motion.div>
     </motion.nav>

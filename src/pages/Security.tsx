@@ -359,16 +359,9 @@ const Security: React.FC = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <strong>🔒 Security Email:</strong>
-                <span>security@whalespad.com</span>
+                <span>contact@whalespad.com</span>
               </div>
-              <div className="contact-item">
-                <strong>🐛 Bug Bounty:</strong>
-                <span>bounty@whalespad.com</span>
-              </div>
-              <div className="contact-item">
-                <strong>🆘 Emergency Contact:</strong>
-                <span>emergency@whalespad.com</span>
-              </div>
+              
               <div className="contact-item">
                 <strong>🔐 PGP Key:</strong>
                 <span>Download our PGP key for encrypted communication</span>

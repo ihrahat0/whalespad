@@ -153,7 +153,7 @@ const GamePlan: React.FC = () => {
                 <p>Making advanced DeFi tools accessible to everyone, from retail investors to institutions.</p>
               </div>
               <div className="mission-card">
-                <div className="mission-icon">🔗</div>
+                <div className="mission-icon"></div>
                 <h3>Bridge Ecosystems</h3>
                 <p>Connecting multiple blockchain networks to create a truly interoperable DeFi experience.</p>
               </div>

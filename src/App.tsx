@@ -7,6 +7,7 @@ import LaunchpadStats from './components/LaunchpadStats';
 import TokenSale from './components/TokenSale';
 import Footer from './components/Footer';
 import { WalletConnectProvider } from './components/WalletConnectProvider';
+import { FloatingConnectWallet } from './components/FloatingConnectWallet';
 import CreatePresalePage from './pages/CreatePresale';
 import AdminLogin from './pages/admin/Login';
 import AdminDashboard from './pages/admin/Dashboard';
@@ -25,6 +26,8 @@ import IDOSales from './pages/IDOSales';
 import Navigation from './components/Navigation';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Disclaimer from './pages/Disclaimer';
+import CookiePolicy from './pages/CookiePolicy';
 import GamePlan from './pages/GamePlan';
 import Security from './pages/Security';
 import Careers from './pages/Careers';
@@ -41,6 +44,9 @@ function App() {
           <div className="bg-grid-pattern"></div>
           <div className="bg-particles"></div>
         </div>
+        
+        {/* Global Floating Connect Wallet Button */}
+        <FloatingConnectWallet />
         
         <Router>
           <Routes>
@@ -71,6 +77,8 @@ function App() {
             <Route path="/airdrop" element={<AirDrop />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/gameplan" element={<GamePlan />} />
             <Route path="/security" element={<Security />} />
             <Route path="/careers" element={<Careers />} />

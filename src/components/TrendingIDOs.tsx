@@ -111,22 +111,22 @@ const TrendingIDOs: React.FC = () => {
             {duplicatedItems.map((item, index) => (
               <motion.div 
                 key={`${item.rank}-${index}`}
-                className="trending-item"
+               className="trending-item"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: (index % trendingItems.length) * 0.1 }}
-                onClick={() => handleItemClick(item.projectId)}
+               onClick={() => handleItemClick(item.projectId)}
                 whileHover={{ 
                   scale: 1.05,
                   backgroundColor: "rgba(255, 255, 255, 0.1)"
                 }}
-              >
-                <span className="trending-rank">#{item.rank}</span>
-                <span className="trending-symbol" style={{ color: item.color }}>
-                  {item.symbol}
-                </span>
+             >
+               <span className="trending-rank">#{item.rank}</span>
+               <span className="trending-symbol" style={{ color: item.color }}>
+                 {item.symbol}
+               </span>
               </motion.div>
-            ))}
+           ))}
           </motion.div>
         </div>
       </div>
