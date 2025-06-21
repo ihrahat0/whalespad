@@ -1,6 +1,7 @@
 {
   "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Whalespad",
+  "description": "Whalespad isnt just a crypto launchpad — its a Whale-aware, community-driven IDO hub that identifies trends, vets projects based on whale activity and community feedback, and automates trust systems for investors.",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,25 +1,69 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import LaunchpadStats from './components/LaunchpadStats';
+import TokenSale from './components/TokenSale';
+import Footer from './components/Footer';
+import { WalletConnectProvider } from './components/WalletConnectProvider';
+import CreatePresalePage from './pages/CreatePresale';
+import AdminLogin from './pages/admin/Login';
+import AdminDashboard from './pages/admin/Dashboard';
+import SubmitProject from './pages/SubmitProject';
+import TeamProfiles from './components/TeamProfiles';
+import BlogList from './pages/BlogList';
+import BlogPostDetail from './pages/BlogPostDetail';
+import CreateBlogPost from './pages/admin/CreateBlogPost';
+import ProjectDetails from './pages/ProjectDetails';
+import Partners from './components/Partners';
+import PartnersManagement from './pages/admin/PartnersManagement';
+import StakingAirdrop from './pages/StakingAirdrop';
+import AirDrop from './pages/AirDrop';
+import TrendingIDOs from './components/TrendingIDOs';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WalletConnectProvider>
+      <div className="App">
+        {/* Global Background Effects */}
+        <div className="global-bg-effects">
+          <div className="bg-gradient-orb bg-orb-1"></div>
+          <div className="bg-gradient-orb bg-orb-2"></div>
+          <div className="bg-gradient-orb bg-orb-3"></div>
+          <div className="bg-grid-pattern"></div>
+          <div className="bg-particles"></div>
+        </div>
+        
+        <Router>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <Features />
+                <LaunchpadStats />
+                <TrendingIDOs />
+                <TeamProfiles />
+                <TokenSale />
+                <Partners />
+                <Footer />
+              </>
+            } />
+            <Route path="/create-presale" element={<CreatePresalePage />} />
+            <Route path="/submit-project" element={<SubmitProject />} />
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/blog/create" element={<CreateBlogPost />} />
+            <Route path="/admin/partners" element={<PartnersManagement />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:id" element={<BlogPostDetail />} />
+            <Route path="/project/:id" element={<ProjectDetails />} />
+            <Route path="/staking" element={<StakingAirdrop />} />
+            <Route path="/airdrop" element={<AirDrop />} />
+          </Routes>
+        </Router>
+      </div>
+    </WalletConnectProvider>
   );
 }
 
