@@ -21,6 +21,7 @@ import PartnersManagement from './pages/admin/PartnersManagement';
 import StakingAirdrop from './pages/StakingAirdrop';
 import AirDrop from './pages/AirDrop';
 import TrendingIDOs from './components/TrendingIDOs';
+import IDOSales from './pages/IDOSales';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogPostDetail />} />
             <Route path="/project/:id" element={<ProjectDetails />} />
+            <Route path="/ido-sales" element={<IDOSales />} />
             <Route path="/staking" element={<StakingAirdrop />} />
             <Route path="/airdrop" element={<AirDrop />} />
           </Routes>

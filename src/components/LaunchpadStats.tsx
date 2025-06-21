@@ -847,18 +847,21 @@ const LaunchpadStats: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <motion.button
+          <motion.a
+            href="/ido-sales"
             className="btn btn-outline"
             style={{
               padding: '1.5rem 3rem',
               fontSize: '1.1rem',
-              fontWeight: '700'
+              fontWeight: '700',
+              display: 'inline-block',
+              textDecoration: 'none'
             }}
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
-            🔍 Explore All Projects
-          </motion.button>
+            🔍 Browse All Projects
+          </motion.a>
         </motion.div>
       </div>
     </section>

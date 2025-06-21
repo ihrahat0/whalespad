@@ -5,6 +5,8 @@ import { useAccount } from 'wagmi';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
+import Navigation from '../components/Navigation';
+import TrendingIDOs from '../components/TrendingIDOs';
 import { 
   FiSend, 
   FiInfo, 
@@ -134,6 +136,9 @@ const SubmitProject: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/10 to-blue-900/10 relative overflow-hidden">
+      <Navigation />
+      <TrendingIDOs />
+      
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -141,18 +146,7 @@ const SubmitProject: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl animate-spin" style={{ animationDuration: '30s' }} />
       </div>
       
-      {/* Navigation Header */}
-      <div className="relative z-10 container mx-auto px-6 pt-8">
-              <Link 
-                to="/" 
-          className="inline-flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 group"
-              >
-          <FiArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
-          <span>Back to Home</span>
-        </Link>
-                </div>
-
-      <div className="relative z-10 container mx-auto px-6 py-16">
+      <div className="relative z-10 container mx-auto px-6 py-16" style={{ paddingTop: '40px' }}>
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div 

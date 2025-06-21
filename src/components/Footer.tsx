@@ -51,10 +51,10 @@ const Footer: React.FC = () => {
     {
       title: 'Quick Links',
       links: [
+        { name: 'Projects', href: '/ido-sales' },
         { name: 'Staking', href: '/staking' },
         { name: 'Stats', href: '#stats' },
         { name: 'Giveaways', href: '#giveaways' },
-        { name: 'IDO Pools', href: '#pools' },
         { name: 'DAO', href: '#dao' }
       ]
     },

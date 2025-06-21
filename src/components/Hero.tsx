@@ -244,6 +244,13 @@ const Hero: React.FC = () => {
                 BLOG
               </motion.a>
               <motion.a 
+                href="/ido-sales" 
+                className="cyberpunk-nav-item"
+                whileHover={{ scale: 1.05 }}
+              >
+                PROJECTS
+              </motion.a>
+              <motion.a 
                 href="/staking" 
                 className="cyberpunk-nav-item"
                 whileHover={{ scale: 1.05 }}
@@ -338,6 +345,16 @@ const Hero: React.FC = () => {
                   >
                     <span className="nav-icon">📝</span>
                     BLOG
+                  </motion.a>
+                  
+                  <motion.a 
+                    href="/ido-sales" 
+                    className="mobile-nav-item"
+                    onClick={closeMobileMenu}
+                    whileHover={{ x: 10 }}
+                  >
+                    <span className="nav-icon">💎</span>
+                    PROJECTS
                   </motion.a>
                   
                   <motion.a 

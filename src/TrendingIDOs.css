@@ -1,9 +1,46 @@
 /* Trending Bar Styles */
 .trending-bar {
-  padding: 20px 0;
+  padding: 15px 0;
   overflow: hidden;
   position: relative;
   z-index: 10;
+  background: linear-gradient(90deg, 
+    rgba(26, 26, 36, 0.8) 0%, 
+    rgba(26, 26, 36, 0.95) 50%, 
+    rgba(26, 26, 36, 0.8) 100%
+  );
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: 0 0 20px 20px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  width: 100%;
+}
+
+.trending-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0 0 20px 20px;
+  padding: 2px;
+  background: linear-gradient(45deg, 
+    rgba(0, 212, 255, 0.6),
+    rgba(139, 92, 246, 0.4),
+    rgba(0, 255, 136, 0.5),
+    rgba(0, 212, 255, 0.6)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: border-glow-trending 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes border-glow-trending {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .trending-container {
@@ -12,67 +49,104 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
+  gap: 30px;
   width: 100%;
 }
 
 .trending-label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: #ffffff;
+  color: #00D4FF;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   flex-shrink: 0;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  position: relative;
 }
 
-.trending-items {
-  display: flex;
-  gap: 30px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.trending-label::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(180deg, transparent, #00D4FF, transparent);
+}
+
+/* New animated scrolling structure */
+.trending-items-wrapper {
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 40px;
+  mask: linear-gradient(90deg, 
+    transparent 0%, 
+    black 5%, 
+    black 95%, 
+    transparent 100%
+  );
 }
 
-.trending-items::-webkit-scrollbar {
-  display: none;
+.trending-items-scroll {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 100%;
+  will-change: transform;
+  padding: 0 20px;
 }
 
 .trending-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 3px;
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 18px;
   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 70px;
+  justify-content: flex-start;
 }
 
 .trending-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2);
 }
 
 .trending-rank {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 212, 255, 0.8);
+  min-width: 15px;
+  margin-right: 2px;
+  font-family: 'Orbitron', monospace;
 }
 
 .trending-symbol {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  text-shadow: 0 0 8px currentColor;
+  margin-left: 1px;
 }
 
 .trending-item:hover .trending-symbol {
   transform: scale(1.1);
+  text-shadow: 0 0 15px currentColor;
+}
+
+/* Remove old styles */
+.trending-items {
+  display: none;
 }
 
 /* Auto-scroll animation for trending items */

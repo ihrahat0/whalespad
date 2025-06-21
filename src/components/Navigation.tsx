@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ConnectWalletButton } from './ConnectWalletButton';
 
-interface BlogNavbarProps {
-  isAdmin?: boolean;
-}
-
-const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
+const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Handle escape key
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMobileMenuOpen) {
         closeMobileMenu();
@@ -20,7 +14,6 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
 
     document.addEventListener('keydown', handleEscape);
 
-    // Cleanup on unmount
     return () => {
       document.body.classList.remove('mobile-menu-open');
       document.removeEventListener('keydown', handleEscape);
@@ -43,7 +36,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
 
   return (
     <motion.nav 
-      className="cyberpunk-navbar fixed w-full top-0 left-0 z-50"
+      className="cyberpunk-navbar"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
@@ -51,23 +44,13 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
       <div className="cyberpunk-nav-container">
         {/* WhalesPad Logo */}
         <motion.div 
-          className="navbar-logo-enhanced"
+          className="navbar-logo-simple"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <Link to="/" className="flex items-center" onClick={closeMobileMenu}>
-            <div className="logo-orbit">
-              <div className="logo-center">
-                <span className="logo-icon-enhanced">🐋</span>
-              </div>
-              <div className="orbit-ring"></div>
-              <div className="orbit-ring orbit-ring-2"></div>
-            </div>
-            <div className="logo-text-enhanced">
-              <span className="logo-main">WhalesPad</span>
-              <span className="logo-tagline">LAUNCHPAD</span>
-            </div>
-          </Link>
+          <a href="/">
+            <img src="/images/logo/logo.png" alt="WhalesPad" className="logo-image-simple" />
+          </a>
         </motion.div>
 
         {/* Desktop Navigation Menu */}
@@ -80,10 +63,10 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
             >
               HOME
             </motion.a>
-            
+          
             <motion.a 
               href="/blog" 
-              className="cyberpunk-nav-item blog-nav-item active"
+              className="cyberpunk-nav-item blog-nav-item"
               whileHover={{ scale: 1.05 }}
             >
               BLOG
@@ -102,21 +85,19 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
             >
               STAKING
             </motion.a>
-            {isAdmin && (
-              <motion.a 
-                href="/admin/dashboard" 
-                className="cyberpunk-nav-item admin-nav-item"
-                whileHover={{ scale: 1.05 }}
-              >
-                DASHBOARD
-              </motion.a>
-            )}
             <motion.a 
-              href="/create-presale" 
-              className="cyberpunk-nav-item create-presale-btn"
+              href="/airdrop" 
+              className="cyberpunk-nav-item"
               whileHover={{ scale: 1.05 }}
             >
-              CREATE PRESALE
+              AIRDROP
+            </motion.a>
+            <motion.a 
+              href="/submit-project" 
+              className="cyberpunk-nav-item apply-ido-btn"
+              whileHover={{ scale: 1.05 }}
+            >
+              APPLY IDO
             </motion.a>
           </div>
           
@@ -176,7 +157,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
               <div className="mobile-menu-items">
                 <motion.a 
                   href="/" 
-                  className="mobile-nav-item"
+                  className="mobile-nav-item active"
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
@@ -186,7 +167,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                 
                 <motion.a 
                   href="/blog" 
-                  className="mobile-nav-item active"
+                  className="mobile-nav-item"
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
@@ -214,26 +195,24 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
                   STAKING
                 </motion.a>
                 
-                {isAdmin && (
-                  <motion.a 
-                    href="/admin/dashboard" 
-                    className="mobile-nav-item"
-                    onClick={closeMobileMenu}
-                    whileHover={{ x: 10 }}
-                  >
-                    <span className="nav-icon">⚙️</span>
-                    DASHBOARD
-                  </motion.a>
-                )}
+                <motion.a 
+                  href="/airdrop" 
+                  className="mobile-nav-item"
+                  onClick={closeMobileMenu}
+                  whileHover={{ x: 10 }}
+                >
+                  <span className="nav-icon">🎁</span>
+                  AIRDROP
+                </motion.a>
                 
                 <motion.a 
-                  href="/create-presale" 
+                  href="/submit-project" 
                   className="mobile-nav-item highlight"
                   onClick={closeMobileMenu}
                   whileHover={{ x: 10 }}
                 >
                   <span className="nav-icon">🚀</span>
-                  CREATE PRESALE
+                  APPLY IDO
                 </motion.a>
               </div>
               
@@ -250,4 +229,4 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ isAdmin = false }) => {
   );
 };
 
-export default BlogNavbar; 
+export default Navigation; 
