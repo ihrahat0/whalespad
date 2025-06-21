@@ -206,7 +206,7 @@ const Careers: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="careers-hero-content"
           >
-            <h1 className="careers-title">Career a Whales Pad vull</h1>
+            <h1 className="careers-title">Join the Whalespad Team</h1>
             <p className="careers-subtitle">
               Build the future of decentralized finance with a world-class team of innovators, 
               engineers, and visionaries from around the globe.
