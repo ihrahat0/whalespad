@@ -9,33 +9,33 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'MR. JN',
-    bio: 'Co-founder and visionary leader with over 10 years of experience in blockchain technology and cryptocurrency. He has successfully launched multiple DeFi projects and has been instrumental in shaping the decentralized finance ecosystem.',
-    image: '/images/team1.png'
-  },
-  {
-    name: 'NOAH ALFRED',
-    bio: 'CEO and Lead Developer with extensive expertise in smart contract development and blockchain architecture. Noah has been coding for over 8 years and specializes in Solidity, Web3, and full-stack development.',
-    image: '/images/team2.png'
-  },
-  {
-    name: 'NOOR',
-    bio: 'Chief Marketing Officer with a proven track record in crypto marketing and community building. Noor has helped launch over 20 successful crypto projects and has built communities of over 100K members.',
-    image: '/images/team3.png'
-  },
-  {
-    name: 'MR. WILLIAM',
-    bio: 'Chief Operating Officer and Business Development lead with expertise in strategic partnerships and operational excellence. William has extensive experience in traditional finance and blockchain adoption.',
+    name: 'CEO & Dev : Lokman Hosen',
+    bio: 'CEO & Dev : Lokman Hosen',
     image: '/images/team4.png'
   },
   {
-    name: 'MR. DAVID',
-    bio: 'Marketing Head with deep knowledge in digital marketing strategies, social media campaigns, and brand development. David has successfully marketed projects that achieved multi-million dollar market caps.',
+    name: 'CMO : Noah Alfred',
+    bio: 'CMO : Noah Alfred',
+    image: '/images/team1.png'
+  },
+  {
+    name: 'Co-founder : Mr. Nassir',
+    bio: 'Co-founder : Mr. Nassir',
+    image: '/images/team2.png'
+  },
+  {
+    name: 'Launchpad Director : M. Rahman',
+    bio: 'Launchpad Director : M. Rahman',
+    image: '/images/team3.png'
+  },
+  {
+    name: 'CTO & BD : Mr. ABK',
+    bio: 'CTO & BD : Mr. ABK',
     image: '/images/team5.png'
   },
   {
-    name: 'ALI',
-    bio: 'Marketing Director specializing in influencer partnerships, content creation, and growth hacking. Ali has worked with top-tier crypto influencers and has expertise in viral marketing campaigns.',
+    name: 'Founder : D. Islam',
+    bio: 'Founder : D. Islam',
     image: '/images/team6.png'
   },
   {

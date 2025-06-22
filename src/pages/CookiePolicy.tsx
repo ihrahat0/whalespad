@@ -250,9 +250,9 @@ const CookiePolicy: React.FC = () => {
                 If you have questions about our use of cookies or this policy, please contact us:
               </p>
               <div className="contact-info">
-                <p>📧 Email: contact@whalespad.com</p>
+                <p>Email: contact@whalespad.com</p>
                 <p>X: <a href="https://twitter.com/WhalesPadinfo" target="_blank" rel="noopener noreferrer">@WhalesPadinfo</a></p>
-                <p>🌐 Website: https://whalespad.com</p>
+                <p> Website: https://whalespad.com</p>
                 <p>📍 Cookie Settings: Available in your browser preferences</p>
               </div>
             </div>

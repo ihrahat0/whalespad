@@ -5,13 +5,14 @@ import {
   FiEye, FiEdit, FiFileText, FiBookOpen, FiSearch, FiFilter,
   FiTrendingUp, FiDollarSign, FiActivity, FiCalendar,
   FiCheck, FiX, FiMoreVertical, FiDownload, FiBell,
-  FiStar, FiTarget, FiPieChart
+  FiStar, FiTarget, FiPieChart, FiClock
 } from 'react-icons/fi';
 import BlogManagement from './BlogManagement';
 import { supabase } from '../../supabaseClient';
 import { useNavigate, Link } from 'react-router-dom';
 import AdminManagementComponent from '../../components/admin/AdminManagementComponent';
 import PartnersManagement from './PartnersManagement';
+import PhaseManagement from '../../components/admin/PhaseManagement';
 
 // Premium Status Badge Component
 const StatusBadge = ({ status }: { status: string }) => {
@@ -748,6 +749,12 @@ const AdminDashboard: React.FC = () => {
               isActive={activeTab === 'ido-management'}
               onClick={() => setActiveTab('ido-management')}
               badge={existingIdos.length}
+            />
+            <NavItem
+              icon={FiClock}
+              label="Phase Management"
+              isActive={activeTab === 'phase-management'}
+              onClick={() => setActiveTab('phase-management')}
             />
             <NavItem
               icon={FiBookOpen}
@@ -2157,6 +2164,17 @@ const AdminDashboard: React.FC = () => {
                       </div>
                     )}
                   </div>
+                </motion.div>
+              )}
+
+              {activeTab === 'phase-management' && (
+                <motion.div
+                  key="phase-management"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                >
+                  <PhaseManagement adminUser={adminUser} />
                 </motion.div>
               )}
 

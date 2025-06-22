@@ -76,16 +76,24 @@ const TrendingIDOs: React.FC = () => {
     navigate(`/project/${projectId}`);
   };
 
-  // Duplicate items for infinite scrolling effect
+  // Create just 2 copies to avoid showing same project multiple times
   const duplicatedItems = [...trendingItems, ...trendingItems];
 
   if (loading) {
     return (
       <div className="trending-bar">
         <div className="trending-container">
-          <span className="trending-label">Trending</span>
-          <div className="trending-items">
-            <span style={{ color: '#666' }}>Loading...</span>
+          <div className="trending-items-wrapper">
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              height: '100%',
+              color: '#666',
+              fontSize: '12px'
+            }}>
+              Loading...
+            </div>
           </div>
         </div>
       </div>
@@ -95,26 +103,15 @@ const TrendingIDOs: React.FC = () => {
   return (
     <div className="trending-bar">
       <div className="trending-container">
-        <span className="trending-label">TRENDING</span>
         <div className="trending-items-wrapper">
-          <motion.div
-            className="trending-items-scroll"
-            animate={{ 
-              x: [0, -1000] 
-            }}
-            transition={{ 
-              duration: 20, // Faster animation
-              ease: "linear",
-              repeat: Infinity
-            }}
-          >
+          <div className="trending-items-scroll marquee-scroll">
             {duplicatedItems.map((item, index) => (
               <motion.div 
                 key={`${item.rank}-${index}`}
                className="trending-item"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: (index % trendingItems.length) * 0.1 }}
+                transition={{ duration: 0.3, delay: (index % trendingItems.length) * 0.02 }}
                onClick={() => handleItemClick(item.projectId)}
                 whileHover={{ 
                   scale: 1.05,
@@ -127,7 +124,7 @@ const TrendingIDOs: React.FC = () => {
                </span>
               </motion.div>
            ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

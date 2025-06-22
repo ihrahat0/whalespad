@@ -53,7 +53,7 @@ const LaunchpadStats: React.FC = () => {
     {
       label: 'ATH AVG ROI',
       value: '24.8%',
-      change: '+1600%',
+      change: '+130%',
       trend: 'up',
       icon: '💰',
       color: 'var(--primary-cyan)'

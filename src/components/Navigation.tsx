@@ -55,13 +55,13 @@ const Navigation: React.FC = () => {
             >
               BLOG
             </motion.a>
-            <motion.a 
+            {/* <motion.a 
               href="/ido-sales" 
               className="cyberpunk-nav-item"
               whileHover={{ scale: 1.05 }}
             >
               PROJECTS
-            </motion.a>
+            </motion.a> */}
             <motion.a 
               href="/staking" 
               className="cyberpunk-nav-item"
