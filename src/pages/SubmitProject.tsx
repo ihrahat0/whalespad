@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
 import Navigation from '../components/Navigation';
-import TrendingIDOs from '../components/TrendingIDOs';
+
 import { 
   FiSend, 
   FiInfo, 
@@ -137,7 +137,7 @@ const SubmitProject: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/10 to-blue-900/10 relative overflow-hidden">
       <Navigation />
-      <TrendingIDOs />
+
       
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

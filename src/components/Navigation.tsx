@@ -2,16 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ConnectWalletButton } from './ConnectWalletButton';
 import { 
-  HiHome, 
   HiCube, 
   HiLightningBolt, 
   HiGift 
 } from 'react-icons/hi';
 import { 
-  FiHome, 
-  FiBox, 
-  FiZap, 
-  FiGift, 
   FiTrendingUp 
 } from 'react-icons/fi';
 import { IoRocketSharp } from 'react-icons/io5';
@@ -41,11 +36,11 @@ const Navigation: React.FC = () => {
         <div className="cyberpunk-nav-frame desktop-nav">
           <div className="nav-items-container">
             <motion.a 
-              href="/" 
+              href="/sale" 
               className="cyberpunk-nav-item"
               whileHover={{ scale: 1.05 }}
             >
-              HOME
+              SALE
             </motion.a>
           
             <motion.a 
@@ -77,11 +72,11 @@ const Navigation: React.FC = () => {
               AIRDROP
             </motion.a>
             <motion.a 
-              href="/submit-project" 
+              href="/ido-sales" 
               className="cyberpunk-nav-item apply-ido-btn"
               whileHover={{ scale: 1.05 }}
             >
-              APPLY IDO
+              JOIN IDO
             </motion.a>
           </div>
           
@@ -109,9 +104,9 @@ const Navigation: React.FC = () => {
           whileTap={{ scale: 0.9 }}
         >
           <div className="nav-icon-container">
-            <HiHome className="nav-icon" />
+            <FiTrendingUp className="nav-icon" />
           </div>
-          <span className="nav-label">Home</span>
+          <span className="nav-label">Sale</span>
         </motion.a>
 
         <motion.a 
@@ -123,7 +118,7 @@ const Navigation: React.FC = () => {
           <div className="nav-icon-container">
             <HiCube className="nav-icon" />
           </div>
-          <span className="nav-label">Projects</span>
+          <span className="nav-label">Join IDO</span>
         </motion.a>
 
         <motion.a 
@@ -159,7 +154,7 @@ const Navigation: React.FC = () => {
           <div className="nav-icon-container special-icon">
             <IoRocketSharp className="nav-icon" />
           </div>
-          <span className="nav-label">Apply IDO</span>
+          <span className="nav-label">Submit</span>
         </motion.a>
       </motion.div>
     </motion.nav>

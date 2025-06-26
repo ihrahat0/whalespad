@@ -210,26 +210,43 @@ const TeamProfiles: React.FC = () => {
 
           {/* Carousel content */}
           <div className="overflow-hidden mx-8">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 300 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -300 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {getCurrentMembers().map((member, index) => {
-                const globalIndex = currentIndex * cardsPerView + index;
-                return (
-                  <TeamCard
-                    key={`${currentIndex}-${index}`}
-                    member={member}
-                    isExpanded={expandedCards.has(globalIndex)}
-                    onToggleExpand={() => toggleExpand(globalIndex)}
-                  />
-                );
-              })}
-            </motion.div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                {getCurrentMembers().map((member, index) => {
+                  const globalIndex = currentIndex * cardsPerView + index;
+                  return (
+                    <motion.div
+                      key={`${currentIndex}-${index}`}
+                      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        delay: index * 0.1,
+                        ease: [0.4, 0, 0.2, 1]
+                      }}
+                      whileHover={{ 
+                        y: -10, 
+                        scale: 1.05,
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      <TeamCard
+                        member={member}
+                        isExpanded={expandedCards.has(globalIndex)}
+                        onToggleExpand={() => toggleExpand(globalIndex)}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
-import TrendingIDOs from '../components/TrendingIDOs';
+
 
 const CreatePresalePage: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -22,7 +22,7 @@ const CreatePresalePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/10 to-blue-900/10">
       <Navigation />
-      <TrendingIDOs />
+
       
       <div className="relative z-10 container mx-auto px-6 py-16" style={{ paddingTop: '40px' }}>
         <div className="max-w-4xl mx-auto">

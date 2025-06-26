@@ -49,7 +49,7 @@ const Partners: React.FC = () => {
           const nextIndex = prevIndex + 1;
           return nextIndex >= partners.length ? 0 : nextIndex;
         });
-      }, 3000); // Change every 3 seconds
+      }, 8000); // Increased from 3000ms to 8000ms (slower rotation)
     }
 
     return () => {
@@ -198,7 +198,7 @@ const Partners: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -100, opacity: 0 }}
                     transition={{ 
-                      duration: 0.5,
+                      duration: 0.4,
                       ease: [0.4, 0, 0.2, 1]
                     }}
                   >
@@ -212,7 +212,7 @@ const Partners: React.FC = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ 
-                          duration: 0.4, 
+                          duration: 0.3, 
                           delay: index * 0.1,
                           ease: [0.4, 0, 0.2, 1]
                         }}

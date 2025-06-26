@@ -8,6 +8,15 @@
         "--access-token",
         "sbp_b04283b680f83b2595256ef6ea539d30b2d77be6"
       ]
+    },
+    "browser-tools": {
+      "command": "wsl",
+      "args": [
+        "bash",
+        "-c",
+        "cmd /c npx -y @agentdeskai/browser-tools-mcp@1.2.0"
+      ],
+      "enabled": true
     }
   }
 }

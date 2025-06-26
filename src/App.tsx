@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './glowing-effects.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -21,10 +22,10 @@ import Partners from './components/Partners';
 import PartnersManagement from './pages/admin/PartnersManagement';
 import StakingAirdrop from './pages/StakingAirdrop';
 import AirDrop from './pages/AirDrop';
+import Sale from './pages/Sale';
 
 import IDOSales from './pages/IDOSales';
 import Navigation from './components/Navigation';
-import TrendingCoins from './components/TrendingCoins';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Disclaimer from './pages/Disclaimer';
@@ -37,13 +38,15 @@ function App() {
   return (
     <WalletConnectProvider>
       <div className="App">
-        {/* Global Background Effects */}
-        <div className="global-bg-effects">
+        {/* Enhanced Background Effects - Full Website Coverage */}
+        <div className="subtle-bg-effects">
           <div className="bg-gradient-orb bg-orb-1"></div>
           <div className="bg-gradient-orb bg-orb-2"></div>
           <div className="bg-gradient-orb bg-orb-3"></div>
+          <div className="bg-gradient-orb bg-orb-4"></div>
+          <div className="bg-gradient-orb bg-orb-5"></div>
           <div className="bg-grid-pattern"></div>
-          <div className="bg-particles"></div>
+          <div className="floating-dots"></div>
         </div>
         
         {/* Global Floating Connect Wallet Button */}
@@ -54,7 +57,6 @@ function App() {
             <Route path="/" element={
               <>
                 <Navigation />
-                <TrendingCoins />
                 <Hero />
                 <Features />
                 <LaunchpadStats />
@@ -74,6 +76,7 @@ function App() {
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogPostDetail />} />
             <Route path="/project/:id" element={<ProjectDetails />} />
+            <Route path="/sale" element={<Sale />} />
             <Route path="/ido-sales" element={<IDOSales />} />
             <Route path="/staking" element={<StakingAirdrop />} />
             <Route path="/airdrop" element={<AirDrop />} />

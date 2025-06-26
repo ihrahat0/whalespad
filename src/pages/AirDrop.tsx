@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import BlogNavbar from '../components/BlogNavbar';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
 import Navigation from '../components/Navigation';
 
@@ -32,11 +31,11 @@ const AirDrop: React.FC = () => {
       id: '1',
       name: 'Genesis Airdrop',
       description: 'Exclusive airdrop for early WhalesPad community members and supporters',
-      totalRewards: '1,000,000 WPD',
+      totalRewards: '1,000,000 WPT',
       endDate: '2024-03-15',
       status: 'active',
       claimed: false,
-      claimableAmount: '2,500 WPD',
+      claimableAmount: '2,500 WPT',
       requirements: [
         { description: 'Join WhalesPad Telegram', completed: true },
         { description: 'Follow WhalesPad Twitter', completed: true },
@@ -50,16 +49,16 @@ const AirDrop: React.FC = () => {
       id: '2',
       name: 'Community Rewards',
       description: 'Rewards for active community members who participate in governance and discussions',
-      totalRewards: '500,000 WPD',
+      totalRewards: '500,000 WPT',
       endDate: '2024-04-20',
       status: 'upcoming',
       claimed: false,
-      claimableAmount: '1,250 WPD',
+      claimableAmount: '1,250 WPT',
       requirements: [
         { description: 'Participate in 3+ governance votes', completed: false },
         { description: 'Refer 5+ friends to platform', completed: false },
         { description: 'Complete social media tasks', completed: true },
-        { description: 'Stake minimum 1000 WPD', completed: false }
+        { description: 'Stake minimum 1000 WPT', completed: false }
       ],
       participants: 3200,
       maxParticipants: 5000
@@ -68,13 +67,13 @@ const AirDrop: React.FC = () => {
       id: '3',
       name: 'Loyalty Bonus',
       description: 'Special bonus for long-term holders and platform loyalists',
-      totalRewards: '2,000,000 WPD',
+      totalRewards: '2,000,000 WPT',
       endDate: '2024-02-28',
       status: 'ended',
       claimed: true,
-      claimableAmount: '5,000 WPD',
+      claimableAmount: '5,000 WPT',
       requirements: [
-        { description: 'Hold WPD tokens for 6+ months', completed: true },
+        { description: 'Hold WPT tokens for 6+ months', completed: true },
         { description: 'Never sold more than 25%', completed: true },
         { description: 'Participated in IDO launches', completed: true },
         { description: 'Active platform user', completed: true }
