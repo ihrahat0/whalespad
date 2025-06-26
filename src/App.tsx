@@ -21,9 +21,10 @@ import Partners from './components/Partners';
 import PartnersManagement from './pages/admin/PartnersManagement';
 import StakingAirdrop from './pages/StakingAirdrop';
 import AirDrop from './pages/AirDrop';
-import TrendingIDOs from './components/TrendingIDOs';
+
 import IDOSales from './pages/IDOSales';
 import Navigation from './components/Navigation';
+import TrendingCoins from './components/TrendingCoins';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Disclaimer from './pages/Disclaimer';
@@ -53,10 +54,11 @@ function App() {
             <Route path="/" element={
               <>
                 <Navigation />
+                <TrendingCoins />
                 <Hero />
                 <Features />
                 <LaunchpadStats />
-                <TrendingIDOs />
+        
                 <TeamProfiles />
                 <TokenSale />
                 <Partners />
