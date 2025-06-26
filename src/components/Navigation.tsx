@@ -1,15 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ConnectWalletButton } from './ConnectWalletButton';
-import { 
-  HiCube, 
-  HiLightningBolt, 
-  HiGift 
-} from 'react-icons/hi';
-import { 
-  FiTrendingUp 
-} from 'react-icons/fi';
-import { IoRocketSharp } from 'react-icons/io5';
 
 const Navigation: React.FC = () => {
 
@@ -28,12 +19,36 @@ const Navigation: React.FC = () => {
           transition={{ type: "spring", stiffness: 300 }}
         >
           <a href="/">
-            <img src="/images/logo/logo.png" alt="WhalesPad" className="logo-image-simple" />
+            <img 
+              src="/images/logo/logo.png" 
+              alt="WhalesPad" 
+              className="logo-image-simple" 
+              onError={(e) => {
+                console.log('Logo failed to load, trying alternative path');
+                (e.target as HTMLImageElement).src = '/public/images/logo/logo.png';
+              }}
+            />
           </a>
         </motion.div>
 
         {/* Desktop Navigation Menu */}
         <div className="cyberpunk-nav-frame desktop-nav">
+        <motion.a 
+              href="/ido-sales" 
+              className="cyberpunk-nav-item apply-ido-btn"
+              whileHover={{ scale: 1.05 }}
+            >
+              JOIN IDO
+            </motion.a>
+
+            <motion.a 
+              href="/staking" 
+              className="cyberpunk-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+              STAKING
+            </motion.a>
+
           <div className="nav-items-container">
             <motion.a 
               href="/sale" 
@@ -57,13 +72,7 @@ const Navigation: React.FC = () => {
             >
               PROJECTS
             </motion.a> */}
-            <motion.a 
-              href="/staking" 
-              className="cyberpunk-nav-item"
-              whileHover={{ scale: 1.05 }}
-            >
-              STAKING
-            </motion.a>
+           
             <motion.a 
               href="/airdrop" 
               className="cyberpunk-nav-item"
@@ -71,13 +80,7 @@ const Navigation: React.FC = () => {
             >
               AIRDROP
             </motion.a>
-            <motion.a 
-              href="/ido-sales" 
-              className="cyberpunk-nav-item apply-ido-btn"
-              whileHover={{ scale: 1.05 }}
-            >
-              JOIN IDO
-            </motion.a>
+            
           </div>
           
           {/* Connect Wallet Button */}
@@ -90,73 +93,56 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Bottom Navigation - Always Visible on Mobile */}
-      <motion.div 
-        className="mobile-bottom-nav"
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <motion.a 
-          href="/" 
-          className="bottom-nav-item"
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <div className="nav-icon-container">
-            <FiTrendingUp className="nav-icon" />
-          </div>
-          <span className="nav-label">Sale</span>
-        </motion.a>
+      {/* Mobile Bottom Navigation - Text Only */}
+      <div className="mobile-bottom-nav">
+        <div className="cyberpunk-nav-frame mobile-nav-frame">
+          <div className="mobile-nav-items-container">
 
-        <motion.a 
-          href="/ido-sales" 
-          className="bottom-nav-item"
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <div className="nav-icon-container">
-            <HiCube className="nav-icon" />
-          </div>
-          <span className="nav-label">Join IDO</span>
-        </motion.a>
+          <motion.a 
+              href="/ido-sales" 
+              className="cyberpunk-nav-item mobile-nav-item apply-ido-btn"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span>JOIN IDO</span>
+            </motion.a>
 
-        <motion.a 
-          href="/staking" 
-          className="bottom-nav-item"
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <div className="nav-icon-container">
-            <HiLightningBolt className="nav-icon" />
-          </div>
-          <span className="nav-label">Staking</span>
-        </motion.a>
+           
+            <motion.a 
+              href="/staking" 
+              className="cyberpunk-nav-item mobile-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span>STAKING</span>
+            </motion.a>
 
-        <motion.a 
-          href="/airdrop" 
-          className="bottom-nav-item"
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <div className="nav-icon-container">
-            <HiGift className="nav-icon" />
-          </div>
-          <span className="nav-label">Airdrop</span>
-        </motion.a>
+            <motion.a 
+              href="/blog" 
+              className="cyberpunk-nav-item mobile-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span>BLOG</span>
+            </motion.a>
+            
+            <motion.a 
+              href="/airdrop" 
+              className="cyberpunk-nav-item mobile-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span>AIRDROP</span>
+            </motion.a>
 
-        <motion.a 
-          href="/submit-project" 
-          className="bottom-nav-item special"
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <div className="nav-icon-container special-icon">
-            <IoRocketSharp className="nav-icon" />
+            <motion.a
+              className="cyberpunk-nav-item mobile-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+             <ConnectWalletButton />
+            </motion.a>
+
+
+            
           </div>
-          <span className="nav-label">Submit</span>
-        </motion.a>
-      </motion.div>
+        </div>
+      </div>
     </motion.nav>
   );
 };

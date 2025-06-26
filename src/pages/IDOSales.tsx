@@ -148,7 +148,7 @@ const IDOSales: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <Navigation />
-      
+
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           {/* Page Header */}
@@ -165,7 +165,7 @@ const IDOSales: React.FC = () => {
               Discover and participate in Initial DEX Offerings. Find live, upcoming, and completed IDO projects.
             </p>
           </motion.div>
-
+            
           {/* Filter and Search Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -199,9 +199,9 @@ const IDOSales: React.FC = () => {
                   >
                     {filter === 'all' ? 'All' : filter}
                   </button>
-                ))}
+                  ))}
               </div>
-            </div>
+              </div>
           </motion.div>
 
           {/* IDO Table */}
@@ -221,7 +221,7 @@ const IDOSales: React.FC = () => {
                 <div className="hidden md:block">Participants</div>
                 <div className="text-right">Action</div>
               </div>
-            </div>
+              </div>
 
             {/* Table Body */}
             <div className="divide-y divide-gray-800">
@@ -249,9 +249,9 @@ const IDOSales: React.FC = () => {
                           <span className="text-xs text-gray-500">{project.chain}</span>
                           <span className="text-xs text-gray-500">•</span>
                           <span className="text-xs text-gray-500">{project.category}</span>
-                        </div>
-                      </div>
-                    </div>
+            </div>
+          </div>
+        </div>
 
                     {/* Status */}
                     <div className="hidden md:block">
@@ -282,13 +282,13 @@ const IDOSales: React.FC = () => {
                           {project.raised} / {project.hardCap}
                         </div>
                       </div>
-                    </div>
+                        </div>
 
                     {/* Participants */}
                     <div className="hidden md:block text-center">
                       <div className="text-white font-semibold">{project.participants.toLocaleString()}</div>
                       <div className="text-xs text-gray-400">participants</div>
-                    </div>
+                      </div>
 
                     {/* Action */}
                     <div className="text-right">
@@ -308,8 +308,8 @@ const IDOSales: React.FC = () => {
                         {project.status === 'live' ? 'Join' : 
                          project.status === 'upcoming' ? 'Notify' : 'View'}
                       </button>
-                    </div>
-                  </div>
+                          </div>
+                        </div>
 
                   {/* Mobile Progress Bar */}
                   <div className="md:hidden mt-3">
@@ -318,22 +318,22 @@ const IDOSales: React.FC = () => {
                       <span className={`px-2 py-1 rounded text-xs font-semibold ${getStatusColor(project.status)}`}>
                         {project.status.toUpperCase()}
                       </span>
-                    </div>
+                          </div>
                     <div className="w-full bg-gray-700 rounded-full h-2">
-                      <div
+                            <div 
                         className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(project.progress)}`}
                         style={{ width: `${project.progress}%` }}
-                      ></div>
-                    </div>
+                            ></div>
+                          </div>
                     <div className="flex justify-between text-xs text-gray-400 mt-1">
                       <span>{project.raised} / {project.hardCap}</span>
                       <span>{project.participants.toLocaleString()} participants</span>
-                    </div>
-                  </div>
+                        </div>
+                      </div>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
+                      </div>
+                    </motion.div>
 
           {filteredProjects.length === 0 && (
             <motion.div
@@ -377,7 +377,7 @@ const IDOSales: React.FC = () => {
                 ${idoProjects.reduce((acc, p) => acc + parseInt(p.raised.replace(/[^0-9]/g, '')), 0).toLocaleString()}
               </div>
               <div className="text-gray-400">Total Raised</div>
-            </div>
+          </div>
           </motion.div>
         </div>
       </main>

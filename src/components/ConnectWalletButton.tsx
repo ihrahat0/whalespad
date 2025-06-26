@@ -41,7 +41,7 @@ export const ConnectWalletButton: React.FC = () => {
       ) : (
         <>
           <span className="wallet-icon"></span>
-          <span>CONNECT WALLET</span>
+          <img height={20} width={20} src="https://cdn.prod.website-files.com/6527c669d575da173bf65551/6602c9b25c310ea51dc36a79_crypto_non-custodial.webp" alt="wallet" className="wallet-icon" />
         </>
       )}
     </motion.button>

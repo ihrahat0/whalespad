@@ -913,6 +913,204 @@
   display: block;
 }
 
+/* Animated Particles for Hero Background */
+.animated-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 4px;
+  height: 4px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.particle-2 {
+  width: 6px;
+  height: 6px;
+  top: 60%;
+  left: 80%;
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.particle-3 {
+  width: 3px;
+  height: 3px;
+  top: 80%;
+  left: 20%;
+  animation-delay: 4s;
+  animation-duration: 10s;
+}
+
+.particle-4 {
+  width: 5px;
+  height: 5px;
+  top: 30%;
+  left: 70%;
+  animation-delay: 1s;
+  animation-duration: 7s;
+}
+
+.particle-5 {
+  width: 4px;
+  height: 4px;
+  top: 50%;
+  left: 40%;
+  animation-delay: 3s;
+  animation-duration: 9s;
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-15px);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+    opacity: 0.4;
+  }
+}
+
+/* Enhanced Hero Background Effects */
+.hero-bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.bg-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.bg-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%);
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.bg-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+  top: 60%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+.bg-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
+  bottom: 20%;
+  left: 50%;
+  animation-delay: 8s;
+}
+
+.bg-grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-move 15s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.1);
+  }
+  50% {
+    transform: translate(-5px, -10px) scale(0.9);
+  }
+  75% {
+    transform: translate(-10px, 5px) scale(1.05);
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+/* Mobile Optimizations for Background Effects */
+@media (max-width: 768px) {
+  .bg-gradient-orb {
+    filter: blur(40px);
+    opacity: 0.2;
+  }
+  
+  .bg-orb-1 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .bg-orb-2 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .bg-orb-3 {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .particle {
+    display: none; /* Hide particles on mobile for performance */
+  }
+  
+  .bg-grid-pattern {
+    background-size: 30px 30px;
+    opacity: 0.3;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .presale-showcase-unified {

@@ -211,17 +211,17 @@ const TeamProfiles: React.FC = () => {
           {/* Carousel content */}
           <div className="overflow-hidden mx-8">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
+            <motion.div
+              key={currentIndex}
                 initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              >
-                {getCurrentMembers().map((member, index) => {
-                  const globalIndex = currentIndex * cardsPerView + index;
-                  return (
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              {getCurrentMembers().map((member, index) => {
+                const globalIndex = currentIndex * cardsPerView + index;
+                return (
                     <motion.div
                       key={`${currentIndex}-${index}`}
                       initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -237,15 +237,15 @@ const TeamProfiles: React.FC = () => {
                         transition: { duration: 0.2 }
                       }}
                     >
-                      <TeamCard
-                        member={member}
-                        isExpanded={expandedCards.has(globalIndex)}
-                        onToggleExpand={() => toggleExpand(globalIndex)}
-                      />
+                  <TeamCard
+                    member={member}
+                    isExpanded={expandedCards.has(globalIndex)}
+                    onToggleExpand={() => toggleExpand(globalIndex)}
+                  />
                     </motion.div>
-                  );
-                })}
-              </motion.div>
+                );
+              })}
+            </motion.div>
             </AnimatePresence>
           </div>
         </div>

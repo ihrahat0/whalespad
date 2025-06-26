@@ -1371,7 +1371,7 @@ const TokenSale: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            WhalesPad Token
+          WhalesPad Token
           </motion.h1>
           <motion.div 
             className="token-symbol-badge"
@@ -1537,7 +1537,7 @@ const TokenSale: React.FC = () => {
             className="sale-cta-button"
           >
             <span>Join Presale</span>
-          </button>
+        </button>
           
           <a 
             href="/ido-sales" 
@@ -1550,8 +1550,8 @@ const TokenSale: React.FC = () => {
       
       {/* Tokenomics Container */}
       <div className="tokenomics-container">
-        {/* Tab Navigation */}
-        <div className="tokenomics-tab-container">
+      {/* Tab Navigation */}
+      <div className="tokenomics-tab-container">
         <button
           className={`tokenomics-tab ${activeTab === 'tokenomics' ? 'active' : ''}`}
           onClick={() => setActiveTab('tokenomics')}
@@ -1594,7 +1594,7 @@ const TokenSale: React.FC = () => {
                   {/* Generate pie chart with proper conic gradient */}
                   <div 
                     className="chart-pie"
-                    style={{
+                        style={{
                       background: `conic-gradient(
                         ${tokenomicsData.map((item, index) => {
                           const startPercent = tokenomicsData.slice(0, index).reduce((sum, item) => sum + item.percentage, 0);

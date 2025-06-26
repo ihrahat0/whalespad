@@ -11,16 +11,16 @@ interface MousePosition {
 const Hero: React.FC = () => {
   // Removed unused state variables
   const [trendingCoins] = useState([
-    { id: "01", name: "FNL" },
-    { id: "02", name: "TEST" },
-    { id: "03", name: "TEST2" },
-    { id: "04", name: "TEST3" },
-    { id: "05", name: "TEST4" },
-    { id: "06", name: "TEST5" },
-    { id: "07", name: "TEST6" },
-    { id: "08", name: "TEST7" },
-    { id: "09", name: "TEST8" },
-    { id: "10", name: "TEST9" }
+    { id: "01", name: "Bitcoin", symbol: "BTC", price: "$67,234", change: "+2.34%" },
+    { id: "02", name: "Ethereum", symbol: "ETH", price: "$3,456", change: "+1.87%" },
+    { id: "03", name: "Solana", symbol: "SOL", price: "$234", change: "+5.67%" },
+    { id: "04", name: "BNB", symbol: "BNB", price: "$612", change: "+0.92%" },
+    { id: "05", name: "XRP", symbol: "XRP", price: "$0.63", change: "+4.21%" },
+    { id: "06", name: "Cardano", symbol: "ADA", price: "$0.98", change: "+3.15%" },
+    { id: "07", name: "Polkadot", symbol: "DOT", price: "$7.89", change: "+2.11%" },
+    { id: "08", name: "Polygon", symbol: "MATIC", price: "$1.23", change: "+1.45%" },
+    { id: "09", name: "Chainlink", symbol: "LINK", price: "$15.67", change: "+3.78%" },
+    { id: "10", name: "Avalanche", symbol: "AVAX", price: "$42.89", change: "+2.95%" }
   ]);
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
@@ -117,19 +117,19 @@ const Hero: React.FC = () => {
 
   return (
     <div className="hero-unified" ref={heroRef}>
-      {/* Background Video */}
-      <div className="hero-video-background">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hero-background-video"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="video-overlay"></div>
+      {/* Animated Background Effects */}
+      <div className="hero-bg-effects">
+        <div className="bg-gradient-orb bg-orb-1"></div>
+        <div className="bg-gradient-orb bg-orb-2"></div>
+        <div className="bg-gradient-orb bg-orb-3"></div>
+        <div className="bg-grid-pattern"></div>
+        <div className="animated-particles">
+          <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
+          <div className="particle particle-3"></div>
+          <div className="particle particle-4"></div>
+          <div className="particle particle-5"></div>
+        </div>
       </div>
 
       {/* Simple Mouse Interactive Glow */}
@@ -156,7 +156,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Marquee container */}
-        <div className="marquee-track flex whitespace-nowrap ml-32">
+        <div className="marquee-track flex whitespace-nowrap ml-32 animate-marquee">
           {/* First set of coins */}
           {trendingCoins.map((coin, index) => (
             <div 
@@ -165,8 +165,10 @@ const Hero: React.FC = () => {
             >
               <div className="flex items-center space-x-3">
                 <span className="text-yellow-400 font-bold text-sm">#{coin.id}</span>
-                <span className="text-white font-bold text-sm">{coin.name}</span>
-                <span className="text-green-400 text-xs font-medium">+2.34%</span>
+                <span className="text-white font-bold text-sm">{coin.symbol}</span>
+                <span className="text-gray-300 text-xs hidden sm:block">{coin.name}</span>
+                <span className="text-white font-semibold text-sm">{coin.price}</span>
+                <span className="text-green-400 text-xs font-medium">{coin.change}</span>
               </div>
             </div>
           ))}
@@ -179,8 +181,10 @@ const Hero: React.FC = () => {
             >
               <div className="flex items-center space-x-3">
                 <span className="text-yellow-400 font-bold text-sm">#{coin.id}</span>
-                <span className="text-white font-bold text-sm">{coin.name}</span>
-                <span className="text-green-400 text-xs font-medium">+2.34%</span>
+                <span className="text-white font-bold text-sm">{coin.symbol}</span>
+                <span className="text-gray-300 text-xs hidden sm:block">{coin.name}</span>
+                <span className="text-white font-semibold text-sm">{coin.price}</span>
+                <span className="text-green-400 text-xs font-medium">{coin.change}</span>
               </div>
             </div>
           ))}
