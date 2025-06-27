@@ -4,17 +4,17 @@
   "description": "Whalespad isnt just a crypto launchpad — its a Whale-aware, community-driven IDO hub that identifies trends, vets projects based on whale activity and community feedback, and automates trust systems for investors.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "512x512"
     }

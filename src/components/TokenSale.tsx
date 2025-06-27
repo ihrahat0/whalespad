@@ -107,8 +107,8 @@ const TokenSale: React.FC = () => {
           }
 
           .token-hero-logo {
-            width: 120px;
-            height: 120px;
+            width: 220px;
+            height: 220px;
             object-fit: contain;
             border-radius: 50%;
             border: 3px solid rgba(0, 212, 255, 0.3);

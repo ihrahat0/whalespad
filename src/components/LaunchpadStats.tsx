@@ -705,20 +705,7 @@ const LaunchpadStats: React.FC = () => {
                     Token Claim Network
                   </div>
                   <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                    <span style={{ 
-                      width: '14px', 
-                      height: '14px', 
-                      background: 'linear-gradient(135deg, #627eea, #8c94ff)', 
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '8px',
-                      fontWeight: 'bold',
-                      color: 'white'
-                    }}>
-                      Ξ
-                    </span>
+                      <img height={27} width={20} src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/628px-Ethereum_logo_2014.svg.png" alt="Ethereum" className="network-icon" />
                     Ethereum
                   </div>
                 </div>

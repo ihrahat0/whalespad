@@ -137,10 +137,12 @@ const Navigation: React.FC = () => {
                 </motion.a>
               </div>
               
-              {/* Connect Wallet Button - Positioned in middle area for easy access */}
+              {/* Connect Wallet Button - Positioned for easy access */}
               <div className="mobile-menu-wallet">
                 <div className="mobile-wallet-section">
-                  <ConnectWalletButton />
+                  <div className="mobile-wallet-wrapper">
+                    <ConnectWalletButton onMobileMenuClose={closeMobileMenu} />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -190,6 +192,14 @@ const Navigation: React.FC = () => {
             </motion.a>
 
             <motion.a 
+              href="/sale" 
+              className="cyberpunk-nav-item"
+              whileHover={{ scale: 1.05 }}
+            >
+              SALE
+            </motion.a>
+
+            <motion.a 
               href="/staking" 
               className="cyberpunk-nav-item"
               whileHover={{ scale: 1.05 }}
@@ -198,13 +208,7 @@ const Navigation: React.FC = () => {
             </motion.a>
 
           <div className="nav-items-container">
-            <motion.a 
-              href="/sale" 
-              className="cyberpunk-nav-item"
-              whileHover={{ scale: 1.05 }}
-            >
-              SALE
-            </motion.a>
+           
           
             <motion.a 
               href="/blog" 
@@ -229,7 +233,6 @@ const Navigation: React.FC = () => {
 
           {/* Mobile Navigation Controls */}
         <div className="mobile-nav-controls">
-          <ConnectWalletButton />
             <motion.button
               className="mobile-menu-toggle"
               onClick={toggleMobileMenu}

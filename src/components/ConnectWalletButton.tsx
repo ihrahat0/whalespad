@@ -5,18 +5,57 @@ import { useAccount, useDisconnect } from 'wagmi';
 import { motion } from 'framer-motion';
 import './simple-modal.css';
 
-export const ConnectWalletButton: React.FC = () => {
+interface ConnectWalletButtonProps {
+  onMobileMenuClose?: () => void;
+}
+
+export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({ onMobileMenuClose }) => {
   const { open } = useWeb3Modal();
   const { address, isConnecting, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  // Use a global approach to handle mobile menu close timing
+  useEffect(() => {
+    const handlePendingWalletConnect = () => {
+      console.log('🔗 Wallet Connect: Global event received, showing modal in 200ms');
+      setTimeout(() => {
+        console.log('🔗 Wallet Connect: Showing terms modal now');
+        // Ensure body classes are cleared
+        document.body.classList.remove('mobile-menu-open');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        
+        setShowTermsModal(true);
+      }, 200);
+    };
+
+    // Listen for global event
+    window.addEventListener('wallet-connect-pending', handlePendingWalletConnect);
+    
+    return () => {
+      window.removeEventListener('wallet-connect-pending', handlePendingWalletConnect);
+    };
+  }, []);
 
   const handleClick = () => {
     if (isConnected) {
       disconnect();
     } else {
-      setShowTermsModal(true);
+      // If called from mobile menu, close menu first then trigger global event
+      if (onMobileMenuClose) {
+        console.log('🔗 Wallet Connect: Mobile menu detected, closing menu and dispatching event');
+        onMobileMenuClose();
+        // Dispatch global event after menu closes
+        setTimeout(() => {
+          console.log('🔗 Wallet Connect: Dispatching wallet-connect-pending event');
+          window.dispatchEvent(new CustomEvent('wallet-connect-pending'));
+        }, 100);
+      } else {
+        console.log('🔗 Wallet Connect: Desktop mode, showing modal directly');
+        setShowTermsModal(true);
+      }
     }
   };
 

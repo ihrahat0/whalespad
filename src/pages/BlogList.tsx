@@ -85,6 +85,14 @@ const BlogList: React.FC = () => {
     return contentWithoutImages.replace(/\n{3,}/g, '\n\n').trim();
   };
 
+  // Function to format numbers with k for thousands
+  const formatNumber = (num: number) => {
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    }
+    return num.toString();
+  };
+
   if (loading) {
     return (
       <>
@@ -223,11 +231,11 @@ const BlogList: React.FC = () => {
                     <div className="blog-stats">
                       <div className="blog-stat">
                         <FiEye className="blog-stat-icon" />
-                        <span>{blog.views}</span>
+                        <span>{formatNumber(blog.views)}</span>
                       </div>
                       <div className="blog-stat">
                         <FiHeart className="blog-stat-icon love" />
-                        <span>{blog.love_reactions}</span>
+                        <span>{formatNumber(blog.love_reactions)}</span>
                       </div>
                       <div className="ml-auto">
                         <a 

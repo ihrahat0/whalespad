@@ -33391,10 +33391,19 @@ body.mobile-menu-open {
 @media (max-width: 768px) {
   .mobile-nav-controls {
     display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
   }
   
   .desktop-nav {
     display: none !important;
+  }
+  
+  /* Ensure mobile hamburger menu is clickable */
+  .mobile-menu-toggle {
+    pointer-events: auto !important;
+    z-index: 999 !important;
+    position: relative !important;
   }
 }
 
@@ -33431,6 +33440,12 @@ body.mobile-menu-open {
     position: fixed !important;
     transform: none !important;
     will-change: auto !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Ensure mobile menu content is interactive */
+  .mobile-menu * {
+    pointer-events: auto !important;
   }
   
   /* Reset any transform on parent elements that might create stacking context */
@@ -33501,11 +33516,120 @@ body.mobile-menu-open {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.mobile-wallet-wrapper {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure mobile wallet button is properly sized and clickable */
+.mobile-menu-wallet .cyberpunk-wallet-btn {
+  width: 100% !important;
+  max-width: 280px !important;
+  padding: 1rem 1.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #00d4ff, #4f8fff) !important;
+  border: none !important;
+  color: #000 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Ensure mobile wallet button content is visible and clickable */
+.mobile-menu-wallet .cyberpunk-wallet-btn * {
+  pointer-events: none !important;
+  color: inherit !important;
+}
+
+.mobile-menu-wallet .cyberpunk-wallet-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4) !important;
+}
+
+/* Ensure wallet loading and connected states work on mobile */
+.mobile-menu-wallet .wallet-loading-spinner {
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid transparent !important;
+  border-top: 2px solid #000 !important;
+  border-radius: 50% !important;
+  animation: spin 1s linear infinite !important;
+}
+
+.mobile-menu-wallet .wallet-connected-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background: #00ff88 !important;
+  border-radius: 50% !important;
+  margin-right: 0.5rem !important;
+  animation: pulse 2s infinite !important;
 }
 
 /* Remove the old footer styling since we moved the button */
 .mobile-menu-footer {
   display: none;
+}
+
+/* Mobile wallet button animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1); 
+  }
+}
+
+/* Ensure mobile wallet button always works */
+@media (max-width: 768px) {
+  .mobile-menu-wallet {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  .mobile-wallet-section,
+  .mobile-wallet-wrapper {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Ensure terms modal appears above mobile menu */
+  .simple-terms-overlay {
+    z-index: 9999999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+  
+  /* Ensure modal works even after mobile menu closes */
+  body:not(.mobile-menu-open) .simple-terms-overlay {
+    z-index: 999999 !important;
+    position: fixed !important;
+    pointer-events: auto !important;
+  }
 }
 
 /* ===== MOBILE FIXES FOR SCROLL AND ANIMATION ISSUES ===== */
