@@ -1086,7 +1086,7 @@ const TokenSale: React.FC = () => {
            color: #ffffff;
            font-size: 1.5rem;
            font-weight: 600;
-           margin-bottom: 2rem;
+           margin-bottom: 2px;
            font-family: 'Orbitron', sans-serif;
          }
 
@@ -1094,9 +1094,9 @@ const TokenSale: React.FC = () => {
            display: flex;
            justify-content: center;
            align-items: center;
-           gap: 1.5rem;
+           gap: 0.5rem;
            flex-wrap: wrap;
-           margin-bottom: 3rem;
+           margin-bottom: 2px;
          }
 
          .countdown-segment {
@@ -1404,7 +1404,7 @@ const TokenSale: React.FC = () => {
             <div className="stat-label">Total Supply</div>
           </div>
           <div className="token-stat-card">
-            <div className="stat-value">$0.08</div>
+            <div className="stat-value">$0.008</div>
             <div className="stat-label">Launch Price</div>
           </div>
           <div className="token-stat-card">
@@ -1452,55 +1452,7 @@ const TokenSale: React.FC = () => {
           Join the exclusive presale with early bird pricing
         </motion.p>
 
-        {/* Countdown Timer */}
-        <motion.div 
-          className="countdown-container"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <h3 className="countdown-title">Countdown to start time</h3>
-          
-          <div className="countdown-timer">
-            <div className="countdown-segment">
-              <div className="countdown-number">
-                {String(timeLeft.days).padStart(2, '0')}
-              </div>
-              <div className="countdown-label">DAYS</div>
-              <div className="countdown-letter">D</div>
-            </div>
-            
-            <div className="countdown-separator">:</div>
-            
-            <div className="countdown-segment">
-              <div className="countdown-number">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </div>
-              <div className="countdown-label">HOURS</div>
-              <div className="countdown-letter">H</div>
-            </div>
-            
-            <div className="countdown-separator">:</div>
-            
-            <div className="countdown-segment">
-              <div className="countdown-number">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </div>
-              <div className="countdown-label">MINS</div>
-              <div className="countdown-letter">M</div>
-            </div>
-            
-            <div className="countdown-separator">:</div>
-            
-            <div className="countdown-segment">
-              <div className="countdown-number">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </div>
-              <div className="countdown-label">SECS</div>
-              <div className="countdown-letter">S</div>
-            </div>
-          </div>
-        </motion.div>
+
 
         {/* Sale Information */}
         <motion.div 
@@ -1678,7 +1630,7 @@ const TokenSale: React.FC = () => {
               
               <div className="detail-item">
                 <span className="detail-label">Launch Price</span>
-                <span className="detail-value">$0.08</span>
+                <span className="detail-value">$0.008</span>
               </div>
               
               <div className="detail-item">

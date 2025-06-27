@@ -9,14 +9,9 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: 'CEO & Dev : Lokman Hosen',
-    bio: 'CEO & Dev : Lokman Hosen',
-    image: '/images/team4.png'
-  },
-  {
-    name: 'CMO : Noah Alfred',
-    bio: 'CMO : Noah Alfred',
-    image: '/images/team1.png'
+    name: 'Founder : D. Islam',
+    bio: 'Founder : D. Islam',
+    image: '/images/team6.png'
   },
   {
     name: 'Co-founder : Mr. Nassir',
@@ -24,9 +19,9 @@ const teamMembers: TeamMember[] = [
     image: '/images/team2.png'
   },
   {
-    name: 'Launchpad Director : M. Rahman',
-    bio: 'Launchpad Director : M. Rahman',
-    image: '/images/team3.png'
+    name: 'CEO & Dev : Lokman Hosen',
+    bio: 'CEO & Dev : Lokman Hosen',
+    image: '/images/team4.png'
   },
   {
     name: 'CTO & BD : Mr. ABK',
@@ -34,12 +29,17 @@ const teamMembers: TeamMember[] = [
     image: '/images/team5.png'
   },
   {
-    name: 'Founder : D. Islam',
-    bio: 'Founder : D. Islam',
-    image: '/images/team6.png'
+    name: 'CMO : Noah Alfred',
+    bio: 'CMO : Noah Alfred',
+    image: '/images/team1.png'
   },
   {
-    name: 'STELLA',
+    name: 'Launchpad Director : M. Rahman',
+    bio: 'Launchpad Director : M. Rahman',
+    image: '/images/team3.png'
+  },
+  {
+    name: 'MARKETING : STELLA',
     bio: 'Launchpad Director with comprehensive experience in project evaluation, due diligence, and launch strategies. Stella has overseen the successful launch of over 50 projects on various launchpad platforms.',
     image: '/images/team7.png'
   }

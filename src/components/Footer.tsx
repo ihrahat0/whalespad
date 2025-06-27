@@ -94,8 +94,7 @@ const Footer: React.FC = () => {
             {/* Brand Section */}
             <div className="footer-brand-section">
               <div className="footer-logo">
-                <MdWaves className="footer-logo-icon" />
-                <span className="footer-logo-text">WhalesPad</span>
+                <img max-w-20 src="/images/logo/logo.png" alt="WhalesPad" className="footer-logo-image" />
               </div>
               <p className="footer-description">
               WhalesPad is a decentralized launchpad and incubator for Web3 startups in DeFi, AI, GameFi, NFTs, and the Metaverse. By staking $WPT, users get early access to promising project tokens and unique Web3 investment opportunities.

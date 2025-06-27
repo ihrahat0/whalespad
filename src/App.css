@@ -9,7 +9,23 @@ html, body {
   background: var(--primary-bg);
   color: var(--text-primary);
   overflow-x: hidden;
-  height: 100%;
+}
+
+/* Only apply height restrictions on mobile */
+@media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+/* Allow normal scrolling on desktop */
+@media (min-width: 769px) {
+  html, body {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: visible;
+  }
 }
 
 #root {
@@ -26,12 +42,16 @@ html, body {
 /* Optimize scroll performance */
 html {
   scroll-behavior: smooth;
+  /* Remove any transform or will-change that might affect scrolling */
+  transform: none !important;
 }
 
 body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Ensure body can scroll normally */
+  position: relative;
 }
 
 :root {
@@ -18804,7 +18824,7 @@ body {
 
 /* Optimize marquee animation */
 .marquee-track {
-  animation: scroll 60s linear infinite !important; /* Slower animation */
+  animation: scroll 15s linear infinite !important; /* Desktop speed */
 }
 
 /* Optimize scroll performance */
@@ -27103,17 +27123,23 @@ body.mobile-menu-open {
 /* Legacy mobile menu styles - REMOVED for fullscreen menu */
 
 /* Mobile Responsive Queries */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .desktop-nav {
-    display: none;
+    display: none !important;
   }
   
   .mobile-nav-controls {
-    display: flex;
+    display: flex !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-nav-controls {
+    display: none !important;
   }
   
-  .cyberpunk-nav-frame {
-    display: none;
+  .desktop-nav {
+    display: flex !important;
   }
 }
 
@@ -28601,7 +28627,7 @@ body.mobile-menu-open {
 }
 
 .marquee-track {
-  animation: scroll 30s linear infinite;
+  animation: scroll 15s linear infinite;
 }
 
 .trending-marquee-container:hover .marquee-track {
@@ -32691,18 +32717,8 @@ body.mobile-menu-open {
   min-width: 100%;
 }
 
-/* Faster animation for mobile devices */
-@media (max-width: 768px) {
-  .marquee-track {
-    animation: scroll 10s linear infinite;
-  }
-}
-
-@media (max-width: 480px) {
-  .marquee-track {
-    animation: scroll 8s linear infinite;
-  }
-}
+/* Keep consistent animation speed across all devices */
+/* Animation is already set to 10s for all screen sizes */
 
 /* Force marquee animation for trending coins */
 .trending-coin-item {
@@ -32715,6 +32731,8 @@ body.mobile-menu-open {
   will-change: transform;
   backface-visibility: hidden;
   transform: translateZ(0);
+  /* Force animation to run - desktop speed */
+  animation: scroll 15s linear infinite !important;
 }
 
 @keyframes scroll {
@@ -33214,5 +33232,1318 @@ body.mobile-menu-open {
     margin-left: 6rem;
   }
 }
+
+/* ===== COMPLETED PROJECTS TABLE RESPONSIVE STYLES ===== */
+.completed-projects-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1024px) {
+  .completed-projects-table {
+    padding: 1.5rem;
+  }
+  
+  .completed-table-header,
+  .completed-table-row {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 100px !important;
+    gap: 0.5rem !important;
+    padding: 1rem 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .completed-projects-table {
+    margin: 0 -1rem;
+    border-radius: 16px;
+    padding: 1rem;
+  }
+  
+  /* Hide table header on mobile */
+  .completed-table-header {
+    display: none !important;
+  }
+  
+  /* Convert table rows to cards on mobile */
+  .completed-table-row {
+    display: block !important;
+    margin-bottom: 1rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(139, 92, 246, 0.2) !important;
+    padding: 1.5rem !important;
+  }
+  
+  /* Project info takes full width */
+  .project-info {
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  /* Stats in mobile card format */
+  .stat-raised, 
+  .stat-roi, 
+  .stat-investors, 
+  .stat-completed {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.75rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    text-align: left !important;
+  }
+  
+  .action-button {
+    border-bottom: none !important;
+    justify-content: center !important;
+    padding-top: 1rem !important;
+  }
+  
+  /* Add mobile labels */
+  .stat-raised::before {
+    content: "Total Raised";
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .stat-roi::before {
+    content: "ROI";
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .stat-investors::before {
+    content: "Investors";
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .stat-completed::before {
+    content: "Completed";
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .completed-projects-table {
+    margin: 0 -0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .project-info img,
+  .project-info > div[style*="width: 40px"] {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .project-info h4 {
+    font-size: 1rem !important;
+  }
+}
+
+/* ===== MOBILE MENU Z-INDEX OVERRIDE ===== */
+/* Override mobile menu z-index to ensure it appears above all content */
+.mobile-menu-backdrop {
+  z-index: 999998 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.mobile-menu {
+  z-index: 999999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  height: 100vh !important;
+}
+
+.mobile-menu-toggle {
+  z-index: 1000000 !important;
+  position: relative !important;
+}
+
+/* Fix navbar z-index to be lower than mobile menu */
+.cyberpunk-navbar {
+  z-index: 1000 !important;
+}
+
+/* Ensure trending section doesn't interfere */
+.trending-section {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+/* ===== IMPROVED MOBILE RESPONSIVE NAVIGATION ===== */
+/* Ensure mobile controls only show on mobile, desktop nav only on desktop */
+.mobile-nav-controls {
+  display: none !important;
+}
+
+.desktop-nav {
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-controls {
+    display: flex !important;
+  }
+  
+  .desktop-nav {
+    display: none !important;
+  }
+}
+
+/* Hide cyberpunk nav frame on mobile when using overlay menu */
+@media (max-width: 768px) {
+  .cyberpunk-nav-frame:not(.mobile-nav-frame) {
+    display: none !important;
+  }
+}
+
+/* ===== FORCE MOBILE MENU ABOVE ALL CONTENT ===== */
+/* Ensure body scroll lock and stacking context fix */
+body.mobile-menu-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+/* Force all major sections to be below mobile menu */
+.hero-content,
+.hero-content-enhanced,
+.trending-section,
+.hero-main-content,
+.futuristic-hero,
+.chaingpt-hero {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Mobile menu must be above everything */
+@media (max-width: 768px) {
+  .mobile-menu-backdrop,
+  .mobile-menu {
+    position: fixed !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Reset any transform on parent elements that might create stacking context */
+  .App,
+  main,
+  .container {
+    transform: none !important;
+    position: static !important;
+  }
+}
+
+/* ===== FINAL MOBILE MENU Z-INDEX FIX ===== */
+/* Absolute highest z-index for mobile menu rendered via portal */
+.mobile-menu-backdrop {
+  z-index: 2147483646 !important; /* Max safe integer - 1 */
+}
+
+.mobile-menu {
+  z-index: 2147483647 !important; /* Max safe integer */
+}
+
+/* ===== HIDE MOBILE BOTTOM NAV COMPLETELY ===== */
+/* Ensure mobile bottom nav is completely hidden since it's been removed from the component */
+.mobile-bottom-nav {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Ensure only hamburger shows on mobile, no other menu items */
+@media (max-width: 768px) {
+  .cyberpunk-nav-frame.mobile-nav-frame {
+    display: none !important;
+  }
+  
+  .mobile-nav-items-container {
+    display: none !important;
+  }
+}
+
+/* Ensure logo stays on the left */
+.navbar-logo-simple {
+  order: -1;
+  margin-right: auto;
+}
+
+/* Mobile menu logo styling */
+.mobile-logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile menu wallet button positioning */
+.mobile-menu-wallet {
+  padding: 2rem 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-wallet-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Remove the old footer styling since we moved the button */
+.mobile-menu-footer {
+  display: none;
+}
+
+/* ===== MOBILE FIXES FOR SCROLL AND ANIMATION ISSUES ===== */
+
+/* Fix Platform Analysis Mobile Scroll Issue */
+.platform-stats-mobile-fix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 6rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .platform-stats-mobile-fix {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-bottom: 3rem !important;
+    padding: 0 1rem !important;
+  }
+}
+
+/* Improved Tokenomics Countdown Mobile Styling */
+@media (max-width: 768px) {
+  .countdown-container {
+    padding: 1rem !important;
+    margin: 1rem auto !important;
+    max-width: 95% !important;
+  }
+  
+  .countdown-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+  
+  .countdown-timer {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 1rem 0.75rem !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 16px !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+  }
+  
+  .countdown-segment {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-width: 50px !important;
+    flex: 1 !important;
+  }
+  
+  .countdown-number {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #00d4ff !important;
+    line-height: 1 !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .countdown-label {
+    font-size: 0.65rem !important;
+    color: #9ca3af !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    font-weight: 600 !important;
+  }
+  
+  .countdown-separator {
+    font-size: 1.2rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-weight: 700 !important;
+  }
+  
+  .countdown-letter {
+    display: none !important; /* Hide letter indicators on mobile */
+  }
+}
+
+/* Trending Coins Animation Speed */
+/* Desktop: 15s (slower), Mobile: 10s (user preferred speed) */
+
+/* Mobile devices get faster animation */
+@media (max-width: 768px) {
+  .marquee-track,
+  .trending-section .marquee-track,
+  .trending-marquee-container .marquee-track {
+    animation: scroll 10s linear infinite !important;
+    animation-play-state: running !important;
+  }
+  
+  /* But keep marquee running on mobile */
+  .marquee-track {
+    animation-play-state: running !important;
+    will-change: transform !important;
+    animation: scroll 10s linear infinite !important;
+  }
+}
+
+/* Also apply mobile speed to smaller screens */
+@media (max-width: 480px) {
+  .marquee-track,
+  .trending-section .marquee-track,
+  .trending-marquee-container .marquee-track {
+    animation: scroll 10s linear infinite !important;
+    animation-play-state: running !important;
+  }
+}
+
+/* Ensure marquee animation works on all screen sizes */
+.marquee-track,
+.trending-section .marquee-track,
+.trending-marquee-container .marquee-track {
+  animation: scroll 10s linear infinite !important;
+  animation-play-state: running !important;
+  will-change: transform;
+  display: flex !important;
+  white-space: nowrap !important;
+}
+
+/* Slower animation for desktop (50% slower) */
+@media (min-width: 769px) {
+  .marquee-track,
+  .trending-section .marquee-track,
+  .trending-marquee-container .marquee-track {
+    animation: scroll 15s linear infinite !important;
+    animation-play-state: running !important;
+  }
+}
+
+/* Hover to pause */
+.trending-section:hover .marquee-track,
+.trending-marquee-container:hover .marquee-track {
+  animation-play-state: paused !important;
+}
+
+/* ===== CRITICAL SCROLL OPTIMIZATION FIXES ===== */
+/* Fix scroll trapping caused by multiple min-height: 100vh and smooth scroll */
+
+/* Remove problematic scroll behavior and viewport height constraints */
+html {
+  scroll-behavior: auto !important; /* Remove smooth scroll that causes trapping */
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important; /* Ensure vertical scrolling is always available */
+  height: auto !important;
+  min-height: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Remove height constraints from main containers */
+#root {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.App {
+  height: auto !important;
+  min-height: auto !important; /* Remove the min-height: 100vh constraint */
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+/* Remove scroll snap that can cause trapping */
+* {
+  scroll-snap-type: none !important;
+  scroll-snap-align: none !important;
+}
+
+/* Fix sections to flow naturally instead of taking full viewport height */
+.section {
+  height: auto !important;
+  min-height: auto !important; /* Remove any min-height constraints */
+}
+
+.container {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* Keep only the main hero with viewport height, remove from all others */
+.chaingpt-hero {
+  min-height: 100vh; /* Keep this one for main hero only */
+}
+
+/* Remove min-height from all other hero variants and sections */
+.futuristic-hero,
+.hero-container,
+.hero-container-enhanced,
+.hero-content,
+.hero-content-enhanced,
+.blog-page-wrapper,
+.section,
+.main-content,
+.admin-content {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+/* Ensure all containers allow natural content flow */
+body * {
+  /* Remove problematic overflow hidden that creates scroll containers */
+  max-height: none !important;
+}
+
+/* Only keep overflow hidden for visual effects, not layout */
+.card,
+.btn,
+.floating-particle,
+.bg-gradient-orb {
+  overflow: hidden; /* Keep for visual effects only */
+}
+
+/* Mobile scroll optimization */
+@media (max-width: 768px) {
+  html,
+  body {
+    scroll-behavior: auto !important; /* Remove smooth scroll on mobile */
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .App {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  /* Ensure all sections flow naturally on mobile */
+  .section,
+  .container,
+  .hero-container,
+  .hero-container-enhanced,
+  .futuristic-hero,
+  .chaingpt-hero {
+    height: auto !important;
+    min-height: auto !important;
+    overflow-y: visible !important;
+  }
+  
+  /* Only keep viewport height for main hero on mobile */
+  .chaingpt-hero {
+    min-height: 100vh;
+    height: auto;
+  }
+}
+
+/* Remove any transform/position properties that might create stacking contexts affecting scroll */
+@media (max-width: 768px) {
+  .App,
+  main,
+  .container {
+    transform: none !important;
+    position: static !important;
+  }
+}
+
+/* Optimize scroll performance */
+.App {
+  will-change: auto !important;
+}
+
+/* Disable problematic animations that might interfere with scroll */
+@media (max-width: 768px) {
+  .bg-gradient-orb,
+  .bg-particles,
+  .floating-particle,
+  .orbit-ring {
+    will-change: auto !important;
+    animation-play-state: paused !important;
+  }
+  
+  /* But keep marquee running on mobile */
+  .marquee-track {
+    animation-play-state: running !important;
+    will-change: transform !important;
+  }
+}
+
+/* Final scroll optimization - ensure no section traps scroll */
+* {
+  /* Remove any scroll-related properties that might trap scroll */
+  overscroll-behavior: none !important;
+}
+
+body {
+  /* Ensure body can scroll normally */
+  overscroll-behavior-y: auto !important;
+}
+
+/* ===== TARGETED SCROLL CONTAINER FIXES ===== */
+/* Fix only specific problematic scroll containers without breaking progress bars */
+
+/* Fix specific table containers that need scrolling fixes */
+.completed-projects-table {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+@media (max-width: 768px) {
+  .completed-projects-table {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    -webkit-overflow-scrolling: auto !important;
+  }
+}
+
+/* Fix specific library scroll containers only when needed */
+[data-radix-scroll-area-viewport] {
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+.embla,
+.embla__viewport,
+.embla__container {
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Ensure progress bars maintain their overflow hidden for animations */
+.progress-bar,
+.progress-bar-unified,
+.progress-bar-enhanced,
+.progress-bar-container {
+  overflow: hidden !important; /* Critical for progress bar animations */
+  position: relative !important;
+}
+
+.progress-fill,
+.progress-fill-unified,
+.progress-fill-enhanced {
+  overflow: hidden !important; /* Keep shimmer effects contained */
+  position: relative !important;
+}
+
+/* Keep visual effect containers with overflow hidden */
+.card,
+.btn,
+.floating-particle,
+.bg-gradient-orb,
+.image-container img,
+.logo img,
+.avatar img,
+.icon {
+  overflow: hidden !important; /* Keep ONLY for visual effects */
+}
+
+/* ===== DESKTOP SCROLLING OPTIMIZATION FIXES ===== */
+/* Fix desktop scrolling issues while preserving mobile fixes */
+
+@media (min-width: 769px) {
+  /* Reset html and body for desktop */
+  html {
+    scroll-behavior: smooth !important; /* Re-enable smooth scroll on desktop */
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  
+  body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    position: relative !important;
+  }
+  
+  /* Ensure App container doesn't interfere with scrolling */
+  .App {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    transform: none !important;
+    will-change: auto !important;
+    position: relative !important;
+  }
+  
+  /* Remove transform effects that might cause scroll issues - but not for animations */
+  body, main, .section, .container {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* Disable problematic animations on desktop - but not marquee */
+  .bg-gradient-orb,
+  .bg-grid-pattern,
+  .floating-dots::before,
+  .floating-dots::after,
+  .particle,
+  .animated-particles {
+    animation-play-state: paused !important;
+  }
+  
+  /* Ensure marquee keeps running */
+  .marquee-track {
+    animation-play-state: running !important;
+    animation: scroll 15s linear infinite !important;
+  }
+  
+  /* Reduce animation durations for better performance */
+  /* REMOVED - This was breaking marquee animations */
+  
+  /* Keep essential transitions with specific durations */
+  .btn,
+  .card,
+  a {
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Preserve marquee and other long animations */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes progress-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  /* Ensure sections flow naturally */
+  .section,
+  .container,
+  main {
+    transform: none !important;
+    will-change: auto !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+  
+  /* Fix any position fixed elements that might interfere */
+  .subtle-bg-effects,
+  .bg-gradient-orb,
+  .bg-grid-pattern {
+    pointer-events: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Ensure content is not trapped behind fixed elements */
+  .hero-unified,
+  .chaingpt-hero,
+  .hero-main-content {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Disable section breathing animations that cause jank */
+  .section,
+  .team-profiles-section,
+  .partners-section-modern,
+  .features-section,
+  .grid,
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Ensure progress bars work correctly on desktop */
+  .progress-bar,
+  .progress-bar-unified,
+  .progress-bar-enhanced,
+  .progress-bar-container {
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  
+  .progress-fill,
+  .progress-fill-unified,
+  .progress-fill-enhanced {
+    overflow: hidden !important;
+    position: relative !important;
+  }
+}
+
+/* Final performance optimization for desktop */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  /* Re-enable only essential animations */
+  .status-pulse,
+  .pulse-dot {
+    animation-play-state: running !important;
+    animation-duration: 2s !important;
+  }
+  
+  /* Keep button hover effects smooth */
+  .btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  
+  /* Re-enable progress bar animations but keep them contained */
+  .progress-fill {
+    animation: progress-shine 2s linear infinite !important;
+  }
+  
+  .progress-fill::after {
+    animation: shimmer 2s infinite !important;
+  }
+  
+  /* Ensure marquee animations work properly */
+  .marquee-track {
+    animation: scroll 15s linear infinite !important;
+  }
+  
+  /* Allow hover state to pause */
+  .trending-marquee-container:hover .marquee-track {
+    animation-play-state: paused !important;
+  }
+}
+
+/* ===== SIMPLE TERMS MODAL STYLES ===== */
+.simple-terms-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.simple-terms-content {
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 46, 0.95) 0%, 
+    rgba(21, 21, 32, 0.95) 50%, 
+    rgba(26, 26, 46, 0.95) 100%
+  );
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.simple-terms-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.simple-terms-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.simple-terms-header button {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simple-terms-header button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #00d4ff;
+}
+
+.terms-modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.terms-modal-icon {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon-shield {
+  font-size: 3rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+.terms-modal-description {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.terms-checkbox-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.terms-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  position: relative;
+}
+
+.terms-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  border-radius: 6px;
+  margin-right: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.terms-checkbox:checked ~ .checkbox-custom {
+  background: var(--primary-cyan);
+  border-color: var(--primary-cyan);
+}
+
+.terms-checkbox:checked ~ .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.terms-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.terms-link {
+  color: var(--primary-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.terms-link:hover {
+  color: var(--chrome-light);
+  border-bottom-color: var(--chrome-light);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.terms-warning {
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.warning-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.warning-text {
+  color: #ffa500;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+.terms-modal-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure all modal elements are visible */
+.terms-modal-overlay *,
+.terms-modal-content *,
+.terms-modal-header *,
+.terms-modal-body *,
+.terms-modal-footer * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.terms-btn-cancel {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-secondary);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.terms-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+}
+
+.terms-btn-proceed {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--primary-cyan), var(--accent-blue));
+  border: none;
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+}
+
+.terms-btn-proceed:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(0, 212, 255, 0.5);
+}
+
+.terms-btn-proceed.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #444, #555);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+/* Mobile Responsive for Terms Modal */
+@media (max-width: 768px) {
+  .terms-modal-overlay {
+    padding: 0;
+  }
+  
+  .terms-modal-content {
+    max-width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+  
+  .terms-modal-body {
+    max-height: calc(100vh - 160px);
+    padding: 1.5rem;
+  }
+  
+  .terms-modal-header,
+  .terms-modal-footer {
+    padding: 1rem 1.5rem;
+  }
+  
+  .terms-modal-footer {
+    flex-direction: column-reverse;
+  }
+  
+  .terms-btn-cancel,
+  .terms-btn-proceed {
+    width: 100%;
+  }
+}
+
+/* ===== AGGRESSIVE WEB3MODAL TOP POSITIONING ===== */
+/* Force Web3Modal to appear at TOP with maximum specificity */
+w3m-modal,
+w3m-modal[style],
+wcm-modal,
+wcm-modal[style],
+[data-w3m-modal],
+[data-w3m-modal][style],
+.w3m-modal,
+.w3m-modal[style] {
+  position: fixed !important;
+  top: 2rem !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateX(-50%) !important;
+  margin: 0 !important;
+  z-index: 999998 !important;
+}
+
+/* Override any centering transforms */
+w3m-modal > div,
+wcm-modal > div,
+[data-w3m-modal] > div,
+.w3m-modal > div {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+
+/* Force overlay positioning */
+w3m-overlay,
+w3m-overlay[style],
+wcm-overlay,
+wcm-overlay[style],
+[data-w3m-overlay],
+[data-w3m-overlay][style],
+.w3m-overlay,
+.w3m-overlay[style] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 999997 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding: 2rem 1rem 1rem 1rem !important;
+}
+
+/* Target specific Web3Modal internal elements */
+w3m-router,
+w3m-router[style],
+wcm-router,
+wcm-router[style] {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* Override any inline styles that center the modal */
+[style*="transform"][style*="translate"] {
+  transform: none !important;
+}
+
+[style*="top: 50%"],
+[style*="top:50%"] {
+  top: 2rem !important;
+}
+
+[style*="left: 50%"],
+[style*="left:50%"] {
+  left: 50% !important;
+}
+
+/* Specific targeting for Web3Modal container */
+w3m-modal-core,
+w3m-modal-core[style],
+[data-w3m-modal-core],
+[data-w3m-modal-core][style],
+.w3m-container,
+.w3m-container[style] {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  max-height: calc(90vh - 4rem) !important;
+  overflow-y: auto !important;
+  margin: 0 !important;
+}
+
+/* Ensure modal is visible on mobile */
+@media (max-width: 768px) {
+  [data-w3m-modal],
+  w3m-modal,
+  .w3m-modal {
+    width: 95% !important;
+    max-width: 400px !important;
+    top: 1rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  [data-w3m-overlay],
+  w3m-overlay,
+  .w3m-overlay {
+    padding-top: 1rem !important;
+  }
+  
+  /* Hide floating wallet button on mobile */
+  .floating-wallet-container {
+    display: none !important;
+  }
+}
+
+/* ULTRA-SPECIFIC WEB3MODAL TARGETING */
+/* Use CSS custom properties to force positioning */
+:root {
+  --w3m-modal-top: 2rem !important;
+  --w3m-modal-transform: translateX(-50%) !important;
+}
+
+/* Nuclear option - target everything with maximum specificity */
+body w3m-modal,
+body wcm-modal,
+body [data-w3m-modal],
+body .w3m-modal,
+html body w3m-modal,
+html body wcm-modal,
+html body [data-w3m-modal],
+html body .w3m-modal {
+  position: fixed !important;
+  top: var(--w3m-modal-top) !important;
+  left: 50% !important;
+  transform: var(--w3m-modal-transform) !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  z-index: 999998 !important;
+}
+
+/* Force all nested elements to not interfere */
+body w3m-modal *,
+body wcm-modal *,
+body [data-w3m-modal] *,
+body .w3m-modal *,
+html body w3m-modal *,
+html body wcm-modal *,
+html body [data-w3m-modal] *,
+html body .w3m-modal * {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* Allow body scrolling when no modal */
+body:not(.w3m-open) {
+  overflow: auto !important;
+}
+
+/* Prevent body scrolling only when modal is open */  
+body.w3m-open {
+  overflow: hidden !important;
+}
+
+/* Additional fallback using !important with highest specificity */
+* [style*="position: fixed"] {
+  position: fixed !important;
+}
+
+* [style*="top: 50%"] {
+  top: 2rem !important;
+}
+
+
+
 
 

@@ -78,8 +78,18 @@ const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 3); // 3 days from now
+    // Get or set target date: 90 days from first visit (persists across reloads)
+    let targetDate;
+    const storedTargetDate = localStorage.getItem('whalespad-countdown-target');
+    
+    if (storedTargetDate) {
+      targetDate = new Date(storedTargetDate);
+    } else {
+      // First time - set 90 days from now
+      targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 90);
+      localStorage.setItem('whalespad-countdown-target', targetDate.toISOString());
+    }
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -91,6 +101,14 @@ const Hero: React.FC = () => {
           hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      } else {
+        // Countdown finished
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
         });
       }
     }, 1000);
@@ -156,7 +174,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Marquee container */}
-        <div className="marquee-track flex whitespace-nowrap ml-32 animate-marquee">
+        <div className="marquee-track flex whitespace-nowrap ml-32">
           {/* First set of coins */}
           {trendingCoins.map((coin, index) => (
             <div 
@@ -357,24 +375,17 @@ const Hero: React.FC = () => {
             transition={{ duration: 1, delay: 0.4 }}
           >
             <div className="presale-showcase-unified">
-              {/* Featured Banner - Compact */}
-              <div className="presale-banner">
-                <div className="banner-bg"></div>
-                <div className="banner-content">
-                  <img 
-                    src="/images/logo/logo.png" 
-                    alt="WhalesPad" 
-                    className="presale-logo"
-                  />
-                  <div className="presale-title">
-                    <h3>{featuredPresale.name}</h3>
-                    <span className="token-symbol">{featuredPresale.symbol}</span>
-                  </div>
-                  <div className="live-indicator">
-                    <div className="pulse-dot"></div>
-                    <span>LIVE</span>
-                  </div>
-                </div>
+              {/* Featured Banner */}
+              <div className="presale-banner-image">
+                <img 
+                  src="/images/pools/presale.jpg" 
+                  alt="Featured Presale Banner" 
+                  className="banner-image"
+                  onError={(e) => {
+                    console.log('Banner image failed to load, using placeholder');
+                    (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x300/1a1a24/00d4ff?text=Featured+Presale+Banner';
+                  }}
+                />
               </div>
               
               {/* Countdown Timer */}

@@ -55,7 +55,7 @@ const IDOSales: React.FC = () => {
       symbol: 'CGH',
       description: 'Revolutionary gaming platform with NFTs and DeFi integration',
       status: 'upcoming',
-      price: '$0.08',
+      price: '$0.008',
       hardCap: '$800,000',
       raised: '$0',
       progress: 0,

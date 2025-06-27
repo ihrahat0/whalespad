@@ -52,7 +52,7 @@ const Sale: React.FC = () => {
       name: 'CryptoGaming Hub',
       symbol: 'CGH',
       description: 'Revolutionary gaming platform combining NFTs, DeFi, and immersive gameplay.',
-      price: '$0.08',
+      price: '$0.008',
       softCap: '200,000',
       hardCap: '800,000',
       status: 'upcoming',

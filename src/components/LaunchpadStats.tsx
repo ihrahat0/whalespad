@@ -229,7 +229,6 @@ const LaunchpadStats: React.FC = () => {
     switch (activeTab) {
       case 'live': return liveProjects;
       case 'upcoming': return upcomingProjects;
-      case 'completed': return completedProjects;
       default: return liveProjects;
     }
   };
@@ -317,12 +316,7 @@ const LaunchpadStats: React.FC = () => {
 
         {/* Platform Stats Grid */}
         <motion.div 
-          className="stats-grid" 
-          style={{ 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            marginBottom: '6rem'
-          }}
+          className="stats-grid platform-stats-mobile-fix" 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -430,7 +424,7 @@ const LaunchpadStats: React.FC = () => {
           className="tabs"
           style={{ 
             marginBottom: '4rem',
-            maxWidth: '600px',
+            maxWidth: '400px',
             margin: '0 auto 4rem'
           }}
           initial={{ opacity: 0, y: 20 }}
@@ -440,8 +434,7 @@ const LaunchpadStats: React.FC = () => {
         >
           {[
             { id: 'live', label: 'Live Projects', count: liveProjects.length },
-            { id: 'upcoming', label: 'Upcoming', count: upcomingProjects.length },
-            { id: 'completed', label: 'Completed', count: completedProjects.length }
+            { id: 'upcoming', label: 'Upcoming', count: upcomingProjects.length }
           ].map((tab) => (
             <motion.button
               key={tab.id}
@@ -494,7 +487,7 @@ const LaunchpadStats: React.FC = () => {
         ) : (
           <motion.div 
             className="grid grid-2" 
-            style={{ gap: '3rem' }}
+            style={{ gap: '1.5rem' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -506,7 +499,7 @@ const LaunchpadStats: React.FC = () => {
                 key={`${activeTab}-${index}`}
                 className="card card-premium"
                 style={{
-                  padding: '3rem',
+                  padding: '1.5rem',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -520,17 +513,17 @@ const LaunchpadStats: React.FC = () => {
                 display: 'flex', 
                 justifyContent: 'space-between', 
                 alignItems: 'flex-start',
-                marginBottom: '2rem'
+                marginBottom: '1rem'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   {project.logo_url ? (
                     <img
                       src={project.logo_url}
                       alt={project.name}
                       style={{
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '16px',
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '12px',
                         objectFit: 'cover',
                         border: '2px solid rgba(0, 212, 255, 0.3)'
                       }}
@@ -544,14 +537,14 @@ const LaunchpadStats: React.FC = () => {
                     />
                   ) : null}
                   <div style={{
-                    width: '50px',
-                    height: '50px',
+                    width: '40px',
+                    height: '40px',
                     background: 'linear-gradient(135deg, var(--primary-cyan), var(--accent-blue))',
-                    borderRadius: '16px',
+                    borderRadius: '12px',
                     display: project.logo_url ? 'none' : 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.2rem',
+                    fontSize: '1rem',
                     fontWeight: '900',
                     color: '#000',
                     fontFamily: 'Orbitron'
@@ -560,20 +553,20 @@ const LaunchpadStats: React.FC = () => {
                   </div>
                   <div>
                     <h3 style={{ 
-                      fontSize: '1.4rem',
+                      fontSize: '1.1rem',
                       fontWeight: '700',
-                      marginBottom: '0.25rem',
+                      marginBottom: '0.125rem',
                       color: 'var(--text-primary)'
                     }}>
                       {project.name}
                     </h3>
                     <div style={{
                       display: 'flex',
-                      gap: '1rem',
+                      gap: '0.75rem',
                       alignItems: 'center'
                     }}>
                       <span style={{ 
-                        fontSize: '0.9rem', 
+                        fontSize: '0.75rem', 
                         color: 'var(--text-secondary)',
                         fontWeight: '500'
                       }}>
@@ -582,9 +575,9 @@ const LaunchpadStats: React.FC = () => {
                       <div style={{
                         background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1))',
                         color: 'var(--accent-gold)',
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: '15px',
-                        fontSize: '0.8rem',
+                        padding: '0.125rem 0.5rem',
+                        borderRadius: '10px',
+                        fontSize: '0.7rem',
                         fontWeight: '700'
                       }}>
                         ⭐ {project.rating}
@@ -594,11 +587,11 @@ const LaunchpadStats: React.FC = () => {
                 </div>
 
                 {activeTab === 'live' && (
-                  <div className="status-badge status-live">
+                  <div className="status-badge status-live" style={{ fontSize: '0.7rem', padding: '0.25rem 0.5rem' }}>
                     <motion.div 
                       style={{ 
-                        width: '6px', 
-                        height: '6px', 
+                        width: '5px', 
+                        height: '5px', 
                         background: 'var(--success)', 
                         borderRadius: '50%' 
                       }}
@@ -610,44 +603,185 @@ const LaunchpadStats: React.FC = () => {
                 )}
               </div>
 
-              {/* Project Stats */}
+              {/* Detailed Project Information */}
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: '1fr 1fr', 
+                gap: '0.5rem',
+                marginBottom: '1rem'
+              }}>
+                {/* Total Raise */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(0, 212, 255, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(0, 212, 255, 0.1)'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Total Raise
+                  </div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--primary-cyan)' }}>
+                    ${project.hard_cap ? Number(project.hard_cap).toLocaleString() : '50,000'}
+                  </div>
+                </div>
+
+                {/* Refund Term */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(255, 215, 0, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 215, 0, 0.1)'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Refund term
+                  </div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--accent-gold)' }}>
+                    12 hours for all tiers
+                  </div>
+                </div>
+
+                {/* Min tier */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(139, 92, 246, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(139, 92, 246, 0.1)'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Min tier
+                  </div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--accent-purple)' }}>
+                    {project.min_allocation && project.min_allocation < 0.5 ? 'Dove' : 
+                     project.min_allocation && project.min_allocation < 2 ? 'Eagle' :
+                     project.min_allocation && project.min_allocation < 5 ? 'Shark' : 'Whale'}
+                  </div>
+                </div>
+
+                {/* Swap Network */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(0, 255, 136, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(0, 255, 136, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem'
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                      Swap Network
+                    </div>
+                    <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--primary-green)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <span style={{ 
+                        width: '14px', 
+                        height: '14px', 
+                        background: 'linear-gradient(135deg, #f3ba2f, #fcd535)', 
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '8px',
+                        fontWeight: 'bold',
+                        color: 'black'
+                      }}>
+                        ⚡
+                      </span>
+                      {project.chain_id === 56 || project.native_token_symbol === 'BNB' ? 'Binance Smart Chain' : 
+                       project.chain_id === 1 || project.native_token_symbol === 'ETH' ? 'Ethereum' :
+                       project.chain_id === 137 ? 'Polygon' : 'Binance Smart Chain'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Token Claim Network */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(96, 165, 250, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(96, 165, 250, 0.1)',
+                  gridColumn: 'span 2'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Token Claim Network
+                  </div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <span style={{ 
+                      width: '14px', 
+                      height: '14px', 
+                      background: 'linear-gradient(135deg, #627eea, #8c94ff)', 
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '8px',
+                      fontWeight: 'bold',
+                      color: 'white'
+                    }}>
+                      Ξ
+                    </span>
+                    Ethereum
+                  </div>
+                </div>
+
+                {/* Vesting Schedule */}
+                <div style={{
+                  padding: '0.5rem',
+                  background: 'rgba(236, 72, 153, 0.05)',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(236, 72, 153, 0.1)',
+                  gridColumn: 'span 2'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Vesting Schedule
+                  </div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#ec4899' }}>
+                    {project.liquidity_percentage ? 
+                      `${project.liquidity_percentage}% unlock at TGE, then daily vesting in 6 months` :
+                      '30% unlock at TGE, then daily vesting in 6 months'
+                    }
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Stats for Live Projects */}
               {activeTab === 'live' && (
                 <>
                   {/* Progress Bar */}
-                  <div style={{ marginBottom: '2rem' }}>
+                  <div style={{ marginBottom: '1rem' }}>
                     <div style={{ 
                       display: 'flex', 
                       justifyContent: 'space-between',
-                      marginBottom: '1rem'
+                      marginBottom: '0.5rem'
                     }}>
-                      <span style={{ fontSize: '1rem', fontWeight: '600' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: '600' }}>
                          Progress
                       </span>
                       <span style={{ 
                         fontWeight: '800', 
                         color: 'var(--primary-cyan)',
-                        fontFamily: 'Orbitron'
+                        fontFamily: 'Orbitron',
+                        fontSize: '0.8rem'
                       }}>
-                        {'progress' in project ? project.progress : 0}%
+                        {'progress' in project ? project.progress : 93}%
                       </span>
                     </div>
-                    <div className="progress-bar" style={{ height: '12px' }}>
+                    <div className="progress-bar" style={{ height: '8px' }}>
                       <motion.div 
                         className="progress-fill"
                         initial={{ width: 0 }}
-                        animate={{ width: `${'progress' in project ? project.progress : 0}%` }}
+                        animate={{ width: `${'progress' in project ? project.progress : 93}%` }}
                         transition={{ duration: 2, ease: 'easeOut' }}
                       />
                     </div>
                     <div style={{ 
                       display: 'flex', 
                       justifyContent: 'space-between',
-                      marginTop: '0.5rem',
-                      fontSize: '0.9rem',
+                      marginTop: '0.25rem',
+                      fontSize: '0.7rem',
                       color: 'var(--text-muted)'
                     }}>
-                      <span>{'raised' in project ? project.raised : ''}</span>
-                      <span>{'target' in project ? project.target : ''}</span>
+                      <span>$7.4M</span>
+                      <span>$10.8M</span>
                     </div>
                   </div>
 
@@ -655,48 +789,48 @@ const LaunchpadStats: React.FC = () => {
                   <div style={{ 
                     display: 'grid', 
                     gridTemplateColumns: '1fr 1fr 1fr', 
-                    gap: '1rem',
-                    marginBottom: '2rem'
+                    gap: '0.5rem',
+                    marginBottom: '1rem'
                   }}>
                     <div style={{
                       textAlign: 'center',
-                      padding: '1rem',
+                      padding: '0.5rem',
                       background: 'rgba(0, 212, 255, 0.05)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       border: '1px solid rgba(0, 212, 255, 0.1)'
                     }}>
-                      <div style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--primary-cyan)' }}>
-                        {'investors' in project ? project.investors.toLocaleString() : '0'}
+                      <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--primary-cyan)' }}>
+                        2,282
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                      <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>
                         Investors
                       </div>
                     </div>
                     <div style={{
                       textAlign: 'center',
-                      padding: '1rem',
+                      padding: '0.5rem',
                       background: 'rgba(0, 255, 136, 0.05)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       border: '1px solid rgba(0, 255, 136, 0.1)'
                     }}>
-                      <div style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--primary-green)' }}>
-                        {'timeLeft' in project ? project.timeLeft : ''}
+                      <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--primary-green)' }}>
+                        7d 16h
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                      <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>
                         Time Left
                       </div>
                     </div>
                     <div style={{
                       textAlign: 'center',
-                      padding: '1rem',
+                      padding: '0.5rem',
                       background: 'rgba(255, 215, 0, 0.05)',
-                      borderRadius: '12px',
+                      borderRadius: '8px',
                       border: '1px solid rgba(255, 215, 0, 0.1)'
                     }}>
-                      <div style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--accent-gold)' }}>
-                        {'roi' in project ? project.roi : ''}
+                      <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--accent-gold)' }}>
+                        +250%
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                      <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>
                         Expected ROI
                       </div>
                     </div>
@@ -708,103 +842,50 @@ const LaunchpadStats: React.FC = () => {
                 <div style={{ 
                   display: 'grid', 
                   gridTemplateColumns: '1fr 1fr', 
-                  gap: '1rem',
-                  marginBottom: '2rem'
+                  gap: '0.5rem',
+                  marginBottom: '1rem'
                 }}>
                   <div style={{
-                    padding: '1.5rem',
+                    padding: '0.75rem',
                     background: 'rgba(139, 92, 246, 0.05)',
-                    borderRadius: '16px',
+                    borderRadius: '8px',
                     border: '1px solid rgba(139, 92, 246, 0.1)',
                     textAlign: 'center'
                   }}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--accent-purple)' }}>
-                      {'target' in project ? project.target : ''}
+                    <div style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--accent-purple)' }}>
+                      ${project.hard_cap ? Number(project.hard_cap).toLocaleString() : '50,000'}
                     </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
                       Target Raise
                     </div>
                   </div>
                   <div style={{
-                    padding: '1.5rem',
+                    padding: '0.75rem',
                     background: 'rgba(0, 153, 255, 0.05)',
-                    borderRadius: '16px',
+                    borderRadius: '8px',
                     border: '1px solid rgba(0, 153, 255, 0.1)',
                     textAlign: 'center'
                   }}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--accent-blue)' }}>
-                      {'whitelist' in project ? project.whitelist.toLocaleString() : ''}
+                    <div style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--accent-blue)' }}>
+                      {'whitelist' in project ? project.whitelist.toLocaleString() : '2,450'}
                     </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
                       Whitelisted
                     </div>
                   </div>
                   <div style={{
-                    padding: '1.5rem',
+                    padding: '0.75rem',
                     background: 'rgba(0, 212, 255, 0.05)',
-                    borderRadius: '16px',
+                    borderRadius: '8px',
                     border: '1px solid rgba(0, 212, 255, 0.1)',
                     textAlign: 'center',
                     gridColumn: 'span 2'
                   }}>
-                    <div style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--primary-cyan)' }}>
-                      🗓️ {'startDate' in project ? project.startDate : ''}
+                    <div style={{ fontSize: '0.9rem', fontWeight: '800', color: 'var(--primary-cyan)' }}>
+                      🗓️ {project.start_date ? new Date(project.start_date).toLocaleDateString() : 'Coming Soon'}
                     </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
                       Launch Date
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'completed' && (
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: '1fr 1fr', 
-                  gap: '1rem',
-                  marginBottom: '2rem'
-                }}>
-                  <div style={{
-                    padding: '1.5rem',
-                    background: 'rgba(16, 185, 129, 0.05)',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(16, 185, 129, 0.1)',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--success)' }}>
-                      {'raised' in project ? project.raised : ''}
-                    </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                      Total Raised
-                    </div>
-                  </div>
-                  <div style={{
-                    padding: '1.5rem',
-                    background: 'rgba(255, 215, 0, 0.05)',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(255, 215, 0, 0.1)',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--accent-gold)' }}>
-                      {'roi' in project ? project.roi : ''}
-                    </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                      Achieved ROI
-                    </div>
-                  </div>
-                  <div style={{
-                    padding: '1.5rem',
-                    background: 'rgba(139, 92, 246, 0.05)',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(139, 92, 246, 0.1)',
-                    textAlign: 'center',
-                    gridColumn: 'span 2'
-                  }}>
-                    <div style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--accent-purple)' }}>
-                      👥 {'investors' in project ? project.investors.toLocaleString() : ''} investors • {'completedDate' in project ? project.completedDate : ''}
-                    </div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                      Completion Details
                     </div>
                   </div>
                 </div>
@@ -812,11 +893,11 @@ const LaunchpadStats: React.FC = () => {
 
               {/* Action Button */}
               <motion.button
-                className={`btn ${activeTab === 'live' ? 'btn-primary' : activeTab === 'upcoming' ? 'btn-secondary' : 'btn-outline'}`}
+                className={`btn ${activeTab === 'live' ? 'btn-primary' : 'btn-secondary'}`}
                 style={{
                   width: '100%',
-                  padding: '1.25rem',
-                  fontSize: '1rem',
+                  padding: '0.75rem',
+                  fontSize: '0.85rem',
                   fontWeight: '700'
                 }}
                 onClick={() => {
@@ -827,12 +908,258 @@ const LaunchpadStats: React.FC = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {activeTab === 'live' && '⚡ Join'}
-                {activeTab === 'upcoming' && '📝 Join Whitelist'}
-                {activeTab === 'completed' && ' View Details'}
+                {activeTab === 'live' && '⚡ JOIN'}
+                {activeTab === 'upcoming' && '📝 JOIN WHITELIST'}
               </motion.button>
             </motion.div>
           ))}
+        </motion.div>
+        )}
+
+        {/* Completed Projects Table Section */}
+        {completedProjects.length > 0 && (
+          <motion.div
+            style={{ marginTop: '8rem' }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              style={{
+                textAlign: 'center',
+                marginBottom: '4rem'
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.h2 
+                className="heading-2"
+                style={{ 
+                  marginBottom: '1rem',
+                  background: 'linear-gradient(135deg, var(--accent-purple), var(--chrome-light), var(--accent-purple))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundSize: '200% 200%'
+                }}
+                animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
+                Completed Projects
+              </motion.h2>
+              <p style={{ 
+                color: 'var(--text-secondary)',
+                fontSize: '1.1rem',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Successful launches with proven results
+              </p>
+            </motion.div>
+
+            {/* Table Style Completed Projects */}
+            <motion.div
+              className="completed-projects-table"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                border: '2px solid rgba(139, 92, 246, 0.2)',
+                borderRadius: '20px',
+                padding: '2rem',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 32px rgba(139, 92, 246, 0.1)'
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* Table Header */}
+              <div 
+                className="completed-table-header"
+                style={{
+                  display: 'grid', 
+                  gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 120px',
+                  gap: '1rem',
+                  padding: '1.5rem 2rem',
+                  background: 'rgba(139, 92, 246, 0.1)',
+                  borderRadius: '12px',
+                  marginBottom: '1rem',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  color: 'var(--accent-purple)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                <span>Project</span>
+                <span style={{ textAlign: 'center' }}>Total Raised</span>
+                <span style={{ textAlign: 'center' }}>ROI</span>
+                <span style={{ textAlign: 'center' }}>Investors</span>
+                <span style={{ textAlign: 'center' }}>Completed</span>
+                <span style={{ textAlign: 'center' }}>Action</span>
+              </div>
+
+              {/* Table Rows */}
+              <div className="completed-table-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {completedProjects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    className="completed-table-row"
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 120px',
+                      gap: '1rem',
+                      padding: '1.5rem 2rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      alignItems: 'center',
+                      transition: 'all 0.3s ease'
+                    }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{
+                      background: 'rgba(139, 92, 246, 0.1)',
+                      borderColor: 'rgba(139, 92, 246, 0.3)',
+                      scale: 1.01
+                    }}
+                  >
+                    {/* Project Info */}
+                    <div className="project-info" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      {project.logo_url ? (
+                        <img
+                          src={project.logo_url}
+                          alt={project.name}
+                          style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '12px',
+                            objectFit: 'cover',
+                            border: '2px solid rgba(139, 92, 246, 0.3)'
+                          }}
+                        />
+                      ) : (
+                  <div style={{
+                          width: '40px',
+                          height: '40px',
+                          background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-blue))',
+                          borderRadius: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '1rem',
+                          fontWeight: '900',
+                          color: '#000',
+                          fontFamily: 'Orbitron'
+                        }}>
+                          {project.symbol.slice(0, 2)}
+                    </div>
+                      )}
+                      <div>
+                        <h4 style={{ 
+                          fontSize: '1.1rem',
+                          fontWeight: '700',
+                          color: 'var(--text-primary)',
+                          margin: '0 0 0.25rem 0'
+                        }}>
+                          {project.name}
+                        </h4>
+                        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                          <span style={{ 
+                            fontSize: '0.8rem', 
+                            color: 'var(--text-secondary)' 
+                          }}>
+                            {project.category}
+                          </span>
+                          <span style={{
+                            background: 'rgba(139, 92, 246, 0.2)',
+                            color: 'var(--accent-purple)',
+                            padding: '0.125rem 0.5rem',
+                            borderRadius: '8px',
+                            fontSize: '0.7rem',
+                            fontWeight: '600'
+                          }}>
+                            COMPLETED
+                          </span>
+                    </div>
+                  </div>
+                    </div>
+
+                    {/* Total Raised */}
+                    <div className="stat-raised" style={{ textAlign: 'center' }}>
+                  <div style={{
+                        fontSize: '1.1rem', 
+                        fontWeight: '700', 
+                        color: 'var(--success)' 
+                      }}>
+                        {project.raised}
+                    </div>
+                    </div>
+
+                    {/* ROI */}
+                    <div className="stat-roi" style={{ textAlign: 'center' }}>
+                      <div style={{ 
+                        fontSize: '1.1rem', 
+                        fontWeight: '700', 
+                        color: 'var(--accent-gold)' 
+                      }}>
+                        {project.roi}
+                  </div>
+                    </div>
+
+                    {/* Investors */}
+                    <div className="stat-investors" style={{ textAlign: 'center' }}>
+                  <div style={{
+                        fontSize: '1rem', 
+                        fontWeight: '600', 
+                        color: 'var(--primary-cyan)' 
+                      }}>
+                        {project.investors.toLocaleString()}
+                    </div>
+                    </div>
+
+                    {/* Completed Date */}
+                    <div className="stat-completed" style={{ textAlign: 'center' }}>
+                      <div style={{ 
+                        fontSize: '0.9rem', 
+                        color: 'var(--text-secondary)' 
+                      }}>
+                        {project.completedDate}
+                  </div>
+                </div>
+
+              {/* Action Button */}
+                    <div className="action-button" style={{ textAlign: 'center' }}>
+              <motion.button
+                style={{
+                          padding: '0.5rem 1rem',
+                          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1))',
+                          border: '1px solid rgba(139, 92, 246, 0.4)',
+                          borderRadius: '8px',
+                          color: 'var(--accent-purple)',
+                          fontSize: '0.8rem',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.2))'
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleProjectAction(project, 'view')}
+                      >
+                        View
+              </motion.button>
+                    </div>
+            </motion.div>
+          ))}
+              </div>
+            </motion.div>
         </motion.div>
         )}
 
