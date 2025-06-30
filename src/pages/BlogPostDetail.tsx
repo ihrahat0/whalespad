@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient';
 import { FiUser, FiCalendar, FiClock, FiEye, FiHeart, FiArrowLeft } from 'react-icons/fi';
-import BlogNavbar from '../components/BlogNavbar';
+// import BlogNavbar from '../components/BlogNavbar';
 import Navigation from '../components/Navigation';
 import DOMPurify from 'dompurify';
 
@@ -172,7 +172,7 @@ const BlogPostDetail: React.FC = () => {
     return (
       <>
         <Navigation />
-        <BlogNavbar />
+        {/* <BlogNavbar /> */}
         <div className="flex justify-center items-center min-h-[400px] pt-16">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
@@ -184,7 +184,7 @@ const BlogPostDetail: React.FC = () => {
     return (
       <>
         <Navigation />
-        <BlogNavbar />
+        {/* <BlogNavbar /> */}
         <div className="bg-red-500/10 border border-red-500/30 text-red-500 rounded-lg p-4 text-center my-8 mt-24 max-w-4xl mx-auto">
           <p className="font-medium">Error: {error}</p>
           <Link to="/blog" className="inline-block mt-4 text-blue-400 hover:text-blue-500">
@@ -199,7 +199,7 @@ const BlogPostDetail: React.FC = () => {
     return (
       <>
         <Navigation />
-        <BlogNavbar />
+        {/* <BlogNavbar /> */}
         <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-12 text-center max-w-4xl mx-auto my-16 mt-24">
           <h3 className="text-2xl font-medium text-gray-400 mb-2">Blog post not found</h3>
           <Link to="/blog" className="inline-block mt-4 text-blue-400 hover:text-blue-500">
@@ -213,7 +213,7 @@ const BlogPostDetail: React.FC = () => {
   return (
     <div className="blog-page-wrapper">
       <Navigation />
-      <BlogNavbar />
+      {/* <BlogNavbar /> */}
       
       {/* Background Effects */}
       <div className="blog-bg-effects">
