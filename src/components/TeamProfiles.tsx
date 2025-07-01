@@ -42,7 +42,13 @@ const teamMembers: TeamMember[] = [
     name: 'MARKETING : STELLA',
     bio: 'Launchpad Director with comprehensive experience in project evaluation, due diligence, and launch strategies. Stella has overseen the successful launch of over 50 projects on various launchpad platforms.',
     image: '/images/team7.png'
+  },
+  {
+    name: 'launchpad director: Mr : Samiul',
+    bio: 'Launchpad Director with comprehensive experience in project evaluation, due diligence, and launch strategies. Stella has overseen the successful launch of over 50 projects on various launchpad platforms.',
+    image: '/images/team8.png'
   }
+  
 ];
 
 // Individual team member card component

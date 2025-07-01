@@ -138,18 +138,21 @@
   right: 16px;
   display: flex;
   gap: 8px;
+  z-index: 10;
 }
 
 .badge-live {
   padding: 6px 16px;
-  background: rgba(0, 255, 136, 0.2);
-  border: 1px solid rgba(0, 255, 136, 0.5);
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.6);
   border-radius: 20px;
   color: #00FF88;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+  position: relative;
 }
 
 .badge-chain {

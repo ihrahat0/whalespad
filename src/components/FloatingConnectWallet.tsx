@@ -97,14 +97,16 @@ export const FloatingConnectWallet: React.FC<FloatingConnectWalletProps> = ({ on
               onChange={(e) => setTermsAccepted(e.target.checked)}
             />
             <span className="simple-checkmark"></span>
-            I agree to the{' '}
-            <a href="/terms-of-service" target="_blank" rel="noopener noreferrer">
-              Terms of Service
-            </a>{' '}
-            and{' '}
-            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">
-              Privacy Policy
-            </a>
+            <span>
+              I agree to the{' '}
+              <a href="/terms-of-service" target="_blank" rel="noopener noreferrer">
+                Terms of Service
+              </a>{' '}
+              and{' '}
+              <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">
+                Privacy Policy
+              </a>
+            </span>
           </label>
           
           <div className="simple-warning">

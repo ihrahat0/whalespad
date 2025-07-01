@@ -110,14 +110,20 @@
 
 .simple-checkbox-label {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   cursor: pointer;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  text-align: left;
-  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 1.5rem auto;
+  padding: 1rem;
   color: #d1d5db;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  max-width: 100%;
 }
 
 .simple-checkbox-label input[type="checkbox"] {
@@ -125,14 +131,14 @@
 }
 
 .simple-checkmark {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: 2px solid rgba(0, 212, 255, 0.5);
   border-radius: 4px;
   position: relative;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin: 0;
 }
 
 .simple-checkbox-label input[type="checkbox"]:checked + .simple-checkmark {
@@ -262,6 +268,22 @@
   
   .simple-terms-body {
     padding: 1.5rem;
+  }
+  
+  .simple-checkbox-label {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  
+  .simple-checkmark {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.5rem;
   }
   
   .simple-terms-footer {

@@ -1,38 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const TokenSale: React.FC = () => {
   const [activeTab, setActiveTab] = useState('tokenomics');
   
-  // Countdown timer state (90 days from now)
-  const [timeLeft, setTimeLeft] = useState({
-    days: 90,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
 
-  // Countdown effect
-  useEffect(() => {
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 90);
-    
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-      
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   // Updated tokenomics data for 2 billion total supply
   const tokenomicsData = [
@@ -65,9 +37,7 @@ const TokenSale: React.FC = () => {
     }
   ];
 
-  const navigateToCreatePresale = () => {
-    window.location.href = '/create-presale';
-  };
+
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -487,8 +457,8 @@ const TokenSale: React.FC = () => {
           }
 
           .center-logo {
-            width: 40px;
-            height: 40px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin-bottom: 0.25rem;
             border: 2px solid rgba(0, 212, 255, 0.3);
@@ -1006,8 +976,7 @@ const TokenSale: React.FC = () => {
             }
 
             .center-logo {
-              width: 30px;
-              height: 30px;
+              width: 60px;
             }
 
             .supply-amount {
@@ -1563,8 +1532,6 @@ const TokenSale: React.FC = () => {
                         alt="WhalesPad Logo" 
                         className="center-logo"
                       />
-                      <span className="supply-amount">2B</span>
-                      <span className="supply-symbol">WPT</span>
                     </div>
                   </div>
                 </div>
@@ -1695,11 +1662,12 @@ const TokenSale: React.FC = () => {
                 >
                   <div className="blockchain-header">
                     <div className="blockchain-info">
-                      <div 
-                        className="blockchain-icon"
-                        style={{ backgroundColor: blockchain.color }}
-                      >
-                        {blockchain.symbol}
+                      <div className="blockchain-icon">
+                        <img 
+                          src={blockchain.symbol === 'BSC' ? '/images/logo/bsc-logo.svg' : '/images/logo/ethereum-logo.svg'}
+                          alt={blockchain.name}
+                          style={{ width: '32px', height: '32px' }}
+                        />
                       </div>
                       <div>
                         <h4 className="blockchain-name">{blockchain.name}</h4>

@@ -671,21 +671,12 @@ const LaunchpadStats: React.FC = () => {
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
                       Swap Network
                     </div>
-                    <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--primary-green)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <span style={{ 
-                        width: '14px', 
-                        height: '14px', 
-                        background: 'linear-gradient(135deg, #f3ba2f, #fcd535)', 
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '8px',
-                        fontWeight: 'bold',
-                        color: 'black'
-                      }}>
-                        ⚡
-                      </span>
+                    <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--primary-green)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <img 
+                        src={project.chain_id === 56 || project.native_token_symbol === 'BNB' ? '/images/logo/bsc-logo.svg' : '/images/logo/ethereum-logo.svg'}
+                        alt={project.chain_id === 56 || project.native_token_symbol === 'BNB' ? 'BSC' : 'Ethereum'}
+                        style={{ width: '16px', height: '16px' }}
+                      />
                       {project.chain_id === 56 || project.native_token_symbol === 'BNB' ? 'Binance Smart Chain' : 
                        project.chain_id === 1 || project.native_token_symbol === 'ETH' ? 'Ethereum' :
                        project.chain_id === 137 ? 'Polygon' : 'Binance Smart Chain'}
@@ -704,8 +695,12 @@ const LaunchpadStats: React.FC = () => {
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
                     Token Claim Network
                   </div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <img height={27} width={20} src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/628px-Ethereum_logo_2014.svg.png" alt="Ethereum" className="network-icon" />
+                  <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <img 
+                        src="/images/logo/ethereum-logo.svg" 
+                        alt="Ethereum" 
+                        style={{ width: '16px', height: '16px' }}
+                      />
                     Ethereum
                   </div>
                 </div>

@@ -30368,9 +30368,9 @@ body.mobile-menu-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
-  font-weight: 700;
-  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
 .blockchain-name {
@@ -30391,13 +30391,17 @@ body.mobile-menu-open {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(34, 197, 94, 0.2);
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
   border-radius: 20px;
   color: #22c55e;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+  z-index: 10;
+  position: relative;
 }
 
 .badge-dot {

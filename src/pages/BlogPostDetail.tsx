@@ -22,6 +22,7 @@ type Blog = {
   status: string;
 };
 
+
 const BlogPostDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [blog, setBlog] = useState<Blog | null>(null);
