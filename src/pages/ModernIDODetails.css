@@ -301,7 +301,7 @@
 }
 
 .countdown-display {
-  display: grid;
+  display: inline;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.4rem;
 }

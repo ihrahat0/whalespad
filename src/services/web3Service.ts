@@ -37,6 +37,39 @@ const IDO_POOL_ABI = [
   'function hasClaimedTokens(address) external view returns (bool)'
 ];
 
+// USDT Presale Contract ABI (from the attached demo-abi.json)
+const USDT_PRESALE_ABI = [
+  'function purchaseTokens(uint256 usdtAmount) external',
+  'function calculateWPTAmount(uint256 usdtAmount) external view returns (uint256)',
+  'function getUserInfo(address user) external view returns (uint256 _usdtSpent, uint256 _wptReceived, uint256 _remainingAllowance)',
+  'function getPresaleStats() external view returns (uint256 _totalUSDTRaised, uint256 _totalWPTSold, uint256 _presaleRate, uint256 _startTime, uint256 _endTime, bool _isActive)',
+  'function getContractBalances() external view returns (uint256 _usdtBalance, uint256 _wptBalance)',
+  'function isPresaleActive() external view returns (bool)',
+  'function USDT() external view returns (address)',
+  'function WPT() external view returns (address)',
+  'function presaleRate() external view returns (uint256)',
+  'function minPurchaseAmount() external view returns (uint256)',
+  'function maxPurchaseAmount() external view returns (uint256)',
+  'function presaleStartTime() external view returns (uint256)',
+  'function presaleEndTime() external view returns (uint256)',
+  'function totalUSDTRaised() external view returns (uint256)',
+  'function totalWPTSold() external view returns (uint256)',
+  'function userPurchases(address) external view returns (uint256)',
+  'function userTokens(address) external view returns (uint256)'
+];
+
+// ERC20 Token ABI (for USDT operations)
+const ERC20_ABI = [
+  'function balanceOf(address owner) external view returns (uint256)',
+  'function allowance(address owner, address spender) external view returns (uint256)',
+  'function approve(address spender, uint256 amount) external returns (bool)',
+  'function transfer(address to, uint256 amount) external returns (bool)',
+  'function transferFrom(address from, address to, uint256 amount) external returns (bool)',
+  'function decimals() external view returns (uint8)',
+  'function symbol() external view returns (string)',
+  'function name() external view returns (string)'
+];
+
 // Network chain IDs
 const SEPOLIA_CHAIN_ID = 11155111;
 const BSC_TESTNET_CHAIN_ID = 97;
@@ -353,6 +386,141 @@ class Web3Service {
     
     const pool = new ethers.Contract(poolAddress, IDO_POOL_ABI, this.provider);
     return await pool.hasClaimedTokens(userAddress);
+  }
+
+  // USDT Presale Methods
+  async getUSDTBalance(usdtTokenAddress: string, userAddress: string): Promise<string> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const usdtContract = new ethers.Contract(usdtTokenAddress, ERC20_ABI, this.provider);
+    const balance = await usdtContract.balanceOf(userAddress);
+    const decimals = await usdtContract.decimals();
+    return ethers.formatUnits(balance, decimals);
+  }
+
+  async getUSDTAllowance(usdtTokenAddress: string, userAddress: string, spenderAddress: string): Promise<string> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const usdtContract = new ethers.Contract(usdtTokenAddress, ERC20_ABI, this.provider);
+    const allowance = await usdtContract.allowance(userAddress, spenderAddress);
+    const decimals = await usdtContract.decimals();
+    return ethers.formatUnits(allowance, decimals);
+  }
+
+  async approveUSDT(usdtTokenAddress: string, spenderAddress: string, amount: string): Promise<string> {
+    if (!this.signer) throw new Error('Not connected');
+    
+    const usdtContract = new ethers.Contract(usdtTokenAddress, ERC20_ABI, this.signer);
+    const decimals = await usdtContract.decimals();
+    const amountInWei = ethers.parseUnits(amount, decimals);
+    
+    const tx = await usdtContract.approve(spenderAddress, amountInWei);
+    return tx.hash;
+  }
+
+  async purchaseTokensWithUSDT(presaleContractAddress: string, usdtAmount: string, usdtTokenAddress: string): Promise<string> {
+    if (!this.signer) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.signer);
+    const usdtContract = new ethers.Contract(usdtTokenAddress, ERC20_ABI, this.signer);
+    const decimals = await usdtContract.decimals();
+    const amountInWei = ethers.parseUnits(usdtAmount, decimals);
+    
+    const tx = await presaleContract.purchaseTokens(amountInWei);
+    return tx.hash;
+  }
+
+  async calculateWPTAmount(presaleContractAddress: string, usdtAmount: string, usdtTokenAddress: string): Promise<string> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.provider);
+    const usdtContract = new ethers.Contract(usdtTokenAddress, ERC20_ABI, this.provider);
+    const decimals = await usdtContract.decimals();
+    const amountInWei = ethers.parseUnits(usdtAmount, decimals);
+    
+    const wptAmount = await presaleContract.calculateWPTAmount(amountInWei);
+    return ethers.formatEther(wptAmount); // Assuming WPT has 18 decimals
+  }
+
+  async getUSDTPresaleUserInfo(presaleContractAddress: string, userAddress: string): Promise<{
+    usdtSpent: string;
+    wptReceived: string;
+    remainingAllowance: string;
+  }> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.provider);
+    const [usdtSpent, wptReceived, remainingAllowance] = await presaleContract.getUserInfo(userAddress);
+    
+    // Get USDT contract to determine decimals
+    const usdtAddress = await presaleContract.USDT();
+    const usdtContract = new ethers.Contract(usdtAddress, ERC20_ABI, this.provider);
+    const usdtDecimals = await usdtContract.decimals();
+    
+    return {
+      usdtSpent: ethers.formatUnits(usdtSpent, usdtDecimals),
+      wptReceived: ethers.formatEther(wptReceived), // Assuming WPT has 18 decimals
+      remainingAllowance: ethers.formatUnits(remainingAllowance, usdtDecimals)
+    };
+  }
+
+  async getUSDTPresaleStats(presaleContractAddress: string): Promise<{
+    totalUSDTRaised: string;
+    totalWPTSold: string;
+    presaleRate: string;
+    startTime: number;
+    endTime: number;
+    isActive: boolean;
+  }> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.provider);
+    const [totalUSDTRaised, totalWPTSold, presaleRate, startTime, endTime, isActive] = await presaleContract.getPresaleStats();
+    
+    // Get USDT contract to determine decimals
+    const usdtAddress = await presaleContract.USDT();
+    const usdtContract = new ethers.Contract(usdtAddress, ERC20_ABI, this.provider);
+    const usdtDecimals = await usdtContract.decimals();
+    
+    return {
+      totalUSDTRaised: ethers.formatUnits(totalUSDTRaised, usdtDecimals),
+      totalWPTSold: ethers.formatEther(totalWPTSold), // Assuming WPT has 18 decimals
+      presaleRate: presaleRate.toString(),
+      startTime: Number(startTime),
+      endTime: Number(endTime),
+      isActive
+    };
+  }
+
+  async isUSDTPresaleActive(presaleContractAddress: string): Promise<boolean> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.provider);
+    return await presaleContract.isPresaleActive();
+  }
+
+  async getUSDTPresaleMinMaxAmounts(presaleContractAddress: string): Promise<{
+    minAmount: string;
+    maxAmount: string;
+    usdtAddress: string;
+  }> {
+    if (!this.provider) throw new Error('Not connected');
+    
+    const presaleContract = new ethers.Contract(presaleContractAddress, USDT_PRESALE_ABI, this.provider);
+    const [minAmount, maxAmount, usdtAddress] = await Promise.all([
+      presaleContract.minPurchaseAmount(),
+      presaleContract.maxPurchaseAmount(),
+      presaleContract.USDT()
+    ]);
+    
+    const usdtContract = new ethers.Contract(usdtAddress, ERC20_ABI, this.provider);
+    const usdtDecimals = await usdtContract.decimals();
+    
+    return {
+      minAmount: ethers.formatUnits(minAmount, usdtDecimals),
+      maxAmount: ethers.formatUnits(maxAmount, usdtDecimals),
+      usdtAddress
+    };
   }
 }
 

@@ -5,6 +5,7 @@ import { supabase } from '../supabaseClient';
 import { ConnectWalletButton } from '../components/ConnectWalletButton';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import web3Service from '../services/web3Service';
 import './ModernIDODetails.css';
 
 // Extend Window interface for ethereum
@@ -80,6 +81,8 @@ interface DatabaseProject {
   native_token_symbol?: string;
   presale_contract_address?: string;
   ido_pool_id?: string;
+  payment_method?: 'native' | 'usdt';
+  usdt_token_address?: string;
   ido_chain_id?: number;
   ido_token_address?: string;
   ido_total_supply?: number;
@@ -164,6 +167,12 @@ const ProjectDetails: React.FC = () => {
   const [countdown, setCountdown] = useState<CountdownType>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [currentPhase, setCurrentPhase] = useState<PhaseType>('upcoming');
   const [lastPhaseUpdate, setLastPhaseUpdate] = useState<Date>(new Date());
+  
+  // USDT-specific state
+  const [usdtBalance, setUsdtBalance] = useState<string>('0');
+  const [usdtAllowance, setUsdtAllowance] = useState<string>('0');
+  const [isApprovingUSDT, setIsApprovingUSDT] = useState(false);
+  const [needsApproval, setNeedsApproval] = useState(false);
 
   // Smart phase management with admin override priority
   const getSmartPhases = useCallback((): PhaseInfo[] => {
@@ -358,6 +367,8 @@ const ProjectDetails: React.FC = () => {
       }
 
       console.log('🔍 Fetching project data for slug:', id);
+      console.log('🚨 TESTING: Available projects in DB: whalespad (native), whalespad-1 (USDT)');
+      console.log('🎯 Current URL slug:', id);
       if (showLoading) setLoading(true);
 
       // First get basic project data from project_submissions (most up-to-date phase info)
@@ -371,12 +382,24 @@ const ProjectDetails: React.FC = () => {
           banner_url, description, full_description, features, rating,
           website, telegram, twitter, discord, category, total_supply,
           min_contribution, max_contribution, soft_cap, hard_cap,
-          presale_price, listing_price, contract_address
+          presale_price, listing_price, contract_address, payment_method,
+          usdt_token_address, token_address
         `)
         .eq('slug', id)
         .single();
 
       console.log('📊 project_submissions query result:', { projectData, projectError });
+      
+      // CRITICAL DEBUG: Check payment method data
+      if (projectData) {
+        console.log('🔍 PAYMENT METHOD DEBUG:', {
+          projectName: projectData.project_name,
+          paymentMethod: projectData.payment_method,
+          usdtTokenAddress: projectData.usdt_token_address,
+          tokenAddress: projectData.token_address,
+          contractAddress: projectData.contract_address
+        });
+      }
 
       if (projectError || !projectData) {
         console.log('⚠️ Fallback to project_details_view...');
@@ -546,6 +569,28 @@ const ProjectDetails: React.FC = () => {
     return 'ETH';
   };
 
+  // Get the current currency symbol based on payment method
+  const getCurrentCurrencySymbol = () => {
+    const paymentMethod = project?.payment_method;
+    const usdtAddress = project?.usdt_token_address;
+    const nativeSymbol = getNativeTokenSymbol();
+    const result = paymentMethod === 'usdt' ? 'USDT' : nativeSymbol;
+    
+    console.log('💰 getCurrentCurrencySymbol DEBUG:', {
+      paymentMethod,
+      usdtAddress,
+      nativeSymbol,
+      result,
+      projectData: project ? {
+        name: project.project_name,
+        payment_method: project.payment_method,
+        usdt_token_address: project.usdt_token_address
+      } : null
+    });
+    
+    return result;
+  };
+
   // Get the presale contract address
   const getPresaleContractAddress = () => {
     return project?.ido_presale_contract || project?.ido_pool_info?.presale_contract_address || project?.presale_contract_address;
@@ -573,6 +618,81 @@ const ProjectDetails: React.FC = () => {
     setPaymentError(null);
   };
 
+  // Check USDT balance and allowance for user
+  const checkUSDTStatus = useCallback(async (userAddress: string) => {
+    const presaleContract = getPresaleContractAddress();
+    if (!project?.usdt_token_address || !presaleContract) return;
+
+    try {
+      const [balance, allowance] = await Promise.all([
+        web3Service.getUSDTBalance(project.usdt_token_address, userAddress),
+        web3Service.getUSDTAllowance(project.usdt_token_address, userAddress, presaleContract)
+      ]);
+
+      setUsdtBalance(balance);
+      setUsdtAllowance(allowance);
+
+      // Check if approval is needed for the current investment amount
+      if (investAmount && parseFloat(investAmount) > 0) {
+        setNeedsApproval(parseFloat(allowance) < parseFloat(investAmount));
+      }
+    } catch (error) {
+      console.error('Error checking USDT status:', error);
+    }
+  }, [project, investAmount]);
+
+  // Check USDT status when modal opens or investment amount changes
+  useEffect(() => {
+    if (showInvestModal && project?.payment_method === 'usdt') {
+      // Get connected account and check USDT status
+      web3Service.getAccount().then(account => {
+        if (account) {
+          checkUSDTStatus(account);
+        }
+      });
+    }
+  }, [showInvestModal, project?.payment_method, investAmount, checkUSDTStatus]);
+
+  // Handle USDT approval
+  const handleUSDTApproval = async () => {
+    const presaleContract = getPresaleContractAddress();
+    if (!project?.usdt_token_address || !presaleContract || !investAmount) return;
+
+    try {
+      setIsApprovingUSDT(true);
+      setPaymentError(null);
+
+      // Connect to wallet
+      const accounts = await web3Service.connect();
+      if (!accounts || accounts.length === 0) {
+        throw new Error('Please connect your wallet first');
+      }
+
+      const userAccount = accounts[0];
+
+      // Approve USDT spending for presale contract
+      const txHash = await web3Service.approveUSDT(
+        project.usdt_token_address,
+        presaleContract,
+        investAmount
+      );
+
+      console.log('USDT approval transaction:', txHash);
+
+      // Wait a moment and check allowance again
+      setTimeout(() => {
+        checkUSDTStatus(userAccount);
+      }, 3000);
+
+      alert(`USDT approval successful! Transaction: ${txHash}`);
+    } catch (error: any) {
+      console.error('USDT approval error:', error);
+      setPaymentError(error.message || 'USDT approval failed');
+    } finally {
+      setIsApprovingUSDT(false);
+    }
+  };
+
   const handleInvestConfirm = async () => {
     if (!investAmount || parseFloat(investAmount) <= 0) {
       setPaymentError('Please enter a valid investment amount');
@@ -582,9 +702,27 @@ const ProjectDetails: React.FC = () => {
     const minContrib = parseFloat(project?.min_allocation as any) || parseFloat(project?.min_contribution as any) || 0.1;
     const maxContrib = parseFloat(project?.max_allocation as any) || parseFloat(project?.max_contribution as any) || 10;
     const amount = parseFloat(investAmount);
+    
+    // CRITICAL: Ensure payment method is correctly detected
+    // If USDT token address exists but payment method is not set, force USDT mode
+    let paymentMethod = project?.payment_method || 'native';
+    if (project?.usdt_token_address && !project?.payment_method) {
+      console.log('🔧 FORCE USDT MODE: USDT address found but payment method not set');
+      paymentMethod = 'usdt';
+    }
+    
+    console.log('🔍 Payment method detection:', {
+      projectPaymentMethod: project?.payment_method,
+      resolvedPaymentMethod: paymentMethod,
+      usdtTokenAddress: project?.usdt_token_address,
+      hasUsdtAddress: !!project?.usdt_token_address,
+      willUseUSDT: paymentMethod === 'usdt'
+    });
+    
+    const currencySymbol = paymentMethod === 'usdt' ? 'USDT' : getNativeTokenSymbol();
 
     if (amount < minContrib || amount > maxContrib) {
-      setPaymentError(`Investment amount must be between ${minContrib} and ${maxContrib} ${getNativeTokenSymbol()}`);
+      setPaymentError(`Investment amount must be between ${minContrib} and ${maxContrib} ${currencySymbol}`);
       return;
     }
 
@@ -594,85 +732,114 @@ const ProjectDetails: React.FC = () => {
       return;
     }
 
+    console.log('🚀 Starting investment process with payment method:', paymentMethod);
+    console.log('🔍 Project payment method from DB:', project?.payment_method);
+    console.log('💰 USDT token address:', project?.usdt_token_address);
+    
+    // For USDT payments, check if approval is needed first
+    if (paymentMethod === 'usdt' && needsApproval) {
+      setPaymentError('Please approve USDT spending first by clicking the "Approve USDT" button');
+      return;
+    }
+
     try {
       setIsProcessingPayment(true);
       setPaymentError(null);
 
-      // Check if MetaMask is installed
-      if (typeof window.ethereum === 'undefined') {
-        throw new Error('MetaMask is required to participate in the presale');
-      }
-
-      // Request account access
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // Connect to wallet using web3Service
+      const accounts = await web3Service.connect();
       if (!accounts || accounts.length === 0) {
         throw new Error('Please connect your wallet first');
       }
 
       const userAccount = accounts[0];
       
-      // Get chain info for the project - FIXED CHAIN ID DETECTION
+      // Get chain info for the project
       const chainId = project?.ido_chain_id || project?.chain_id || 1;
-      const nativeSymbol = getNativeTokenSymbol();
       const presaleRate = parseFloat(project?.presale_rate as any) || 
                           parseFloat(project?.ido_pool_info?.presale_rate as any) || 
-                          1000; // Default to 1000 tokens per 1 native token
+                          1000; // Default to 1000 tokens per 1 payment token
 
       console.log('Investment details:', {
         chainId,
-        nativeSymbol,
+        paymentMethod,
+        currencySymbol,
         presaleRate,
-        amount
+        amount,
+        projectPaymentMethod: project?.payment_method,
+        usdtTokenAddress: project?.usdt_token_address,
+        presaleContract
       });
 
-      // Validate chainId
+      // Validate required data
       if (!chainId || typeof chainId !== 'number' || isNaN(chainId)) {
         console.error('Invalid chainId detected:', chainId);
         throw new Error(`Invalid chain ID detected. Project may not be properly configured.`);
       }
 
-      // Validate presaleRate
       if (!presaleRate || typeof presaleRate !== 'number' || isNaN(presaleRate)) {
         console.error('Invalid presaleRate detected:', presaleRate);
         throw new Error(`Invalid presale rate detected. Project may not be properly configured.`);
       }
 
       // Switch to correct network if needed
-      const chainHex = `0x${chainId.toString(16)}`;
-      try {
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: chainHex }],
-        });
-      } catch (switchError: any) {
-        if (switchError.code === 4902) {
-          throw new Error(`Please add chain ${chainId} to your MetaMask`);
+      await web3Service.switchNetwork(chainId);
+
+      let txHash: string;
+      let tokensToReceive: number;
+
+      if (paymentMethod === 'usdt') {
+        console.log('💰 Executing USDT payment flow');
+        // USDT Payment Flow
+        if (!project?.usdt_token_address) {
+          throw new Error('USDT token address not configured for this project');
         }
-        throw switchError;
+
+        // Calculate tokens to receive using the contract
+        const tokensAmount = await web3Service.calculateWPTAmount(
+          presaleContract,
+          investAmount,
+          project.usdt_token_address
+        );
+        tokensToReceive = parseFloat(tokensAmount);
+
+        // Execute USDT purchase - just pass contract address and amount
+        txHash = await web3Service.purchaseTokensWithUSDT(
+          presaleContract,
+          investAmount,
+          project.usdt_token_address
+        );
+
+        console.log('USDT purchase transaction:', txHash);
+      } else {
+        // Native Token Payment Flow (existing logic)
+        if (typeof window.ethereum === 'undefined') {
+          throw new Error('MetaMask is required to participate in the presale');
+        }
+
+        // Calculate tokens to receive
+        tokensToReceive = amount * presaleRate;
+
+        // Convert investment amount to Wei (18 decimals)
+        const amountInWei = BigInt(Math.floor(amount * 1e18)).toString(16);
+        console.log('Amount conversion:', { amount, amountInWei });
+
+        // Prepare transaction with higher gas limit for contract interaction
+        const transactionParameters = {
+          to: presaleContract,
+          from: userAccount,
+          value: '0x' + amountInWei,
+          gas: '0x186A0', // 100,000 gas limit for contract interaction
+        };
+
+        // Send transaction
+        txHash = await window.ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [transactionParameters],
+        });
+
+        console.log('Native token transaction sent:', txHash);
       }
-
-      // Convert investment amount to Wei (18 decimals)
-      const amountInWei = BigInt(Math.floor(amount * 1e18)).toString(16);
-      console.log('Amount conversion:', { amount, amountInWei });
-
-      // Prepare transaction with higher gas limit for contract interaction
-      const transactionParameters = {
-        to: presaleContract,
-        from: userAccount,
-        value: '0x' + amountInWei,
-        gas: '0x186A0', // 100,000 gas limit for contract interaction
-      };
-
-      // Send transaction
-      const txHash = await window.ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
-
-      console.log('Transaction sent:', txHash);
-
-      // Calculate tokens to receive
-      const tokensToReceive = amount * presaleRate;
 
       // Store investment in database (pending confirmation)
       const { error: dbError } = await supabase
@@ -686,6 +853,8 @@ const ProjectDetails: React.FC = () => {
           transaction_hash: txHash,
           chain_id: chainId,
           presale_rate: presaleRate,
+          payment_method: paymentMethod,
+          currency_symbol: currencySymbol,
           status: 'pending'
         });
 
@@ -697,14 +866,21 @@ const ProjectDetails: React.FC = () => {
       alert(`🎉 Investment sent successfully!
 
 Transaction Hash: ${txHash}
-Amount: ${amount} ${nativeSymbol}
+Amount: ${amount} ${currencySymbol}
 Tokens to receive: ${tokensToReceive.toLocaleString()} ${project?.token_symbol}
 
 Your investment will be confirmed once the transaction is mined.
-The presale contract will automatically send tokens to your wallet.`);
+${paymentMethod === 'usdt' ? 'The presale contract will automatically send tokens to your wallet.' : 'The presale contract will automatically send tokens to your wallet.'}`);
       
       setShowInvestModal(false);
       setInvestAmount('');
+      
+      // Refresh USDT status if USDT payment
+      if (paymentMethod === 'usdt') {
+        setTimeout(() => {
+          checkUSDTStatus(userAccount);
+        }, 3000);
+      }
       
       // Refresh project data to show updated stats after 30 seconds
       setTimeout(() => {
@@ -836,13 +1012,13 @@ The presale contract will automatically send tokens to your wallet.`);
                       {/* Show countdown only for active phases with end dates */}
                       {phase.status === 'active' && phase.endDate && (
                         <div className="countdown-timer">
-                          <p>
+                          {/* <p>
                             {phase.id === 'upcoming' ? 'End to apply for the Whitelist in' :
                              phase.id === 'live' ? 'Time remaining:' :
                              phase.id === 'filled' ? 'Processing completes in:' :
                              phase.id === 'claimable' ? 'Claiming period ends in:' :
                              'Time remaining:'}
-                          </p>
+                          </p> */}
                           <div className="countdown-display">
                             <span className="countdown-number">{countdown.days.toString().padStart(2, '0')}</span>
                             <span className="countdown-label">Days</span>
@@ -902,7 +1078,9 @@ The presale contract will automatically send tokens to your wallet.`);
                       <div className="info-card">
                         <div className="info-row">
                           <span className="info-label">Price per token</span>
-                          <span className="info-value">{project.presale_price || '0.0275'} USDT per ${project.token_symbol}</span>
+                          <span className="info-value">
+                            {project.presale_price || '0.0275'} {project.payment_method === 'usdt' ? 'USDT' : getNativeTokenSymbol()} per ${project.token_symbol}
+                          </span>
                         </div>
                         <div className="info-row">
                           <span className="info-label">Swap Amount</span>
@@ -928,7 +1106,9 @@ The presale contract will automatically send tokens to your wallet.`);
                       <div className="info-card">
                         <div className="info-row">
                           <span className="info-label">Accepted Currency</span>
-                          <span className="info-value">{getNativeTokenSymbol()}</span>
+                          <span className="info-value">
+                            {project.payment_method === 'usdt' ? 'USDT' : getNativeTokenSymbol()}
+                          </span>
                         </div>
                         <div className="info-row">
                           <span className="info-label">Swap Network</span>
@@ -1016,7 +1196,7 @@ The presale contract will automatically send tokens to your wallet.`);
                       <div className="swap-stats">
                         <div className="stat-item">
                           <span className="stat-label">Total Raised</span>
-                          <span className="stat-value">{(project.real_current_raised || project.current_raised || 0).toLocaleString()} {getNativeTokenSymbol()}</span>
+                          <span className="stat-value">{(project.real_current_raised || project.current_raised || 0).toLocaleString()} {getCurrentCurrencySymbol()}</span>
                         </div>
                         <div className="stat-item">
                           <span className="stat-label">Participants</span>
@@ -1038,13 +1218,13 @@ The presale contract will automatically send tokens to your wallet.`);
                           />
                         </div>
                         <div className="progress-labels">
-                          <span>0 {getNativeTokenSymbol()}</span>
-                          <span>{(project.ido_hard_cap || project.hard_cap || 0).toLocaleString()} {getNativeTokenSymbol()}</span>
+                          <span>0 {getCurrentCurrencySymbol()}</span>
+                          <span>{(project.ido_hard_cap || project.hard_cap || 0).toLocaleString()} {getCurrentCurrencySymbol()}</span>
                         </div>
                       </div>
 
                       <div className="swap-input-section">
-                        <label>Investment Amount ({getNativeTokenSymbol()})</label>
+                        <label>Investment Amount ({getCurrentCurrencySymbol()})</label>
                         <div className="input-wrapper">
                           <input
                             type="number"
@@ -1056,11 +1236,11 @@ The presale contract will automatically send tokens to your wallet.`);
                             step="0.01"
                             className="swap-input"
                           />
-                          <span className="currency-symbol">{getNativeTokenSymbol()}</span>
+                          <span className="currency-symbol">{getCurrentCurrencySymbol()}</span>
                         </div>
                         <div className="min-max-info">
-                          <span>Min: {project.min_allocation || project.min_contribution || '0.1'} {getNativeTokenSymbol()}</span>
-                          <span>Max: {project.max_allocation || project.max_contribution || '10'} {getNativeTokenSymbol()}</span>
+                          <span>Min: {project.min_allocation || project.min_contribution || '0.1'} {getCurrentCurrencySymbol()}</span>
+                          <span>Max: {project.max_allocation || project.max_contribution || '10'} {getCurrentCurrencySymbol()}</span>
                         </div>
                       </div>
 
@@ -1077,11 +1257,16 @@ The presale contract will automatically send tokens to your wallet.`);
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        {isProcessingPayment ? '⏳ Processing...' : `Swap ${investAmount || '0'} ${getNativeTokenSymbol()}`}
+                        {isProcessingPayment ? '⏳ Processing...' : `Swap ${investAmount || '0'} ${getCurrentCurrencySymbol()}`}
                       </motion.button>
 
                       <div className="swap-note">
-                        <p>💡 Your {getNativeTokenSymbol()} will be sent directly to the presale smart contract</p>
+                        <p>💡 Your {getCurrentCurrencySymbol()} will be sent directly to the presale smart contract</p>
+                        {project?.payment_method === 'usdt' && (
+                          <p className="usdt-mode-indicator" style={{color: '#10B981', fontWeight: 'bold'}}>
+                            🟢 USDT Payment Mode Active - Approval + Purchase Flow
+                          </p>
+                        )}
                         {getPresaleContractAddress() && (
                           <p className="contract-address">
                             Contract: {`${getPresaleContractAddress()?.slice(0, 10)}...${getPresaleContractAddress()?.slice(-8)}`}
@@ -1097,6 +1282,54 @@ The presale contract will automatically send tokens to your wallet.`);
           </div>
         </div>
       </div>
+
+      {/* DEBUG: Project Selection Notice */}
+      {id === 'whalespad' && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          background: '#1F2937',
+          border: '2px solid #10B981',
+          color: '#10B981',
+          padding: '15px',
+          borderRadius: '8px',
+          zIndex: 9999,
+          fontSize: '14px',
+          maxWidth: '350px'
+        }}>
+          <div style={{fontWeight: 'bold', marginBottom: '8px'}}>🔧 DEBUG NOTICE</div>
+          <div>This project uses NATIVE payment (BNB)</div>
+          <div style={{marginTop: '8px'}}>
+            To test USDT: <a 
+              href="/projects/whalespad-1" 
+              style={{color: '#3B82F6', textDecoration: 'underline'}}
+            >
+              Visit whalespad-1
+            </a>
+          </div>
+        </div>
+      )}
+      
+      {id === 'whalespad-1' && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          background: '#1F2937',
+          border: '2px solid #10B981',
+          color: '#10B981',
+          padding: '15px',
+          borderRadius: '8px',
+          zIndex: 9999,
+          fontSize: '14px',
+          maxWidth: '350px'
+        }}>
+          <div style={{fontWeight: 'bold', marginBottom: '8px'}}>✅ USDT PROJECT</div>
+          <div>This project uses USDT payment!</div>
+          <div>USDT: 0x55d39...7955</div>
+        </div>
+      )}
 
       {/* Investment Modal */}
       {showInvestModal && (
@@ -1124,11 +1357,11 @@ The presale contract will automatically send tokens to your wallet.`);
                 </div>
                 <div className="summary-row">
                   <span>Min Investment:</span>
-                  <span>{project.min_allocation || project.min_contribution || '0.1'} {getNativeTokenSymbol()}</span>
+                  <span>{project.min_allocation || project.min_contribution || '0.1'} {getCurrentCurrencySymbol()}</span>
                 </div>
                 <div className="summary-row">
                   <span>Max Investment:</span>
-                  <span>{project.max_allocation || project.max_contribution || '10'} {getNativeTokenSymbol()}</span>
+                  <span>{project.max_allocation || project.max_contribution || '10'} {getCurrentCurrencySymbol()}</span>
                 </div>
                 <div className="summary-row">
                   <span>Blockchain:</span>
@@ -1153,9 +1386,40 @@ The presale contract will automatically send tokens to your wallet.`);
                   </span>
                 </div>
               </div>
+
+              {/* USDT-specific information */}
+              {project.payment_method === 'usdt' && (
+                <div className="usdt-info-section">
+                  <div className="usdt-balance-info">
+                    <div className="balance-row">
+                      <span>Your USDT Balance:</span>
+                      <span>{parseFloat(usdtBalance).toFixed(2)} USDT</span>
+                    </div>
+                    <div className="balance-row">
+                      <span>USDT Allowance:</span>
+                      <span>{parseFloat(usdtAllowance).toFixed(2)} USDT</span>
+                    </div>
+                  </div>
+                  
+                  {needsApproval && investAmount && parseFloat(investAmount) > 0 && (
+                    <div className="approval-warning">
+                      <p>⚠️ You need to approve USDT spending before you can invest</p>
+                      <motion.button
+                        className="btn-approve-usdt"
+                        onClick={handleUSDTApproval}
+                        disabled={isApprovingUSDT}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {isApprovingUSDT ? '⏳ Approving...' : `Approve ${investAmount} USDT`}
+                      </motion.button>
+                    </div>
+                  )}
+                </div>
+              )}
               
               <div className="investment-input-section">
-                <label>Investment Amount ({getNativeTokenSymbol()})</label>
+                <label>Investment Amount ({getCurrentCurrencySymbol()})</label>
                 <input
                   type="number"
                   value={investAmount}
@@ -1168,7 +1432,10 @@ The presale contract will automatically send tokens to your wallet.`);
                 />
                 {getPresaleContractAddress() && (
                   <p className="investment-note">
-                    💡 {getNativeTokenSymbol()} will be sent directly to the presale smart contract
+                    💡 {getCurrentCurrencySymbol()} will be sent directly to the presale smart contract
+                    {project.payment_method === 'usdt' && (
+                      <><br/>Make sure to approve USDT spending first if required</>
+                    )}
                   </p>
                 )}
               </div>
@@ -1197,7 +1464,7 @@ The presale contract will automatically send tokens to your wallet.`);
                     return isNaN(amount) || amount <= 0 || amount < minAmount || amount > maxAmount;
                   })()}
                 >
-                  {isProcessingPayment ? '⏳ Processing...' : `Invest ${investAmount || '0'} ${getNativeTokenSymbol()}`}
+                  {isProcessingPayment ? '⏳ Processing...' : `Invest ${investAmount || '0'} ${getCurrentCurrencySymbol()}`}
                 </button>
               </div>
             </div>

@@ -62,6 +62,10 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
   // Token contract address (different from presale contract)
   const [tokenAddress, setTokenAddress] = useState('');
 
+  // Payment method
+  const [paymentMethod, setPaymentMethod] = useState('native'); // 'native' or 'usdt'
+  const [usdtTokenAddress, setUsdtTokenAddress] = useState('');
+
   useEffect(() => {
     fetchPresales();
     fetchCategories();
@@ -164,6 +168,8 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
     setHasAudit(false);
     setAuditLink('');
     setTokenAddress('');
+    setPaymentMethod('native');
+    setUsdtTokenAddress('');
     setError(null);
     setSuccess(null);
   };
@@ -180,12 +186,48 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
         throw new Error('Please fill in all required fields');
       }
 
-      // Generate slug
-      const slug = projectName.toLowerCase()
+      // Additional validation for USDT payment method
+      if (paymentMethod === 'usdt' && !usdtTokenAddress) {
+        throw new Error('USDT token address is required when using USDT payment method');
+      }
+
+      // Generate unique slug
+      const baseSlug = projectName.toLowerCase()
         .replace(/[^a-z0-9\s-]/g, '')
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-+|-+$/g, '');
+
+      // Check for existing slugs and generate unique one
+      let slug = baseSlug;
+      let slugExists = true;
+      let counter = 1;
+
+      while (slugExists) {
+        const { data: existingProject, error: slugError } = await supabase
+          .from('project_submissions')
+          .select('id')
+          .eq('slug', slug)
+          .single();
+
+        if (slugError && slugError.code === 'PGRST116') {
+          // No matching record found, slug is unique
+          slugExists = false;
+        } else if (existingProject) {
+          // Slug exists, try with counter
+          slug = `${baseSlug}-${counter}`;
+          counter++;
+        } else {
+          // Other error occurred
+          throw new Error('Error checking slug uniqueness');
+        }
+
+        // Safety check to prevent infinite loop
+        if (counter > 100) {
+          slug = `${baseSlug}-${Date.now()}`;
+          break;
+        }
+      }
 
       const chainInfo = getChainInfo(chainId);
 
@@ -223,7 +265,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
         kyc_link: kycLink,
         has_audit: hasAudit,
         audit_link: auditLink,
-        token_address: tokenAddress
+        token_address: tokenAddress,
+        payment_method: paymentMethod,
+        usdt_token_address: usdtTokenAddress
       };
 
       const { data: project, error: projectError } = await supabase
@@ -254,7 +298,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
         chain_id: chainId,
         presale_contract_address: contractAddress,
         native_token_symbol: chainInfo.symbol,
-        banner_image_url: bannerUrl
+        banner_image_url: bannerUrl,
+        payment_method: paymentMethod,
+        usdt_token_address: usdtTokenAddress
       };
 
       const { error: idoError } = await supabase
@@ -453,7 +499,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
                     placeholder="0x... (presale contract where users send funds)"
                     required
                   />
-                  <p className="text-gray-500 text-sm mt-1">Contract address where users send {getChainInfo(chainId).symbol} to participate</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    Contract address where users send {paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol} to participate
+                  </p>
                 </div>
 
                 <div>
@@ -473,8 +521,60 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-300">Sale Details</h3>
                 
+                {/* Payment Method Selection */}
+                <div className="bg-gray-700/30 rounded-lg p-4 border border-gray-600">
+                  <label className="block text-gray-300 text-sm font-medium mb-3">Payment Method *</label>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <input
+                        type="radio"
+                        id="payment-native"
+                        name="paymentMethod"
+                        value="native"
+                        checked={paymentMethod === 'native'}
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                        className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 focus:ring-blue-500"
+                      />
+                      <label htmlFor="payment-native" className="text-gray-300 text-sm">
+                        Native Token ({getChainInfo(chainId).symbol})
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <input
+                        type="radio"
+                        id="payment-usdt"
+                        name="paymentMethod"
+                        value="usdt"
+                        checked={paymentMethod === 'usdt'}
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                        className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 focus:ring-blue-500"
+                      />
+                      <label htmlFor="payment-usdt" className="text-gray-300 text-sm">
+                        USDT Token
+                      </label>
+                    </div>
+                  </div>
+                  
+                  {paymentMethod === 'usdt' && (
+                    <div className="mt-4">
+                      <label className="block text-gray-300 text-sm font-medium mb-2">USDT Contract Address *</label>
+                      <input
+                        type="text"
+                        value={usdtTokenAddress}
+                        onChange={(e) => setUsdtTokenAddress(e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                        placeholder="0x... (USDT token contract address)"
+                        required={paymentMethod === 'usdt'}
+                      />
+                      <p className="text-gray-500 text-sm mt-1">Contract address of the USDT token users will pay with</p>
+                    </div>
+                  )}
+                </div>
+                
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">Tokens per {getChainInfo(chainId).symbol} *</label>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">
+                    Tokens per {paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol} *
+                  </label>
                   <input
                     type="number"
                     step="1"
@@ -484,7 +584,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
                     placeholder="1000"
                     required
                   />
-                  <p className="text-gray-500 text-sm mt-1">How many tokens buyers get per 1 {getChainInfo(chainId).symbol}</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    How many tokens buyers get per 1 {paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol}
+                  </p>
                 </div>
 
                 <div>
@@ -527,7 +629,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
                 </div>
                 
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">Token Price (in {getChainInfo(chainId).symbol}) *</label>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">
+                    Token Price (in {paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol}) *
+                  </label>
                   <input
                     type="number"
                     step="0.000001"
@@ -541,7 +645,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Soft Cap ({getChainInfo(chainId).symbol})</label>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Soft Cap ({paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol})
+                    </label>
                     <input
                       type="number"
                       step="0.01"
@@ -552,7 +658,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Hard Cap ({getChainInfo(chainId).symbol}) *</label>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Hard Cap ({paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol}) *
+                    </label>
                     <input
                       type="number"
                       step="0.01"
@@ -567,7 +675,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Min Contribution ({getChainInfo(chainId).symbol})</label>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Min Contribution ({paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol})
+                    </label>
                     <input
                       type="number"
                       step="0.01"
@@ -578,7 +688,9 @@ const PresaleManagement: React.FC<PresaleManagementProps> = ({ adminUser }) => {
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Max Contribution ({getChainInfo(chainId).symbol})</label>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                      Max Contribution ({paymentMethod === 'usdt' ? 'USDT' : getChainInfo(chainId).symbol})
+                    </label>
                     <input
                       type="number"
                       step="0.01"
