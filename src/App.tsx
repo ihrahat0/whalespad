@@ -23,6 +23,7 @@ import PartnersManagement from './pages/admin/PartnersManagement';
 import StakingAirdrop from './pages/StakingAirdrop';
 import AirDrop from './pages/AirDrop';
 import Sale from './pages/Sale';
+import SaleParticipation from './pages/SaleParticipation';
 
 import IDOSales from './pages/IDOSales';
 import Navigation from './components/Navigation';
@@ -77,6 +78,7 @@ function App() {
             <Route path="/blog/:id" element={<BlogPostDetail />} />
             <Route path="/project/:id" element={<ProjectDetails />} />
             <Route path="/sale" element={<Sale />} />
+          <Route path="/sale/:slug" element={<SaleParticipation />} />
             <Route path="/ido-sales" element={<IDOSales />} />
             <Route path="/staking" element={<StakingAirdrop />} />
             <Route path="/airdrop" element={<AirDrop />} />

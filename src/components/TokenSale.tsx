@@ -91,7 +91,7 @@ const TokenSale: React.FC = () => {
           }
 
           .token-hero-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             background: linear-gradient(135deg, #00d4ff 0%, #4f8fff 50%, #8b5cf6 100%);
@@ -171,7 +171,7 @@ const TokenSale: React.FC = () => {
             font-weight: 900;
             color: #00d4ff;
             margin-bottom: 0.5rem;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
           }
 
           .token-stat-card .stat-label {
@@ -358,7 +358,7 @@ const TokenSale: React.FC = () => {
           }
 
           .card-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 800;
             color: #ffffff;
@@ -466,7 +466,7 @@ const TokenSale: React.FC = () => {
           }
 
           .supply-amount {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 900;
             color: #00d4ff;
@@ -559,7 +559,7 @@ const TokenSale: React.FC = () => {
             font-weight: 800;
             color: #00d4ff;
             font-size: 1.1rem;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
           }
 
           .legend-amount {
@@ -613,7 +613,7 @@ const TokenSale: React.FC = () => {
             color: #ffffff;
             font-weight: 700;
             text-align: right;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
           }
 
           .detail-item.featured .detail-value {
@@ -1031,7 +1031,7 @@ const TokenSale: React.FC = () => {
          }
 
          .featured-sale-title {
-           font-family: 'Orbitron', sans-serif;
+           font-family: 'Space Grotesk', sans-serif;
            font-size: clamp(2rem, 5vw, 3rem);
            font-weight: 800;
            background: linear-gradient(135deg, #00d4ff 0%, #4f8fff 50%, #8b5cf6 100%);
@@ -1056,7 +1056,7 @@ const TokenSale: React.FC = () => {
            font-size: 1.5rem;
            font-weight: 600;
            margin-bottom: 2px;
-           font-family: 'Orbitron', sans-serif;
+           font-family: 'Space Grotesk', sans-serif;
          }
 
          .countdown-timer {
@@ -1097,7 +1097,7 @@ const TokenSale: React.FC = () => {
          }
 
          .countdown-number {
-           font-family: 'Orbitron', 'Monaco', monospace;
+           font-family: 'Space Grotesk', sans-serif;
            font-size: 3rem;
            font-weight: 900;
            color: #ffffff;
@@ -1127,7 +1127,7 @@ const TokenSale: React.FC = () => {
            color: #00d4ff;
            font-size: 2rem;
            font-weight: 900;
-           font-family: 'Orbitron', sans-serif;
+           font-family: 'Space Grotesk', sans-serif;
            margin: 0 0.5rem;
          }
 
@@ -1185,7 +1185,7 @@ const TokenSale: React.FC = () => {
          }
 
          .sale-info-value {
-           font-family: 'Orbitron', sans-serif;
+           font-family: 'Space Grotesk', sans-serif;
            font-size: 1.8rem;
            font-weight: 900;
            color: #00d4ff;
@@ -1676,7 +1676,7 @@ const TokenSale: React.FC = () => {
                     </div>
                     <div className="deployment-badge">
                       <span className="badge-dot"></span>
-                      <span>Live</span>
+                      <span style={{display: 'table'}}>Live</span>
                     </div>
                   </div>
 

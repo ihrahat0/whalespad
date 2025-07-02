@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--primary-bg);
@@ -15,6 +15,7 @@ html, body {
 @media (max-width: 768px) {
   html, body {
     height: 100%;
+    
     overflow-y: auto;
   }
 }
@@ -89,7 +90,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -111,7 +112,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -120,7 +121,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -470,7 +471,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -542,7 +543,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -793,7 +794,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -830,7 +831,7 @@ body {
   gap: 0.25rem;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 * {
   margin: 0;
@@ -879,7 +880,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -901,7 +902,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -910,7 +911,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -1260,7 +1261,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -1332,7 +1333,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -1583,7 +1584,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -1786,7 +1787,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -2336,7 +2337,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -2470,7 +2471,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -2492,7 +2493,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -2501,7 +2502,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -2851,7 +2852,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -2923,7 +2924,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -3174,7 +3175,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -3377,7 +3378,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -3463,7 +3464,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   backdrop-filter: blur(20px);
   border: 1px solid;
 }
@@ -3536,7 +3537,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
@@ -3809,7 +3810,7 @@ body {
 .cyberpunk-nav-item {
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -3830,7 +3831,7 @@ body {
   background: transparent;
   border: 2px solid #00d4ff;
   color: #00d4ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -3927,7 +3928,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -3937,7 +3938,7 @@ body {
 }
 
 .logo-tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -4036,7 +4037,7 @@ body {
 }
 
 .wallet-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   color: #000;
@@ -4135,7 +4136,7 @@ body {
 }
 
 .badge-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Enhanced Main Heading */
@@ -4144,7 +4145,7 @@ body {
 }
 
 .main-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1.0;
@@ -4215,7 +4216,7 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .btn-primary-enhanced {
@@ -4279,7 +4280,7 @@ body {
 }
 
 .stat-number-enhanced {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -4370,7 +4371,7 @@ body {
 }
 
 .label-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--primary-cyan);
@@ -4514,7 +4515,7 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .project-meta-enhanced {
@@ -4706,7 +4707,7 @@ body {
 }
 
 .action-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -4847,7 +4848,7 @@ body {
 }
 
 .project-name-advanced {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -4922,7 +4923,7 @@ body {
 }
 
 .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -5077,7 +5078,7 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .stat-value.primary {
@@ -5112,7 +5113,7 @@ body {
   border: none;
   border-radius: 16px;
   color: #000;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -5170,7 +5171,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
@@ -5346,7 +5347,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -5368,7 +5369,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -5377,7 +5378,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -5727,7 +5728,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -5799,7 +5800,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -6050,7 +6051,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -6253,7 +6254,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -6339,7 +6340,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   backdrop-filter: blur(20px);
   border: 1px solid;
 }
@@ -6412,7 +6413,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
@@ -6685,7 +6686,7 @@ body {
 .cyberpunk-nav-item {
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -6706,7 +6707,7 @@ body {
   background: transparent;
   border: 2px solid #00d4ff;
   color: #00d4ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -6803,7 +6804,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -6813,7 +6814,7 @@ body {
 }
 
 .logo-tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -6912,7 +6913,7 @@ body {
 }
 
 .wallet-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   color: #000;
@@ -7011,7 +7012,7 @@ body {
 }
 
 .badge-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Enhanced Main Heading */
@@ -7020,7 +7021,7 @@ body {
 }
 
 .main-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1.0;
@@ -7091,7 +7092,7 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .btn-primary-enhanced {
@@ -7155,7 +7156,7 @@ body {
 }
 
 .stat-number-enhanced {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -7246,7 +7247,7 @@ body {
 }
 
 .label-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--primary-cyan);
@@ -7390,7 +7391,7 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .project-meta-enhanced {
@@ -7582,7 +7583,7 @@ body {
 }
 
 .action-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -7722,7 +7723,7 @@ body {
 }
 
 .project-name-advanced {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -7797,7 +7798,7 @@ body {
 }
 
 .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -7952,7 +7953,7 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .stat-value.primary {
@@ -7987,7 +7988,7 @@ body {
   border: none;
   border-radius: 16px;
   color: #000;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -8045,7 +8046,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
@@ -8367,7 +8368,7 @@ body {
 }
 
 .footer-logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -11431,7 +11432,7 @@ select {
   border: 1px solid rgba(0, 212, 255, 0.3);
   transition: all 0.3s ease;
   min-width: 160px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: #000;
@@ -11585,7 +11586,7 @@ select {
 }
 
 .mobile-logo .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -12214,7 +12215,7 @@ body.mobile-menu-open {
 }
 
 .project-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -12714,7 +12715,7 @@ body.mobile-menu-open {
 .project-name {
   font-size: 2.5rem;
   font-weight: 800;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -13499,7 +13500,7 @@ body.mobile-menu-open {
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--primary-bg);
@@ -13573,7 +13574,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -13595,7 +13596,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -13604,7 +13605,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -13954,7 +13955,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -14026,7 +14027,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -14277,7 +14278,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -14368,7 +14369,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -14390,7 +14391,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -14399,7 +14400,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -14749,7 +14750,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -14821,7 +14822,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -15072,7 +15073,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -15275,7 +15276,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -15825,7 +15826,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -15967,7 +15968,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -15989,7 +15990,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -15998,7 +15999,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -16348,7 +16349,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -16420,7 +16421,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -16671,7 +16672,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -16874,7 +16875,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -16960,7 +16961,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   backdrop-filter: blur(20px);
   border: 1px solid;
 }
@@ -17033,7 +17034,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
@@ -17306,7 +17307,7 @@ body {
 .cyberpunk-nav-item {
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -17327,7 +17328,7 @@ body {
   background: transparent;
   border: 2px solid #00d4ff;
   color: #00d4ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -17424,7 +17425,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -17434,7 +17435,7 @@ body {
 }
 
 .logo-tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -17533,7 +17534,7 @@ body {
 }
 
 .wallet-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   color: #000;
@@ -17632,7 +17633,7 @@ body {
 }
 
 .badge-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Enhanced Main Heading */
@@ -17641,7 +17642,7 @@ body {
 }
 
 .main-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1.0;
@@ -17712,7 +17713,7 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .btn-primary-enhanced {
@@ -17776,7 +17777,7 @@ body {
 }
 
 .stat-number-enhanced {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -17867,7 +17868,7 @@ body {
 }
 
 .label-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--primary-cyan);
@@ -18011,7 +18012,7 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .project-meta-enhanced {
@@ -18203,7 +18204,7 @@ body {
 }
 
 .action-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -18344,7 +18345,7 @@ body {
 }
 
 .project-name-advanced {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -18419,7 +18420,7 @@ body {
 }
 
 .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -18574,7 +18575,7 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .stat-value.primary {
@@ -18609,7 +18610,7 @@ body {
   border: none;
   border-radius: 16px;
   color: #000;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -18667,7 +18668,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
@@ -18873,7 +18874,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: var(--primary-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -18895,7 +18896,7 @@ body {
 
 /* Typography */
 .heading-1 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   line-height: 1.0;
@@ -18904,7 +18905,7 @@ body {
 }
 
 .heading-2 {
-  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -19254,7 +19255,7 @@ body {
 }
 
 .hero-heading h1 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: white;
@@ -19326,7 +19327,7 @@ body {
 }
 
 .stat-number {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
@@ -19577,7 +19578,7 @@ body {
 }
 
 .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -19780,7 +19781,7 @@ body {
 .stat-value {
   font-size: 3.5rem;
   font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, 
     var(--chrome-light), 
     var(--primary-cyan), 
@@ -19866,7 +19867,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   backdrop-filter: blur(20px);
   border: 1px solid;
 }
@@ -19939,7 +19940,7 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
@@ -20212,7 +20213,7 @@ body {
 .cyberpunk-nav-item {
   color: #ffffff;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -20233,7 +20234,7 @@ body {
   background: transparent;
   border: 2px solid #00d4ff;
   color: #00d4ff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -20330,7 +20331,7 @@ body {
 }
 
 .logo-main {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -20340,7 +20341,7 @@ body {
 }
 
 .logo-tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   color: var(--text-secondary);
@@ -20439,7 +20440,7 @@ body {
 }
 
 .wallet-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   color: #000;
@@ -20538,7 +20539,7 @@ body {
 }
 
 .badge-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Enhanced Main Heading */
@@ -20547,7 +20548,7 @@ body {
 }
 
 .main-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 900;
   line-height: 1.0;
@@ -20618,7 +20619,7 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .btn-primary-enhanced {
@@ -20682,7 +20683,7 @@ body {
 }
 
 .stat-number-enhanced {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -20773,7 +20774,7 @@ body {
 }
 
 .label-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--primary-cyan);
@@ -20917,7 +20918,7 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .project-meta-enhanced {
@@ -21109,7 +21110,7 @@ body {
 }
 
 .action-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -21249,7 +21250,7 @@ body {
 }
 
 .project-name-advanced {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--text-primary), var(--primary-cyan));
@@ -21324,7 +21325,7 @@ body {
 }
 
 .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
@@ -21479,7 +21480,7 @@ body {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .stat-value.primary {
@@ -21514,7 +21515,7 @@ body {
   border: none;
   border-radius: 16px;
   color: #000;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -21572,7 +21573,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
@@ -21894,7 +21895,7 @@ body {
 }
 
 .footer-logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: white;
@@ -24958,7 +24959,7 @@ select {
   border: 1px solid rgba(0, 212, 255, 0.3);
   transition: all 0.3s ease;
   min-width: 160px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: #000;
@@ -25112,7 +25113,7 @@ select {
 }
 
 .mobile-logo .logo-text {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -25741,7 +25742,7 @@ body.mobile-menu-open {
 }
 
 .project-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -26241,7 +26242,7 @@ body.mobile-menu-open {
 .project-name {
   font-size: 2.5rem;
   font-weight: 800;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29109,7 +29110,7 @@ body.mobile-menu-open {
 }
 
 .staking-hero-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 800;
   line-height: 1.1;
@@ -29142,7 +29143,7 @@ body.mobile-menu-open {
 
 .stat-number-staking {
   display: block;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--primary-cyan);
@@ -29220,7 +29221,7 @@ body.mobile-menu-open {
 }
 
 .section-header-staking h2 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -29825,7 +29826,7 @@ body.mobile-menu-open {
   font-weight: 600;
   font-size: 1rem;
   color: #ffffff;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .social-description {
@@ -32818,7 +32819,7 @@ body.mobile-menu-open {
 }
 
 .main-title-unified {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   color: white;
@@ -34230,7 +34231,7 @@ body {
 }
 
 .simple-terms-header h2 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: #ffffff;

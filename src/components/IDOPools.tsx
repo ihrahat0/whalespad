@@ -215,7 +215,7 @@ const IDOPools: React.FC = () => {
                 <div className="banner-overlay"></div>
                 <div className="pool-badges">
                   {pool.status === 'active' && (
-                    <span className="badge-live">LIVE</span>
+                    <span className="badge-live"style={{display: 'table'}}>Live</span>
                   )}
                   <span className="badge-chain">{getChainName(pool.chain_id)}</span>
                 </div>

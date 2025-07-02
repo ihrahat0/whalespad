@@ -13,6 +13,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import AdminManagementComponent from '../../components/admin/AdminManagementComponent';
 import PartnersManagement from './PartnersManagement';
 import PhaseManagement from '../../components/admin/PhaseManagement';
+import PresaleManagement from '../../components/admin/PresaleManagement';
+import CategoryManagement from '../../components/admin/CategoryManagement';
 
 // Premium Status Badge Component
 const StatusBadge = ({ status }: { status: string }) => {
@@ -751,6 +753,18 @@ const AdminDashboard: React.FC = () => {
               badge={existingIdos.length}
             />
             <NavItem
+              icon={FiDollarSign}
+              label="Presale Management"
+              isActive={activeTab === 'presale-management'}
+              onClick={() => setActiveTab('presale-management')}
+            />
+            <NavItem
+              icon={FiSettings}
+              label="Category Management"
+              isActive={activeTab === 'category-management'}
+              onClick={() => setActiveTab('category-management')}
+            />
+            <NavItem
               icon={FiClock}
               label="Phase Management"
               isActive={activeTab === 'phase-management'}
@@ -908,7 +922,7 @@ const AdminDashboard: React.FC = () => {
                               <option value="pending">Pending</option>
                               <option value="approved">Approved</option>
                               <option value="rejected">Rejected</option>
-                              <option value="live">Live</option>
+                              <option value="live"style={{display: 'table'}}>Live</option>
                               <option value="ended">Ended</option>
                             </select>
                           </div>
@@ -2164,6 +2178,28 @@ const AdminDashboard: React.FC = () => {
                       </div>
                     )}
                   </div>
+                </motion.div>
+              )}
+
+              {activeTab === 'presale-management' && (
+                <motion.div
+                  key="presale-management"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                >
+                  <PresaleManagement adminUser={adminUser} />
+                </motion.div>
+              )}
+
+              {activeTab === 'category-management' && (
+                <motion.div
+                  key="category-management"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                >
+                  <CategoryManagement adminUser={adminUser} />
                 </motion.div>
               )}
 

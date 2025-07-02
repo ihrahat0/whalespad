@@ -11,7 +11,7 @@ const teamMembers: TeamMember[] = [
   {
     name: 'Founder : D. Islam',
     bio: 'Founder : D. Islam',
-    image: '/images/team6.png'
+    image: '/images/team1.png'
   },
   {
     name: 'Co-founder : Mr. Nassir',
@@ -48,7 +48,6 @@ const teamMembers: TeamMember[] = [
     bio: 'Launchpad Director with comprehensive experience in project evaluation, due diligence, and launch strategies. Stella has overseen the successful launch of over 50 projects on various launchpad platforms.',
     image: '/images/team8.png'
   }
-  
 ];
 
 // Individual team member card component

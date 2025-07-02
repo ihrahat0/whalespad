@@ -108,7 +108,7 @@ const GeometricDesignDemo: React.FC = () => {
           <h2 style={{ fontSize: '2rem', marginBottom: '2rem', color: '#fff' }}>Badges</h2>
           
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <span className="geo-badge">LIVE</span>
+            <span className="geo-badge"style={{display: 'table'}}>Live</span>
             <span className="geo-badge">UPCOMING</span>
             <span className="geo-badge">COMPLETED</span>
             <span className="status-badge status-live">STATUS LIVE</span>

@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "supabasemain0": {
+    "supabase-wpt": {
       "command": "npx",
       "args": [
         "-y",
